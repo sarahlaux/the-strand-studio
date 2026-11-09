@@ -190,23 +190,25 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .tile .pill{position:absolute;z-index:2;left:var(--pad);bottom:clamp(24px,3vw,40px)}
 @media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
 
-/* studio intro + photo row */
-.studio{padding:clamp(72px,9vw,128px) var(--pad) clamp(64px,8vw,110px)}
-.studio__copy{max-width:720px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+/* studio intro + diagonal photo columns */
+.studio{padding:clamp(72px,9vw,128px) var(--pad);overflow:hidden}
+.studio__wrap{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.studio__copy{display:flex;flex-direction:column;align-items:flex-start}
 .studio h2{font-size:clamp(40px,4.4vw,64px);line-height:1;text-wrap:balance}
 .studio h2 .mark{color:var(--oak)}
 .studio h2 .mark span{color:var(--ink)}
 .studio__sub{margin-top:18px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
-.studio__copy p:not(.studio__sub){margin:22px 0 30px;max-width:56ch;font-size:16px;color:var(--ink-2)}
-.studio__feed{max-width:1360px;margin:clamp(56px,7vw,96px) auto 0}
-.studio{overflow:hidden}
-.studio__handle{display:inline-block;margin-bottom:16px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.studio__copy p:not(.studio__sub){margin:22px 0 30px;max-width:46ch;font-size:16px;color:var(--ink-2)}
+.studio__handle{margin-top:28px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
 .studio__handle:hover{text-decoration:underline;text-underline-offset:4px}
-.studio__slider{--gap:clamp(12px,1.8vw,24px);overflow:hidden;width:100vw;margin-left:calc(50% - 50vw)}
-.studio__track{display:flex;gap:var(--gap);width:max-content;will-change:transform}
-.studio__group{display:flex;gap:var(--gap)}
-.studio__group img{flex:none;width:clamp(200px,22vw,320px);height:auto;aspect-ratio:1;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
-@media (prefers-reduced-motion:reduce){.studio__slider{overflow-x:auto}.studio__group[aria-hidden]{display:none}}
+.studio__diag{position:relative;height:clamp(520px,58vw,760px);overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+.studio__tilt{--gap:clamp(12px,1.6vw,20px);position:absolute;inset:-25% -12%;display:flex;justify-content:center;gap:var(--gap);transform:rotate(-14deg)}
+.studio__col{width:42%;overflow:hidden}
+.studio__col + .studio__col{margin-top:18%}
+.studio__track,.studio__group{display:flex;flex-direction:column;gap:var(--gap)}
+.studio__track{will-change:transform}
+.studio__group img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
+@media (prefers-reduced-motion:reduce){.studio__group[aria-hidden]{display:none}}
 
 /* reviews */
 .rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad)}
@@ -283,6 +285,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
 @media (max-width:1000px){
+  .studio__wrap{grid-template-columns:1fr}
+  .studio__diag{height:clamp(420px,90vw,620px)}
   .nav{grid-template-columns:1fr auto}
   .nav__links{display:none}
   .cells{grid-auto-columns:42%}
@@ -342,35 +346,47 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 
 <main>
   <section class="studio" id="studio" aria-labelledby="studio-h">
-    <div class="studio__copy rv">
-      <h2 id="studio-h">a <span class="mark"><span>quiet room</span><svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span> on a busy street.</h2>
-      <p class="studio__sub">2140 E 4th Street, Long Beach</p>
-      <p>Six chairs, big west-facing windows and one client per stylist. Every visit starts with a conversation, runs on time and ends with a plan for your hair at home.</p>
-      <a class="pill pill--line" href="#visit">plan your visit</a>
-    </div>
-    <div class="studio__feed">
-      <a class="studio__handle" href="#">@thestrandstudio</a>
-      <div class="studio__slider" id="studioSlider">
-        <div class="studio__track">
-          <div class="studio__group">
-            <img src="img/sign.jpg" alt="A mirrored sidewalk sign reading "Therapy is expensive, get a haircut instead"" loading="lazy" width="1012" height="1800" style="object-position:45% 62%">
-            <img src="img/comb.jpg" alt="Hands combing long brunette hair with a wooden comb" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
-            <img src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
-            <img src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
-            <img src="img/station.jpg" alt="A styling station with a tall brass-framed mirror and a cane chair" loading="lazy" width="1286" height="1800" style="object-position:50% 50%">
-            <img src="img/scissors.jpg" alt="A stylist cutting the ends of a wet section of hair with shears and a comb" loading="lazy" width="1800" height="1200" style="object-position:55% 50%">
-            <img src="img/retail.jpg" alt="Mirrored shelves of hair sprays and boxed styling products in green, blue and orange" loading="lazy" width="1350" height="1800" style="object-position:50% 30%">
-            <img src="img/comb-2.jpg" alt="A hand running a wooden comb through long dark hair" loading="lazy" width="1200" height="1800" style="object-position:50% 45%">
+    <div class="studio__wrap">
+      <div class="studio__copy rv">
+        <h2 id="studio-h">a <span class="mark"><span>quiet room</span><svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span> on a busy street.</h2>
+        <p class="studio__sub">2140 E 4th Street, Long Beach</p>
+        <p>Six chairs, big west-facing windows and one client per stylist. Every visit starts with a conversation, runs on time and ends with a plan for your hair at home.</p>
+        <a class="pill pill--line" href="#visit">plan your visit</a>
+        <a class="studio__handle" href="#">@thestrandstudio</a>
+      </div>
+      <div class="studio__diag" role="group" aria-label="Photos from the studio">
+        <div class="studio__tilt">
+          <div class="studio__col" id="studioColA">
+            <div class="studio__track">
+              <div class="studio__group">
+                <img src="img/sign.jpg" alt="A mirrored sidewalk sign that reads: therapy is expensive, get a haircut instead" loading="lazy" width="1012" height="1800" style="object-position:45% 62%">
+                <img src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
+                <img src="img/scissors.jpg" alt="A stylist cutting the ends of a wet section of hair with shears and a comb" loading="lazy" width="1800" height="1200" style="object-position:55% 50%">
+                <img src="img/comb-2.jpg" alt="A hand running a wooden comb through long dark hair" loading="lazy" width="1200" height="1800" style="object-position:50% 45%">
+              </div>
+              <div class="studio__group" aria-hidden="true">
+                <img src="img/sign.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:45% 62%">
+                <img src="img/lounge.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
+                <img src="img/scissors.jpg" alt="" loading="lazy" width="1800" height="1200" style="object-position:55% 50%">
+                <img src="img/comb-2.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 45%">
+              </div>
+            </div>
           </div>
-          <div class="studio__group" aria-hidden="true">
-            <img src="img/sign.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:45% 62%">
-            <img src="img/comb.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
-            <img src="img/lounge.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
-            <img src="img/shelf.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
-            <img src="img/station.jpg" alt="" loading="lazy" width="1286" height="1800" style="object-position:50% 50%">
-            <img src="img/scissors.jpg" alt="" loading="lazy" width="1800" height="1200" style="object-position:55% 50%">
-            <img src="img/retail.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 30%">
-            <img src="img/comb-2.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 45%">
+          <div class="studio__col" id="studioColB">
+            <div class="studio__track">
+              <div class="studio__group">
+                <img src="img/comb.jpg" alt="Hands combing long brunette hair with a wooden comb" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
+                <img src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+                <img src="img/station.jpg" alt="A styling station with a tall brass-framed mirror and a cane chair" loading="lazy" width="1286" height="1800" style="object-position:50% 50%">
+                <img src="img/retail.jpg" alt="Mirrored shelves of hair sprays and boxed styling products in green, blue and orange" loading="lazy" width="1350" height="1800" style="object-position:50% 30%">
+              </div>
+              <div class="studio__group" aria-hidden="true">
+                <img src="img/comb.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
+                <img src="img/shelf.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+                <img src="img/station.jpg" alt="" loading="lazy" width="1286" height="1800" style="object-position:50% 50%">
+                <img src="img/retail.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 30%">
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -862,24 +878,28 @@ setInterval(() => {
   setTimeout(() => prev.classList.remove('is-out'), 900);
 }, 2200);
 
-// endless left-sliding strips (studio photos, reviews); they ease to a slower speed on hover
-function marquee(slider, base, slow) {
+// endless sliding strips (studio photo columns, reviews); they ease to a slower speed on hover
+function marquee(slider, base, slow, {axis = 'x', reverse = false} = {}) {
   if (!slider || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
   const track = slider.firstElementChild, group = track.firstElementChild;
+  const vertical = axis === 'y';
   let x = 0, speed = base, target = base, last = performance.now();
   slider.addEventListener('mouseenter', () => target = slow);
   slider.addEventListener('mouseleave', () => target = base);
   function tick(now) {
     const dt = Math.min(now - last, 50) / 1000; last = now;
     speed += (target - speed) * Math.min(1, dt * 4);
-    const loop = group.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
+    const r = group.getBoundingClientRect(), cs = getComputedStyle(track);
+    const loop = (vertical ? r.height : r.width) + (parseFloat(vertical ? cs.rowGap : cs.columnGap) || 0);
     x = (x + speed * dt) % loop;
-    track.style.transform = `translateX(${-x}px)`;
+    const pos = reverse ? x - loop : -x;
+    track.style.transform = vertical ? `translateY(${pos}px)` : `translateX(${pos}px)`;
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
 }
-marquee(document.getElementById('studioSlider'), 40, 12);
+marquee(document.getElementById('studioColA'), 34, 10, {axis:'y'});
+marquee(document.getElementById('studioColB'), 34, 10, {axis:'y', reverse:true});
 marquee(document.getElementById('revSlider'), 32, 4);
 
 // parallax: the "hair that feels" photo moves slower than the page

@@ -74,7 +74,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .hero__tag i{width:8px;height:8px;border-radius:50%;background:#9fd0b0;box-shadow:0 0 0 4px rgba(159,208,176,.25)}
 
 /* services */
-.svc{padding:clamp(24px,3vw,40px) 0 clamp(56px,7vw,96px)}
+.svc{padding:clamp(56px,7vw,96px) 0}
 .tabs{display:flex;align-items:center;gap:clamp(20px,3vw,40px);padding:0 var(--pad);margin-bottom:clamp(28px,4vw,48px);overflow-x:auto;scrollbar-width:none}
 .tabs::-webkit-scrollbar{display:none}
 .tabs::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--ink);margin-right:calc(-1 * clamp(4px,1vw,16px))}
@@ -108,31 +108,33 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .bar i{display:block;height:100%;background:var(--ink);width:66%;transform-origin:left;transition:transform .15s}
 
 /* services */
-.srv{padding:clamp(40px,5vw,64px) var(--pad) clamp(32px,4vw,56px);max-width:1440px;margin:0 auto}
+.srv{background:var(--ink);color:var(--plaster);padding:clamp(64px,8vw,110px) max(var(--pad),calc((100% - 1360px) / 2))}
+.srv ::selection{background:var(--oak);color:var(--ink)}
 .srv__head{display:flex;align-items:center;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(32px,5vw,56px)}
 .srv h2{font:400 clamp(64px,7vw,104px)/.85 "Bebas Neue",var(--font);letter-spacing:0;text-transform:uppercase}
 .srv__tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:100%}
 .srv__tabs::-webkit-scrollbar{display:none}
-.srv__tabs button{flex:none;border:0;background:none;padding:14px 20px;font:400 15px/1 var(--font);text-transform:uppercase;letter-spacing:.02em;color:var(--ink-2);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
-.srv__tabs button:hover{color:var(--ink)}
-.srv__tabs button[aria-selected="true"]{background:var(--ink);color:var(--plaster)}
+.srv__tabs button{flex:none;border:0;background:none;padding:14px 20px;font:400 15px/1 var(--font);text-transform:uppercase;letter-spacing:.02em;color:rgba(245,239,232,.62);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.srv__tabs button:hover{color:var(--plaster)}
+.srv__tabs button[aria-selected="true"]{background:var(--plaster);color:var(--ink)}
+.srv :focus-visible{outline-color:var(--oak)}
 .srv__panel{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
 .srv__panel[hidden]{display:none}
 .srv__panel img{width:100%;height:100%;object-fit:cover}
 .srv__side{padding-top:clamp(0px,8vw,120px);display:grid;grid-template-columns:minmax(0,280px) 1fr;gap:28px clamp(24px,3vw,44px);align-items:end}
 .srv__sm img{aspect-ratio:3/4.1}
-.srv__sm figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.srv__sm figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:rgba(245,239,232,.62)}
 .srv__info{align-self:end;margin-bottom:28px}
 .srv__list{list-style:none;padding:0}
-.srv__list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.srv__list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(245,239,232,.18);font-size:15px}
 .srv__list li span{white-space:nowrap}
-.srv__list small{color:var(--ink-2);font-size:13px}
+.srv__list small{color:rgba(245,239,232,.62);font-size:13px}
 .srv__big{aspect-ratio:3/3.9;overflow:hidden}
 .srv__panel.is-fresh{animation:srvIn .5s ease}
 @keyframes srvIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.srv__panel.is-fresh{animation:none}}
-.srv__book{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:28px;background:var(--ink);color:var(--plaster);text-decoration:none;text-transform:uppercase;letter-spacing:.04em;font-size:15px;transition:background .2s}
-.srv__book:hover{background:var(--oak-deep)}
+.srv__book{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:28px;background:var(--plaster);color:var(--ink);text-decoration:none;text-transform:uppercase;letter-spacing:.04em;font-size:15px;transition:background .2s}
+.srv__book:hover{background:var(--oak)}
 @media (max-width:1100px){.srv__side{grid-template-columns:1fr;padding-top:0}.srv__info{margin-bottom:0}.srv__sm{max-width:300px}}
 @media (max-width:700px){.srv__panel{grid-template-columns:1fr}.srv__side{grid-template-columns:1fr}.srv__sm{display:none}}
 

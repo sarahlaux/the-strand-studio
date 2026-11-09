@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 28'%3E%3Cpath d='M1 27V11a10 10 0 0 1 20 0v16M6 27V12a5 5 0 0 1 10 0v15' fill='none' stroke='%23b98b5f' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --plaster:#f5efe8;
@@ -147,6 +147,24 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   .acc__inner img{grid-column:2;grid-row:1;width:100%;aspect-ratio:3/2;margin:0 0 18px}
   .acc__body{grid-row:2}
 }
+
+/* press logos strip */
+.press{padding:0 0 clamp(48px,6vw,80px);overflow:hidden}
+.press__label{text-align:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-bottom:clamp(18px,2vw,28px)}
+.press__slider{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.press__track{display:flex;width:max-content;will-change:transform}
+.press__group{display:flex;align-items:center;list-style:none;margin:0;padding:clamp(22px,2.6vw,34px) 0}
+.press__group li{flex:none;margin:0 clamp(28px,4vw,64px);color:var(--ink);opacity:.82;line-height:1;white-space:nowrap}
+.pr--vogue{font:400 clamp(30px,3vw,42px) "Bodoni Moda",serif;letter-spacing:.06em}
+.pr--elle{font:700 clamp(30px,3vw,42px) "Bodoni Moda",serif;letter-spacing:.02em}
+.pr--bazaar{font:400 clamp(20px,2vw,28px) "Bodoni Moda",serif;letter-spacing:.04em}
+.pr--allure{font:500 clamp(22px,2.2vw,30px) "Bodoni Moda",serif;letter-spacing:.32em}
+.pr--glamour{font:italic 600 clamp(26px,2.6vw,36px) "Bodoni Moda",serif}
+.pr--mc{font:400 clamp(24px,2.4vw,32px) var(--font);letter-spacing:-.02em}
+.pr--instyle{font:700 clamp(24px,2.4vw,32px) var(--font);letter-spacing:-.04em}
+.pr--cosmo{font:700 clamp(20px,2vw,28px) "Bodoni Moda",serif;letter-spacing:.02em}
+.pr--byrdie{font:italic 400 clamp(26px,2.6vw,36px) "Bodoni Moda",serif}
+@media (prefers-reduced-motion:reduce){.press__slider{overflow-x:auto}.press__group[aria-hidden]{display:none}}
 
 /* latest work gallery */
 .gal{padding:clamp(56px,7vw,96px) var(--pad) clamp(64px,8vw,110px)}
@@ -679,6 +697,16 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
   </section>
 
+  <section class="press" aria-label="As seen in">
+    <p class="press__label">as seen in</p>
+    <div class="press__slider" id="pressSlider">
+      <div class="press__track">
+        <ul class="press__group"><li class="pr--vogue">VOGUE</li><li class="pr--elle">ELLE</li><li class="pr--bazaar">Harper’s BAZAAR</li><li class="pr--allure">ALLURE</li><li class="pr--glamour">Glamour</li><li class="pr--mc">marie claire</li><li class="pr--instyle">InStyle</li><li class="pr--cosmo">COSMOPOLITAN</li><li class="pr--byrdie">Byrdie</li></ul>
+        <ul class="press__group" aria-hidden="true"><li class="pr--vogue">VOGUE</li><li class="pr--elle">ELLE</li><li class="pr--bazaar">Harper’s BAZAAR</li><li class="pr--allure">ALLURE</li><li class="pr--glamour">Glamour</li><li class="pr--mc">marie claire</li><li class="pr--instyle">InStyle</li><li class="pr--cosmo">COSMOPOLITAN</li><li class="pr--byrdie">Byrdie</li></ul>
+      </div>
+    </div>
+  </section>
+
   <section class="gal" id="looks" aria-labelledby="gal-h">
     <div class="gal__head">
       <h2 id="gal-h" class="rv">our latest work</h2>
@@ -914,6 +942,7 @@ function marquee(slider, base, slow, {axis = 'x', reverse = false} = {}) {
 marquee(document.getElementById('studioColA'), 34, 10, {axis:'y'});
 marquee(document.getElementById('studioColB'), 34, 10, {axis:'y', reverse:true});
 marquee(document.getElementById('revSlider'), 32, 4);
+marquee(document.getElementById('pressSlider'), 45, 15);
 
 // parallax: the "hair that feels" photo moves slower than the page
 (() => {

@@ -81,7 +81,13 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .tabs button{border:0;background:none;padding:0;font:400 clamp(28px,3vw,40px)/1.1 var(--font);letter-spacing:-.035em;color:rgba(46,37,32,.32);cursor:pointer;white-space:nowrap;transition:color .2s}
 .tabs button:hover{color:rgba(46,37,32,.6)}
 .tabs button[aria-selected="true"]{color:var(--ink)}
-.svc__title{display:flex;align-items:center;gap:clamp(14px,1.6vw,22px);padding:0 var(--pad);margin-bottom:clamp(28px,4vw,48px);font-size:clamp(28px,3vw,40px);line-height:1.1}
+.svc__head{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 var(--pad);margin-bottom:clamp(28px,4vw,48px)}
+.svc__ctrl{display:flex;gap:8px;flex:none}
+.svc__ctrl button{width:48px;height:48px;border-radius:50%;border:1px solid var(--ink);background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s,opacity .2s}
+.svc__ctrl button:hover:not(:disabled){background:var(--ink);color:var(--plaster)}
+.svc__ctrl button:disabled{opacity:.25;cursor:default}
+.svc__ctrl svg{width:18px;height:18px}
+.svc__title{display:flex;align-items:center;gap:clamp(14px,1.6vw,22px);font-size:clamp(28px,3vw,40px);line-height:1.1}
 .svc__title::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--ink)}
 .defs{position:absolute;width:0;height:0;overflow:hidden}
 .cell__img--prod{background:radial-gradient(70% 55% at 50% 42%,rgba(255,255,255,.55),transparent 70%),var(--bg);display:grid;place-items:end center}
@@ -445,13 +451,20 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   </section>
 
   <section class="svc" id="shop" aria-labelledby="shop-h">
-    <h2 class="svc__title" id="shop-h">our best selling products</h2>
+    <div class="svc__head">
+      <h2 class="svc__title" id="shop-h">our best selling products</h2>
+      <div class="svc__ctrl">
+        <button type="button" data-shop="-1" aria-label="Previous products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+        <button type="button" data-shop="1" aria-label="More products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
     <svg class="defs" aria-hidden="true" focusable="false">
       <defs>
         <linearGradient id="g-cream" x1="0" x2="1"><stop offset="0" stop-color="#d9cdbd"/><stop offset=".22" stop-color="#fbf7f1"/><stop offset=".42" stop-color="#f3ebe0"/><stop offset=".85" stop-color="#e2d6c6"/><stop offset="1" stop-color="#cbbca8"/></linearGradient>
         <linearGradient id="g-amber" x1="0" x2="1"><stop offset="0" stop-color="#5a2f12"/><stop offset=".2" stop-color="#b56a2c"/><stop offset=".32" stop-color="#d99a5a"/><stop offset=".55" stop-color="#9a5521"/><stop offset="1" stop-color="#4a250c"/></linearGradient>
         <linearGradient id="g-sage" x1="0" x2="1"><stop offset="0" stop-color="#7c8a83"/><stop offset=".22" stop-color="#c4cec8"/><stop offset=".45" stop-color="#a8b5ae"/><stop offset=".85" stop-color="#8b9a92"/><stop offset="1" stop-color="#6d7b74"/></linearGradient>
         <linearGradient id="g-oak" x1="0" x2="1"><stop offset="0" stop-color="#7a5434"/><stop offset=".25" stop-color="#c9996a"/><stop offset=".5" stop-color="#b0814f"/><stop offset="1" stop-color="#6e4a2c"/></linearGradient>
+        <linearGradient id="g-gold" x1="0" x2="1"><stop offset="0" stop-color="#9c7a3c"/><stop offset=".22" stop-color="#e8cf8f"/><stop offset=".35" stop-color="#f6e7b8"/><stop offset=".6" stop-color="#c9a35c"/><stop offset="1" stop-color="#86652e"/></linearGradient>
         <linearGradient id="g-ink" x1="0" x2="1"><stop offset="0" stop-color="#1c1612"/><stop offset=".3" stop-color="#4a3e36"/><stop offset=".55" stop-color="#2e2520"/><stop offset="1" stop-color="#16110e"/></linearGradient>
         <linearGradient id="g-label" x1="0" x2="1"><stop offset="0" stop-color="#e8dfd2"/><stop offset=".3" stop-color="#fbf8f3"/><stop offset="1" stop-color="#e6dccd"/></linearGradient>
         <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
@@ -536,6 +549,91 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
           </svg>
         </div>
         <h3>Repair hair mask</h3><p>$38 <s>$44</s> · 200 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>Sulfate free</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#e2d7c9">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A cream pump bottle of Gentle Shampoo">
+            <ellipse cx="100" cy="238" rx="50" ry="7" fill="#2e2520" opacity=".35" filter="url(#soft)"/>
+            <path d="M92 44h18a3 3 0 0 1 3 3v3h24v7h-27v3H92z" fill="url(#g-ink)"/>
+            <rect x="96" y="60" width="9" height="22" fill="#3b312a"/>
+            <rect x="85" y="80" width="31" height="20" rx="3" fill="url(#g-ink)"/>
+            <rect x="62" y="96" width="76" height="142" rx="13" fill="url(#g-cream)"/>
+            <rect x="70" y="138" width="60" height="70" rx="2" fill="url(#g-label)" stroke="#d6c9b7" stroke-width=".6"/>
+            <text x="100" y="154" class="lbl lbl--brand">THE STRAND</text>
+            <line x1="86" y1="161" x2="114" y2="161" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="176" class="lbl lbl--name">Gentle</text>
+            <text x="100" y="188" class="lbl lbl--name">Shampoo</text>
+            <text x="100" y="201" class="lbl lbl--size">300 mL</text>
+            <rect x="68" y="104" width="6" height="126" rx="3" fill="#fff" opacity=".5"/>
+          </svg>
+        </div>
+        <h3>Gentle shampoo</h3><p>$30 · 300 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>New</span><span>Argan + jojoba</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#ddd2c4">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A small glass dropper bottle of Shine Oil">
+            <ellipse cx="100" cy="238" rx="38" ry="6" fill="#2e2520" opacity=".4" filter="url(#soft)"/>
+            <path d="M90 104c0-26 2-40 10-40s10 14 10 40z" fill="url(#g-ink)"/>
+            <rect x="86" y="102" width="28" height="24" rx="3" fill="url(#g-ink)"/>
+            <path d="M86 108h28M86 114h28M86 120h28" stroke="#4d4038" stroke-width=".7"/>
+            <path d="M90 126h20v6c0 4 16 6 16 16v82a8 8 0 0 1-8 8H82a8 8 0 0 1-8-8v-82c0-10 16-12 16-16z" fill="url(#g-gold)"/>
+            <rect x="80" y="160" width="40" height="56" rx="2" fill="url(#g-label)"/>
+            <text x="100" y="174" class="lbl lbl--brand" style="font-size:4.6px">THE STRAND</text>
+            <line x1="90" y1="180" x2="110" y2="180" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="194" class="lbl lbl--name">Shine</text>
+            <text x="100" y="205" class="lbl lbl--name">Oil</text>
+            <text x="100" y="212" class="lbl lbl--size">50 mL</text>
+            <rect x="78" y="146" width="4" height="84" rx="2" fill="#fff" opacity=".45"/>
+          </svg>
+        </div>
+        <h3>Shine oil</h3><p>$34 · 50 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>Curls &amp; coils</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#e6dccf">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A cream squeeze tube of Curl Cream standing on an oak cap">
+            <ellipse cx="100" cy="238" rx="40" ry="6" fill="#2e2520" opacity=".35" filter="url(#soft)"/>
+            <rect x="64" y="56" width="72" height="14" rx="2" fill="url(#g-cream)"/>
+            <path class="fine" d="M70 59v8M76 59v8M82 59v8M88 59v8M94 59v8M100 59v8M106 59v8M112 59v8M118 59v8M124 59v8M130 59v8" stroke="#cbbca8" stroke-width=".8"/>
+            <path d="M66 70h68l-16 136H82z" fill="url(#g-cream)"/>
+            <rect x="80" y="204" width="40" height="34" rx="5" fill="url(#g-oak)"/>
+            <path d="M80 210h40" stroke="#d9ab7c" stroke-width=".8" opacity=".7"/>
+            <rect x="78" y="104" width="44" height="62" rx="2" fill="url(#g-label)"/>
+            <text x="100" y="119" class="lbl lbl--brand" style="font-size:4.8px">THE STRAND</text>
+            <line x1="88" y1="125" x2="112" y2="125" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="140" class="lbl lbl--name">Curl</text>
+            <text x="100" y="151" class="lbl lbl--name">Cream</text>
+            <text x="100" y="160" class="lbl lbl--size">200 mL</text>
+            <path d="M73 76l12 120" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".45"/>
+          </svg>
+        </div>
+        <h3>Curl cream</h3><p>$29 · 200 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>Day two</span><span>No white cast</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#d9cfc2">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A dark aerosol can of Dry Shampoo with an oak cap">
+            <ellipse cx="100" cy="238" rx="42" ry="6" fill="#2e2520" opacity=".4" filter="url(#soft)"/>
+            <rect x="76" y="58" width="48" height="44" rx="7" fill="url(#g-oak)"/>
+            <path d="M76 64h48" stroke="#d9ab7c" stroke-width=".8" opacity=".7"/>
+            <path d="M72 108c8-8 48-8 56 0" fill="none" stroke="#5a4c42" stroke-width="2"/>
+            <rect x="70" y="104" width="60" height="134" rx="8" fill="url(#g-ink)"/>
+            <rect x="76" y="140" width="48" height="66" rx="2" fill="url(#g-label)"/>
+            <text x="100" y="155" class="lbl lbl--brand" style="font-size:5px">THE STRAND</text>
+            <line x1="88" y1="162" x2="112" y2="162" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="177" class="lbl lbl--name">Dry</text>
+            <text x="100" y="189" class="lbl lbl--name">Shampoo</text>
+            <text x="100" y="200" class="lbl lbl--size">150 mL</text>
+            <rect x="75" y="110" width="5" height="122" rx="2.5" fill="#fff" opacity=".18"/>
+          </svg>
+        </div>
+        <h3>Dry shampoo</h3><p>$24 · 150 mL</p>
       </article>
     </div>
     <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
@@ -668,16 +766,29 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 }), {threshold:.15});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-// best sellers progress bar (shows when the row scrolls sideways)
+// best sellers: progress bar and arrows (row scrolls sideways)
 const panel = document.getElementById('shopCells');
 const fill = document.getElementById('barFill');
+const [shopPrev, shopNext] = document.querySelectorAll('[data-shop]');
 function syncBar() {
   const max = panel.scrollWidth - panel.clientWidth;
   const view = panel.clientWidth / panel.scrollWidth;
   fill.style.width = (view * 100) + '%';
   fill.style.transform = max > 0 ? `translateX(${(panel.scrollLeft / max) * (1 / view - 1) * 100}%)` : 'none';
   fill.parentElement.style.display = max > 0 ? '' : 'none';
+  shopPrev.disabled = panel.scrollLeft < 4;
+  shopNext.disabled = panel.scrollLeft >= max - 4;
 }
+// arrows move by whole cells; shopAt tracks the first visible cell so quick double clicks still land on an edge
+let shopAt = 0;
+const cellWidth = () => panel.querySelector('.cell').getBoundingClientRect().width;
+[shopPrev, shopNext].forEach(b => b.addEventListener('click', () => {
+  const w = cellWidth();
+  const last = Math.round((panel.scrollWidth - panel.clientWidth) / w);
+  shopAt = Math.min(last, Math.max(0, shopAt + (innerWidth > 1000 ? 2 : 1) * +b.dataset.shop));
+  panel.scrollTo({left: shopAt * w, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth'});
+}));
+panel.addEventListener('scrollend', () => { shopAt = Math.round(panel.scrollLeft / cellWidth()); });
 panel.addEventListener('scroll', syncBar, {passive:true});
 addEventListener('resize', syncBar);
 syncBar();

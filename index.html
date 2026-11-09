@@ -200,7 +200,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 
 /* hair that feels */
 .feel{position:relative;isolation:isolate;overflow:hidden;color:var(--plaster);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding:clamp(80px,11vw,160px) var(--pad)}
-.feel__bg{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;object-position:50% 45%}
+.feel__bg{position:absolute;left:0;top:-20%;z-index:-2;width:100%;height:140%;object-fit:cover;object-position:50% 45%;will-change:transform}
+@media (prefers-reduced-motion:reduce){.feel__bg{top:0;height:100%}}
 .feel::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 50% 50%,rgba(30,22,17,.62),rgba(30,22,17,.4) 70%,rgba(30,22,17,.5))}
 .feel h2{font-size:clamp(48px,6.6vw,96px);line-height:1;max-width:14ch}
 .feel__words{position:relative;display:block;overflow:hidden;clip-path:inset(0);padding:.08em 0 .14em}
@@ -823,6 +824,24 @@ setInterval(() => {
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
+})();
+
+// parallax: the "hair that feels" photo moves slower than the page
+(() => {
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const sec = document.querySelector('.feel'), bg = sec.querySelector('.feel__bg');
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const r = sec.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    // -1 when the section enters at the bottom, 1 when it leaves at the top
+    const p = (innerHeight - r.top) / (innerHeight + r.height) * 2 - 1;
+    bg.style.transform = `translateY(${p * r.height * 0.18}px)`;
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, {passive:true});
+  addEventListener('resize', update);
+  update();
 })();
 
 // booking form (mockup: nothing is sent)

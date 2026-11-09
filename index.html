@@ -136,6 +136,22 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 @media (max-width:1100px){.srv__side{grid-template-columns:1fr;padding-top:0}.srv__info{margin-bottom:0}.srv__sm{max-width:300px}}
 @media (max-width:700px){.srv__panel{grid-template-columns:1fr}.srv__side{grid-template-columns:1fr}.srv__sm{display:none}}
 
+/* latest work gallery */
+.gal{padding:clamp(56px,7vw,96px) var(--pad) clamp(64px,8vw,110px)}
+.gal__head{max-width:640px;margin:0 auto;text-align:center}
+.gal h2{font-size:clamp(40px,4.4vw,64px)}
+.gal__head p{margin-top:16px;color:var(--ink-2);font-size:15px}
+.gal__row{display:flex;gap:8px;height:clamp(360px,40vw,560px);max-width:1360px;margin:clamp(32px,4vw,56px) auto 0}
+.gal__item{position:relative;flex:1 1 0;min-width:0;border-radius:12px;overflow:hidden;cursor:pointer;transition:flex-grow .5s ease}
+.gal__item:hover,.gal__item:focus{flex-grow:5}
+.gal__item:focus{outline:none}
+.gal__item:focus-visible{outline:2px solid var(--oak-deep);outline-offset:3px}
+.gal__item img{width:100%;height:100%;object-fit:cover}
+.gal__item figcaption{position:absolute;left:12px;bottom:12px;padding:8px 14px;border-radius:999px;background:var(--plaster);font-size:13px;white-space:nowrap;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.gal__item:hover figcaption,.gal__item:focus figcaption{opacity:1;transform:none;transition-delay:.2s}
+@media (prefers-reduced-motion:reduce){.gal__item,.gal__item figcaption{transition:none}}
+@media (max-width:700px){.gal__row{gap:6px;height:420px}.gal__item{border-radius:10px}.gal__item:hover,.gal__item:focus{flex-grow:8}.gal__item figcaption{font-size:12px;left:8px;bottom:8px;max-width:calc(100% - 16px)}}
+
 /* tiles */
 .tiles{display:grid;grid-template-columns:repeat(3,1fr)}
 .tile{position:relative;aspect-ratio:4/5;overflow:hidden;color:#fff}
@@ -511,10 +527,19 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
   </section>
 
-  <section class="tiles" id="looks" aria-label="Book a service">
-    <a class="tile" href="#book" data-svc="Signature cut"><img src="img/tools.jpg" alt="Shears and combs laid out at a styling station" loading="lazy" width="1350" height="1800"><h2>cut</h2><span class="pill">book a cut</span></a>
-    <a class="tile" href="#book" data-svc="Balayage"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><h2>color</h2><span class="pill">book color</span></a>
-    <a class="tile" href="#book" data-svc="Silk press"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:50% 45%"><h2>curls</h2><span class="pill">book curls &amp; texture</span></a>
+  <section class="gal" id="looks" aria-labelledby="gal-h">
+    <div class="gal__head">
+      <h2 id="gal-h" class="rv">our latest work</h2>
+      <p class="rv">Recent cuts, color and curls from our chairs. Bring a photo of one you like to your consult.</p>
+    </div>
+    <div class="gal__row">
+      <figure class="gal__item" tabindex="0"><img src="img/blonde-waves.jpg" alt="Bright blonde waves with blended highlights" loading="lazy" width="1350" height="1800"><figcaption>Bright blonde · full highlights</figcaption></figure>
+      <figure class="gal__item" tabindex="0"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><figcaption>Copper layers · single process</figcaption></figure>
+      <figure class="gal__item" tabindex="0"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:50% 40%"><figcaption>Defined coils · curly cut</figcaption></figure>
+      <figure class="gal__item" tabindex="0"><img src="img/brunette-waves.jpg" alt="Brunette hair with caramel balayage" loading="lazy" width="1200" height="1800" style="object-position:50% 35%"><figcaption>Caramel brunette · balayage</figcaption></figure>
+      <figure class="gal__item" tabindex="0"><img src="img/blonde-curls.jpg" alt="Golden blonde curls in afternoon light" loading="lazy" width="811" height="1800" style="object-position:50% 45%"><figcaption>Golden curls · balayage</figcaption></figure>
+      <figure class="gal__item" tabindex="0"><img src="img/wet-hair.jpg" alt="Glossy dark hair after a bond repair treatment" loading="lazy" width="1440" height="1800" style="object-position:60% 40%"><figcaption>Glossy brunette · gloss</figcaption></figure>
+    </div>
   </section>
 
   <section class="rev" aria-labelledby="rev-h">
@@ -633,11 +658,6 @@ function syncBar() {
 panel.addEventListener('scroll', syncBar, {passive:true});
 addEventListener('resize', syncBar);
 syncBar();
-
-// service tiles preselect the service in the booking form
-document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => {
-  document.getElementById('f-svc').value = a.dataset.svc;
-}));
 
 // services tabs
 const stabs = [...document.querySelectorAll('.srv__tabs [role=tab]')];

@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 28'%3E%3Cpath d='M1 27V11a10 10 0 0 1 20 0v16M6 27V12a5 5 0 0 1 10 0v15' fill='none' stroke='%23b98b5f' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --plaster:#f5efe8;
@@ -106,6 +106,34 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .cell p s{opacity:.6;margin-left:8px}
 .bar{width:140px;height:2px;background:var(--line);margin:40px auto 0;border-radius:2px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--ink);width:66%;transform-origin:left;transition:transform .15s}
+
+/* services */
+.srv{padding:clamp(56px,8vw,104px) var(--pad) clamp(56px,7vw,96px);max-width:1440px;margin:0 auto}
+.srv__head{display:flex;align-items:center;justify-content:space-between;gap:24px 40px;flex-wrap:wrap;margin-bottom:clamp(32px,5vw,56px)}
+.srv h2{font:400 clamp(64px,7vw,104px)/.85 "Bebas Neue",var(--font);letter-spacing:0;text-transform:uppercase}
+.srv__tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.srv__tabs::-webkit-scrollbar{display:none}
+.srv__tabs button{flex:none;border:0;background:none;padding:14px 20px;font:400 15px/1 var(--font);text-transform:uppercase;letter-spacing:.02em;color:var(--ink-2);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.srv__tabs button:hover{color:var(--ink)}
+.srv__tabs button[aria-selected="true"]{background:var(--ink);color:var(--plaster)}
+.srv__panel{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,6vw,96px);align-items:start}
+.srv__panel[hidden]{display:none}
+.srv__panel img{width:100%;height:100%;object-fit:cover}
+.srv__side{padding-top:clamp(0px,8vw,120px);display:grid;grid-template-columns:minmax(0,280px) 1fr;gap:28px clamp(24px,3vw,44px);align-items:end}
+.srv__sm img{aspect-ratio:3/4.1}
+.srv__sm figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.srv__list{list-style:none;padding:0;align-self:end;margin-bottom:28px}
+.srv__list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
+.srv__list li span{white-space:nowrap}
+.srv__list small{color:var(--ink-2);font-size:13px}
+.srv__big{aspect-ratio:3/3.9;overflow:hidden}
+.srv__panel.is-fresh{animation:srvIn .5s ease}
+@keyframes srvIn{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.srv__panel.is-fresh{animation:none}}
+.srv__book{display:flex;align-items:center;justify-content:center;min-height:64px;margin-top:clamp(40px,5vw,72px);background:var(--ink);color:var(--plaster);text-decoration:none;text-transform:uppercase;letter-spacing:.04em;font-size:15px;transition:background .2s}
+.srv__book:hover{background:var(--oak-deep)}
+@media (max-width:1100px){.srv__side{grid-template-columns:1fr;padding-top:0}.srv__list{margin-bottom:0}.srv__sm{max-width:300px}}
+@media (max-width:700px){.srv__panel{grid-template-columns:1fr}.srv__side{grid-template-columns:1fr}.srv__sm{display:none}}
 
 /* tiles */
 .tiles{display:grid;grid-template-columns:repeat(3,1fr)}
@@ -243,7 +271,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     <a class="logo" href="#top">The Strand</a>
     <div class="nav__links">
       <a href="#shop">shop</a>
-      <a href="#looks">services</a>
+      <a href="#services">services</a>
       <a href="#studio">the studio</a>
       <a href="#visit">visit</a>
     </div>
@@ -366,7 +394,68 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
   </section>
 
-  <section class="tiles" id="looks" aria-label="Services">
+  <section class="srv" id="services" aria-labelledby="srv-h">
+    <div class="srv__head">
+      <h2 id="srv-h">Services</h2>
+      <div class="srv__tabs" role="tablist" aria-label="Service type">
+        <button role="tab" id="st-color" aria-controls="sp-color" aria-selected="false" tabindex="-1">Color &amp; highlights</button>
+        <button role="tab" id="st-cut" aria-controls="sp-cut" aria-selected="true">Cut &amp; styling</button>
+        <button role="tab" id="st-care" aria-controls="sp-care" aria-selected="false" tabindex="-1">Treatments &amp; care</button>
+        <button role="tab" id="st-texture" aria-controls="sp-texture" aria-selected="false" tabindex="-1">Curls &amp; texture</button>
+      </div>
+    </div>
+    <div class="srv__panel" role="tabpanel" id="sp-color" aria-labelledby="st-color" hidden>
+      <div class="srv__side">
+        <figure class="srv__sm"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><figcaption>Copper gloss</figcaption></figure>
+        <ul class="srv__list">
+          <li><span>Balayage</span><span>from $240 <small>· 3 hr</small></span></li>
+          <li><span>Full highlights</span><span>from $210 <small>· 2.5 hr</small></span></li>
+          <li><span>Single process</span><span>from $110 <small>· 90 min</small></span></li>
+          <li><span>Gloss</span><span>$65 <small>· 45 min</small></span></li>
+        </ul>
+      </div>
+      <div class="srv__big"><img src="img/blonde-waves.jpg" alt="Bright blonde waves with blended highlights" loading="lazy" width="1350" height="1800" style="object-position:50% 35%"></div>
+    </div>
+    <div class="srv__panel" role="tabpanel" id="sp-cut" aria-labelledby="st-cut">
+      <div class="srv__side">
+        <figure class="srv__sm"><img src="img/brunette-waves.jpg" alt="Brunette hair with soft layers and caramel pieces" loading="lazy" width="1200" height="1800" style="object-position:50% 30%"><figcaption>Soft layers</figcaption></figure>
+        <ul class="srv__list">
+          <li><span>Signature cut</span><span>from $95 <small>· 75 min</small></span></li>
+          <li><span>Curly and coily cut</span><span>from $120 <small>· 90 min</small></span></li>
+          <li><span>Fringe and shape-up</span><span>$35 <small>· 20 min</small></span></li>
+          <li><span>Blow-dry</span><span>from $60 <small>· 45 min</small></span></li>
+        </ul>
+      </div>
+      <div class="srv__big"><img src="img/tools.jpg" alt="Shears, combs and a brush laid out at a styling station" loading="lazy" width="1350" height="1800" style="object-position:40% 60%"></div>
+    </div>
+    <div class="srv__panel" role="tabpanel" id="sp-care" aria-labelledby="st-care" hidden>
+      <div class="srv__side">
+        <figure class="srv__sm"><img src="img/shelf.jpg" alt="Shelves of take-home hair and body care" loading="lazy" width="1350" height="1800" style="object-position:50% 45%"><figcaption>Take-home care</figcaption></figure>
+        <ul class="srv__list">
+          <li><span>Bond repair treatment</span><span>$55 <small>· 30 min</small></span></li>
+          <li><span>Scalp ritual</span><span>$70 <small>· 45 min</small></span></li>
+          <li><span>Deep conditioning</span><span>$45 <small>· 30 min</small></span></li>
+          <li><span>Keratin smoothing</span><span>from $280 <small>· 3 hr</small></span></li>
+        </ul>
+      </div>
+      <div class="srv__big"><img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800" style="object-position:50% 50%"></div>
+    </div>
+    <div class="srv__panel" role="tabpanel" id="sp-texture" aria-labelledby="st-texture" hidden>
+      <div class="srv__side">
+        <figure class="srv__sm"><img src="img/natural-curls.jpg" alt="Full, defined natural curls seen from behind" loading="lazy" width="1012" height="1800" style="object-position:50% 40%"><figcaption>Defined coils</figcaption></figure>
+        <ul class="srv__list">
+          <li><span>Curly and coily cut</span><span>from $120 <small>· 90 min</small></span></li>
+          <li><span>Silk press</span><span>from $130 <small>· 2 hr</small></span></li>
+          <li><span>Curl definition</span><span>from $75 <small>· 60 min</small></span></li>
+          <li><span>Twist-out set</span><span>from $90 <small>· 90 min</small></span></li>
+        </ul>
+      </div>
+      <div class="srv__big"><img src="img/blonde-curls.jpg" alt="Golden blonde curls held up in afternoon light" loading="lazy" width="811" height="1800" style="object-position:50% 40%"></div>
+    </div>
+    <a class="srv__book" href="#book">Book an appointment</a>
+  </section>
+
+  <section class="tiles" id="looks" aria-label="Book a service">
     <a class="tile" href="#book" data-svc="Signature cut"><img src="img/tools.jpg" alt="Shears and combs laid out at a styling station" loading="lazy" width="1350" height="1800"><h2>cut</h2><span class="pill">book a cut</span></a>
     <a class="tile" href="#book" data-svc="Balayage"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><h2>color</h2><span class="pill">book color</span></a>
     <a class="tile" href="#book" data-svc="Silk press"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:50% 45%"><h2>curls</h2><span class="pill">book curls &amp; texture</span></a>
@@ -494,7 +583,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     <a class="logo" href="#top">The Strand</a>
     <nav aria-label="Footer">
       <a href="#shop">shop</a>
-      <a href="#looks">services</a>
+      <a href="#services">services</a>
       <a href="#studio">the studio</a>
       <a href="#visit">visit</a>
       <a href="#">instagram</a>
@@ -537,6 +626,28 @@ syncBar();
 document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => {
   document.getElementById('f-svc').value = a.dataset.svc;
 }));
+
+// services tabs
+const stabs = [...document.querySelectorAll('.srv__tabs [role=tab]')];
+function pickService(t) {
+  stabs.forEach(x => {
+    const on = x === t;
+    x.setAttribute('aria-selected', on);
+    x.tabIndex = on ? 0 : -1;
+    const panel = document.getElementById(x.getAttribute('aria-controls'));
+    panel.hidden = !on;
+    panel.classList.toggle('is-fresh', on);
+  });
+}
+stabs.forEach((t, i) => {
+  t.addEventListener('click', () => pickService(t));
+  t.addEventListener('keydown', e => {
+    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return;
+    const n = stabs[(i + d + stabs.length) % stabs.length];
+    n.focus(); pickService(n);
+  });
+});
 
 // booking form (mockup: nothing is sent)
 const form = document.getElementById('bookForm');

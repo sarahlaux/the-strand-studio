@@ -9,7 +9,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 28'%3E%3Cpath d='M1 27V11a10 10 0 0 1 20 0v16M6 27V12a5 5 0 0 1 10 0v15' fill='none' stroke='%23b98b5f' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --plaster:#f5efe8;
@@ -113,30 +113,30 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .bar i{display:block;height:100%;background:var(--ink);width:66%;transform-origin:left;transition:transform .15s}
 
 /* services: big title + accordion list */
-.srv{padding:clamp(72px,9vw,128px) max(var(--pad),calc((100% - 1360px) / 2))}
-.srv h2{font:400 clamp(64px,10vw,150px)/.9 var(--font);letter-spacing:-.04em;text-transform:uppercase}
-.srv__e{font-family:"Pinyon Script",cursive;text-transform:none;color:var(--oak);font-size:1.12em;letter-spacing:0;margin:0 -.04em 0 .02em;position:relative;top:.06em}
-.acc{list-style:none;padding:0;margin:clamp(40px,6vw,88px) 0 0 auto;width:min(100%,780px)}
-.acc__item{border-bottom:1px solid var(--line)}
+.srv{background:var(--ink);color:var(--plaster);border:clamp(12px,2vw,28px) solid var(--plaster);padding:clamp(64px,8vw,110px) max(var(--pad),calc((100% - 1360px) / 2))}
+.srv :focus-visible{outline-color:var(--oak)}
+.srv h2{font-size:clamp(40px,4.4vw,64px);text-align:center}
+.acc{list-style:none;padding:0;margin:clamp(36px,5vw,64px) auto 0;width:min(100%,860px);border-top:1px solid rgba(245,239,232,.18)}
+.acc__item{border-bottom:1px solid rgba(245,239,232,.18)}
 .acc h3{font:inherit}
-.acc__btn{display:grid;grid-template-columns:clamp(40px,14vw,190px) 1fr 24px;align-items:start;width:100%;padding:22px 0;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer}
-.acc__num{font-size:11px;color:var(--ink-2);padding-top:6px}
-.acc__title{font:500 clamp(20px,2vw,26px)/1.1 var(--font);letter-spacing:-.01em;text-transform:uppercase;max-width:18ch}
+.acc__btn{display:grid;grid-template-columns:clamp(40px,8vw,120px) 1fr 24px;align-items:start;width:100%;padding:22px 0;border:0;background:none;color:var(--plaster);text-align:left;cursor:pointer}
+.acc__num{font-size:11px;color:rgba(245,239,232,.55);padding-top:6px}
+.acc__title{font:500 clamp(20px,2vw,26px)/1.1 var(--font);letter-spacing:-.01em;text-transform:uppercase}
 .acc__icon{position:relative;width:14px;height:14px;margin-top:8px;justify-self:end}
-.acc__icon::before,.acc__icon::after{content:"";position:absolute;left:0;top:6px;width:14px;height:1.5px;background:var(--ink-2);transition:transform .3s ease}
+.acc__icon::before,.acc__icon::after{content:"";position:absolute;left:0;top:6px;width:14px;height:1.5px;background:rgba(245,239,232,.75);transition:transform .3s ease}
 .acc__icon::after{transform:rotate(90deg)}
 .is-open .acc__icon::after{transform:rotate(0)}
-.acc__btn:hover .acc__title{color:var(--oak-deep)}
+.acc__btn:hover .acc__title{color:#ecc79c}
 .acc__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
 .is-open .acc__panel{grid-template-rows:1fr}
-.acc__inner{overflow:hidden;display:grid;grid-template-columns:clamp(40px,14vw,190px) 1fr auto;column-gap:0}
+.acc__inner{overflow:hidden;display:grid;grid-template-columns:clamp(40px,8vw,120px) 1fr auto;column-gap:0}
 .acc__body{padding-right:clamp(16px,2.4vw,32px)}
 .acc__body{grid-column:2;padding-bottom:28px;display:flex;flex-direction:column;gap:16px}
-.acc__body p{font-size:14px;color:var(--ink-2);max-width:40ch}
+.acc__body p{font-size:14px;color:rgba(245,239,232,.72);max-width:40ch}
 .acc__prices{list-style:none;padding:0;max-width:340px}
-.acc__prices li{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:14px;border-bottom:1px dashed var(--line)}
-.acc__book{align-self:flex-start;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);text-underline-offset:5px}
-.acc__book:hover{color:var(--oak-deep)}
+.acc__prices li{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:14px;border-bottom:1px dashed rgba(245,239,232,.2)}
+.acc__book{align-self:flex-start;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--plaster);text-underline-offset:5px}
+.acc__book:hover{color:#ecc79c}
 .acc__inner img{grid-column:3;width:clamp(120px,13vw,170px);aspect-ratio:3/4;height:auto;object-fit:cover;margin-bottom:28px;align-self:start}
 @media (prefers-reduced-motion:reduce){.acc__panel,.acc__icon::before,.acc__icon::after{transition:none}}
 @media (max-width:700px){
@@ -378,7 +378,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   </section>
 
   <section class="srv" id="services" aria-labelledby="srv-h">
-    <h2 id="srv-h" class="rv" aria-label="Services">SERVIC<span class="srv__e" aria-hidden="true">E</span>S</h2>
+    <h2 id="srv-h" class="rv">SERVICES</h2>
     <ol class="acc">
       <li class="acc__item is-open">
         <h3><button type="button" class="acc__btn" aria-expanded="true" aria-controls="acc-cut" id="acc-b-cut"><span class="acc__num">01</span><span class="acc__title">Cut and styling</span><span class="acc__icon" aria-hidden="true"></span></button></h3>

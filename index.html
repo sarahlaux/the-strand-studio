@@ -125,7 +125,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .srv__tabs button:hover{color:var(--plaster)}
 .srv__tabs button[aria-selected="true"]{background:var(--plaster);color:var(--ink)}
 .srv :focus-visible{outline-color:var(--oak)}
-.srv__panel{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(32px,6vw,96px);align-items:center}
+.srv__panel{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(32px,6vw,96px);align-items:center}
 .srv__panel[hidden]{display:none}
 .srv__panel img{width:100%;height:100%;object-fit:cover}
 .srv__side{max-width:520px}
@@ -134,7 +134,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .srv__list li:first-child{border-top:1px solid rgba(245,239,232,.18)}
 .srv__list li span{white-space:nowrap}
 .srv__list small{color:rgba(245,239,232,.62);font-size:14px}
-.srv__big{width:84%;justify-self:end;aspect-ratio:3/3.9;overflow:hidden}
+.srv__big{width:100%;aspect-ratio:3/2;overflow:hidden}
 .srv__panel.is-fresh{animation:srvIn .5s ease}
 @keyframes srvIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.srv__panel.is-fresh{animation:none}}
@@ -407,7 +407,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
         <a class="srv__book" href="#book">Book an appointment</a>
         </div>
       </div>
-      <div class="srv__big"><img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800" style="object-position:50% 50%"></div>
+      <div class="srv__big"><img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800" style="object-position:50% 62%"></div>
     </div>
     <div class="srv__panel" role="tabpanel" id="sp-texture" aria-labelledby="st-texture" hidden>
       <div class="srv__side">

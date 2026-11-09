@@ -122,7 +122,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .srv__side{padding-top:clamp(0px,8vw,120px);display:grid;grid-template-columns:minmax(0,280px) 1fr;gap:28px clamp(24px,3vw,44px);align-items:end}
 .srv__sm img{aspect-ratio:3/4.1}
 .srv__sm figcaption{margin-top:12px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
-.srv__list{list-style:none;padding:0;align-self:end;margin-bottom:28px}
+.srv__info{align-self:end;margin-bottom:28px}
+.srv__list{list-style:none;padding:0}
 .srv__list li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid var(--line);font-size:15px}
 .srv__list li span{white-space:nowrap}
 .srv__list small{color:var(--ink-2);font-size:13px}
@@ -130,9 +131,9 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .srv__panel.is-fresh{animation:srvIn .5s ease}
 @keyframes srvIn{from{opacity:0}to{opacity:1}}
 @media (prefers-reduced-motion:reduce){.srv__panel.is-fresh{animation:none}}
-.srv__book{display:flex;align-items:center;justify-content:center;min-height:64px;margin-top:clamp(40px,5vw,72px);background:var(--ink);color:var(--plaster);text-decoration:none;text-transform:uppercase;letter-spacing:.04em;font-size:15px;transition:background .2s}
+.srv__book{display:flex;align-items:center;justify-content:center;min-height:56px;margin-top:28px;background:var(--ink);color:var(--plaster);text-decoration:none;text-transform:uppercase;letter-spacing:.04em;font-size:15px;transition:background .2s}
 .srv__book:hover{background:var(--oak-deep)}
-@media (max-width:1100px){.srv__side{grid-template-columns:1fr;padding-top:0}.srv__list{margin-bottom:0}.srv__sm{max-width:300px}}
+@media (max-width:1100px){.srv__side{grid-template-columns:1fr;padding-top:0}.srv__info{margin-bottom:0}.srv__sm{max-width:300px}}
 @media (max-width:700px){.srv__panel{grid-template-columns:1fr}.srv__side{grid-template-columns:1fr}.srv__sm{display:none}}
 
 /* tiles */
@@ -407,52 +408,63 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     <div class="srv__panel" role="tabpanel" id="sp-color" aria-labelledby="st-color" hidden>
       <div class="srv__side">
         <figure class="srv__sm"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><figcaption>Copper gloss</figcaption></figure>
+        <div class="srv__info">
         <ul class="srv__list">
           <li><span>Balayage</span><span>from $240 <small>· 3 hr</small></span></li>
           <li><span>Full highlights</span><span>from $210 <small>· 2.5 hr</small></span></li>
           <li><span>Single process</span><span>from $110 <small>· 90 min</small></span></li>
           <li><span>Gloss</span><span>$65 <small>· 45 min</small></span></li>
         </ul>
+        <a class="srv__book" href="#book">Book an appointment</a>
+        </div>
       </div>
       <div class="srv__big"><img src="img/blonde-waves.jpg" alt="Bright blonde waves with blended highlights" loading="lazy" width="1350" height="1800" style="object-position:50% 35%"></div>
     </div>
     <div class="srv__panel" role="tabpanel" id="sp-cut" aria-labelledby="st-cut">
       <div class="srv__side">
         <figure class="srv__sm"><img src="img/brunette-waves.jpg" alt="Brunette hair with soft layers and caramel pieces" loading="lazy" width="1200" height="1800" style="object-position:50% 30%"><figcaption>Soft layers</figcaption></figure>
+        <div class="srv__info">
         <ul class="srv__list">
           <li><span>Signature cut</span><span>from $95 <small>· 75 min</small></span></li>
           <li><span>Curly and coily cut</span><span>from $120 <small>· 90 min</small></span></li>
           <li><span>Fringe and shape-up</span><span>$35 <small>· 20 min</small></span></li>
           <li><span>Blow-dry</span><span>from $60 <small>· 45 min</small></span></li>
         </ul>
+        <a class="srv__book" href="#book">Book an appointment</a>
+        </div>
       </div>
       <div class="srv__big"><img src="img/tools.jpg" alt="Shears, combs and a brush laid out at a styling station" loading="lazy" width="1350" height="1800" style="object-position:40% 60%"></div>
     </div>
     <div class="srv__panel" role="tabpanel" id="sp-care" aria-labelledby="st-care" hidden>
       <div class="srv__side">
         <figure class="srv__sm"><img src="img/shelf.jpg" alt="Shelves of take-home hair and body care" loading="lazy" width="1350" height="1800" style="object-position:50% 45%"><figcaption>Take-home care</figcaption></figure>
+        <div class="srv__info">
         <ul class="srv__list">
           <li><span>Bond repair treatment</span><span>$55 <small>· 30 min</small></span></li>
           <li><span>Scalp ritual</span><span>$70 <small>· 45 min</small></span></li>
           <li><span>Deep conditioning</span><span>$45 <small>· 30 min</small></span></li>
           <li><span>Keratin smoothing</span><span>from $280 <small>· 3 hr</small></span></li>
         </ul>
+        <a class="srv__book" href="#book">Book an appointment</a>
+        </div>
       </div>
       <div class="srv__big"><img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800" style="object-position:50% 50%"></div>
     </div>
     <div class="srv__panel" role="tabpanel" id="sp-texture" aria-labelledby="st-texture" hidden>
       <div class="srv__side">
         <figure class="srv__sm"><img src="img/natural-curls.jpg" alt="Full, defined natural curls seen from behind" loading="lazy" width="1012" height="1800" style="object-position:50% 40%"><figcaption>Defined coils</figcaption></figure>
+        <div class="srv__info">
         <ul class="srv__list">
           <li><span>Curly and coily cut</span><span>from $120 <small>· 90 min</small></span></li>
           <li><span>Silk press</span><span>from $130 <small>· 2 hr</small></span></li>
           <li><span>Curl definition</span><span>from $75 <small>· 60 min</small></span></li>
           <li><span>Twist-out set</span><span>from $90 <small>· 90 min</small></span></li>
         </ul>
+        <a class="srv__book" href="#book">Book an appointment</a>
+        </div>
       </div>
       <div class="srv__big"><img src="img/blonde-curls.jpg" alt="Golden blonde curls held up in afternoon light" loading="lazy" width="811" height="1800" style="object-position:50% 40%"></div>
     </div>
-    <a class="srv__book" href="#book">Book an appointment</a>
   </section>
 
   <section class="tiles" id="looks" aria-label="Book a service">

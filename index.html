@@ -135,8 +135,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .acc__body p{font-size:14px;color:rgba(245,239,232,.72);max-width:40ch}
 .acc__prices{list-style:none;padding:0;max-width:340px}
 .acc__prices li{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:14px;border-bottom:1px dashed rgba(245,239,232,.2)}
-.acc__book{align-self:flex-start;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--plaster);text-underline-offset:5px}
-.acc__book:hover{color:#ecc79c}
+.acc__book{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 30px;border:1px solid rgba(245,239,232,.7);border-radius:999px;font:500 14px/1 var(--font);color:var(--plaster);text-decoration:none;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.acc__book:hover{background:var(--plaster);border-color:var(--plaster);color:var(--ink)}
 .acc__inner img{grid-column:3;width:clamp(120px,13vw,170px);aspect-ratio:3/4;height:auto;object-fit:cover;margin-bottom:28px;align-self:start}
 @media (prefers-reduced-motion:reduce){.acc__panel,.acc__icon::before,.acc__icon::after{transition:none}}
 @media (max-width:700px){
@@ -387,7 +387,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
             <div class="acc__body">
               <p>Every cut starts with a conversation about how you actually wear your hair, then a wash, cut and blow-dry with tips for styling it yourself.</p>
               <ul class="acc__prices"><li><span>Signature cut</span><span>from $95</span></li><li><span>Fringe and shape-up</span><span>$35</span></li><li><span>Blow-dry</span><span>from $60</span></li></ul>
-              <a class="acc__book" href="#book">Book cut and styling</a>
+              <a class="acc__book" href="#book">book cut and styling</a>
             </div>
             <img src="img/tools.jpg" alt="Shears, combs and a brush laid out at a styling station" loading="lazy" width="1350" height="1800" style="object-position:40% 55%">
           </div>
@@ -400,7 +400,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
             <div class="acc__body">
               <p>Hand-painted balayage, bright foils or all-over color, toned to suit your skin and planned so the grow-out looks intentional.</p>
               <ul class="acc__prices"><li><span>Balayage</span><span>from $240</span></li><li><span>Full highlights</span><span>from $210</span></li><li><span>Gloss</span><span>$65</span></li></ul>
-              <a class="acc__book" href="#book">Book color and highlights</a>
+              <a class="acc__book" href="#book">book color and highlights</a>
             </div>
             <img src="img/color-bowls.jpg" alt="A color trolley with lightener bowls, tint brushes and foils" loading="lazy" width="1218" height="1800" style="object-position:50% 55%">
           </div>
@@ -413,7 +413,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
             <div class="acc__body">
               <p>Curly and coily hair cut dry, curl by curl, plus silk presses and definition sets from stylists trained in every texture.</p>
               <ul class="acc__prices"><li><span>Curly and coily cut</span><span>from $120</span></li><li><span>Silk press</span><span>from $130</span></li><li><span>Curl definition</span><span>from $75</span></li></ul>
-              <a class="acc__book" href="#book">Book curls and texture</a>
+              <a class="acc__book" href="#book">book curls and texture</a>
             </div>
             <img src="img/beach-comb.jpg" alt="A woman at the beach combing through her wet, wavy hair" loading="lazy" width="1349" height="1800" style="object-position:50% 45%">
           </div>
@@ -426,7 +426,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
             <div class="acc__body">
               <p>Repair, smoothing and scalp care that you can add to any visit or book on their own.</p>
               <ul class="acc__prices"><li><span>Bond repair treatment</span><span>$55</span></li><li><span>Scalp ritual</span><span>$70</span></li><li><span>Keratin smoothing</span><span>from $280</span></li></ul>
-              <a class="acc__book" href="#book">Book treatments and care</a>
+              <a class="acc__book" href="#book">book treatments and care</a>
             </div>
             <img src="img/scalp.jpg" alt="A woman massaging conditioner into her wet curls with a scalp brush" loading="lazy" width="1600" height="2400" style="object-position:50% 40%">
           </div>
@@ -439,7 +439,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
             <div class="acc__body">
               <p>Smooth or bouncy blowouts, updos and event styling, with early-morning appointments on request.</p>
               <ul class="acc__prices"><li><span>Blowout</span><span>from $60</span></li><li><span>Event styling</span><span>from $110</span></li><li><span>Bridal trial</span><span>from $150</span></li></ul>
-              <a class="acc__book" href="#book">Book blowouts and events</a>
+              <a class="acc__book" href="#book">book blowouts and events</a>
             </div>
             <img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800" style="object-position:50% 62%">
           </div>
@@ -452,7 +452,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
             <div class="acc__body">
               <p>Not sure what to book? Sit down with a stylist for 15 minutes, in person or by video, and leave with a plan and a quote.</p>
               <ul class="acc__prices"><li><span>In-studio consult</span><span>free</span></li><li><span>Video consult</span><span>free</span></li></ul>
-              <a class="acc__book" href="#book">Book free consultation</a>
+              <a class="acc__book" href="#book">book free consultation</a>
             </div>
             <img src="img/shop-room.jpg" alt="The bright retail room with curved white shelves of hair and skin care" loading="lazy" width="1350" height="1800" style="object-position:45% 55%">
           </div>

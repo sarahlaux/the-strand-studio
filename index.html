@@ -191,8 +191,9 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 @media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
 
 /* studio intro + diagonal photo columns */
-.studio{padding:clamp(72px,9vw,128px) var(--pad);overflow:hidden}
+.studio{--sp:clamp(72px,9vw,128px);padding:var(--sp) var(--pad);overflow:hidden}
 .studio__wrap{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,80px);align-items:center}
+.studio__copy{padding:clamp(40px,6vw,96px) 0}
 .studio__copy{display:flex;flex-direction:column;align-items:flex-start}
 .studio h2{font-size:clamp(40px,4.4vw,64px);line-height:1;text-wrap:balance}
 .studio h2 .mark{color:var(--oak)}
@@ -201,7 +202,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .studio__copy p:not(.studio__sub){margin:22px 0 30px;max-width:46ch;font-size:16px;color:var(--ink-2)}
 .studio__handle{margin-top:28px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
 .studio__handle:hover{text-decoration:underline;text-underline-offset:4px}
-.studio__diag{position:relative;height:clamp(520px,58vw,760px);overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(transparent,#000 14%,#000 86%,transparent)}
+.studio__diag{position:relative;align-self:stretch;min-height:clamp(560px,60vw,800px);margin:calc(-1 * var(--sp)) 0;overflow:hidden}
 .studio__tilt{--gap:clamp(12px,1.6vw,20px);position:absolute;inset:-25% -12%;display:flex;justify-content:center;gap:var(--gap);transform:rotate(-14deg)}
 .studio__col{width:42%;overflow:hidden}
 .studio__col + .studio__col{margin-top:18%}
@@ -286,7 +287,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 
 @media (max-width:1000px){
   .studio__wrap{grid-template-columns:1fr}
-  .studio__diag{height:clamp(420px,90vw,620px)}
+  .studio__diag{min-height:clamp(420px,90vw,620px);margin:0 calc(-1 * var(--pad)) calc(-1 * var(--sp))}
+  .studio__copy{padding:0}
   .nav{grid-template-columns:1fr auto}
   .nav__links{display:none}
   .cells{grid-auto-columns:42%}

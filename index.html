@@ -177,10 +177,14 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .studio__sub{margin-top:18px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
 .studio__copy p:not(.studio__sub){margin:22px 0 30px;max-width:56ch;font-size:16px;color:var(--ink-2)}
 .studio__feed{max-width:1360px;margin:clamp(56px,7vw,96px) auto 0}
+.studio{overflow:hidden}
 .studio__handle{display:inline-block;margin-bottom:16px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
 .studio__handle:hover{text-decoration:underline;text-underline-offset:4px}
-.studio__row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.8vw,24px)}
-.studio__row img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
+.studio__slider{--gap:clamp(12px,1.8vw,24px);overflow:hidden;width:100vw;margin-left:calc(50% - 50vw)}
+.studio__track{display:flex;gap:var(--gap);width:max-content;will-change:transform}
+.studio__group{display:flex;gap:var(--gap)}
+.studio__group img{flex:none;width:clamp(200px,22vw,320px);height:auto;aspect-ratio:1;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
+@media (prefers-reduced-motion:reduce){.studio__slider{overflow-x:auto}.studio__group[aria-hidden]{display:none}}
 
 /* reviews */
 .rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad)}
@@ -274,7 +278,6 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   .cells{grid-auto-columns:78%}
   .tiles{grid-template-columns:1fr}
   .tile,.tile:last-child{grid-column:auto;aspect-ratio:4/4.4}
-  .studio__row{grid-template-columns:1fr 1fr}
   .info,.row2{grid-template-columns:1fr}
 }
 </style>
@@ -327,11 +330,29 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     </div>
     <div class="studio__feed">
       <a class="studio__handle" href="#">@thestrandstudio</a>
-      <div class="studio__row">
-        <img class="rv" src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800">
-        <img class="rv" src="img/comb.jpg" alt="Hands combing long brunette hair with a wooden comb" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
-        <img class="rv" src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
-        <img class="rv" src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+      <div class="studio__slider" id="studioSlider">
+        <div class="studio__track">
+          <div class="studio__group">
+            <img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+            <img src="img/comb.jpg" alt="Hands combing long brunette hair with a wooden comb" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
+            <img src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
+            <img src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+            <img src="img/station.jpg" alt="A styling station with a tall brass-framed mirror and a cane chair" loading="lazy" width="1286" height="1800" style="object-position:50% 50%">
+            <img src="img/color-bowls.jpg" alt="A color trolley with lightener bowls, tint brushes and foils" loading="lazy" width="1218" height="1800" style="object-position:50% 55%">
+            <img src="img/shop-room.jpg" alt="The retail room with curved white shelves of hair and skin care" loading="lazy" width="1350" height="1800" style="object-position:45% 55%">
+            <img src="img/vanity.jpg" alt="A marble vanity with a wooden comb, a candle and hair care" loading="lazy" width="2200" height="1760" style="object-position:50% 45%">
+          </div>
+          <div class="studio__group" aria-hidden="true">
+            <img src="img/chairs.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+            <img src="img/comb.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
+            <img src="img/lounge.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
+            <img src="img/shelf.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
+            <img src="img/station.jpg" alt="" loading="lazy" width="1286" height="1800" style="object-position:50% 50%">
+            <img src="img/color-bowls.jpg" alt="" loading="lazy" width="1218" height="1800" style="object-position:50% 55%">
+            <img src="img/shop-room.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:45% 55%">
+            <img src="img/vanity.jpg" alt="" loading="lazy" width="2200" height="1760" style="object-position:50% 45%">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -783,6 +804,26 @@ setInterval(() => {
   next.classList.remove('is-out'); next.classList.add('is-on');
   setTimeout(() => prev.classList.remove('is-out'), 900);
 }, 2200);
+
+// studio photos: endless slide to the left, eases to a slower speed on hover
+(() => {
+  const slider = document.getElementById('studioSlider');
+  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const track = slider.querySelector('.studio__track');
+  const group = slider.querySelector('.studio__group');
+  let x = 0, speed = 40, target = 40, last = performance.now();
+  slider.addEventListener('mouseenter', () => target = 12);
+  slider.addEventListener('mouseleave', () => target = 40);
+  function tick(now) {
+    const dt = Math.min(now - last, 50) / 1000; last = now;
+    speed += (target - speed) * Math.min(1, dt * 4);
+    const loop = group.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
+    x = (x + speed * dt) % loop;
+    track.style.transform = `translateX(${-x}px)`;
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
 
 // booking form (mockup: nothing is sent)
 const form = document.getElementById('bookForm');

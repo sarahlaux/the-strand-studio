@@ -234,7 +234,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 @media (prefers-reduced-motion:reduce){.studio__group[aria-hidden]{display:none}}
 
 /* reviews */
-.rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad)}
+.rev{background:var(--ink);color:var(--plaster);padding:clamp(64px,8vw,110px) var(--pad)}
 .rev__in{max-width:1440px;margin:0 auto}
 .rev h2,.visit h2{font-size:clamp(40px,4.4vw,64px)}
 .rev{overflow:hidden}
@@ -243,10 +243,11 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .rev__group{display:flex}
 .rev blockquote{flex:none;width:clamp(290px,30vw,440px);padding:clamp(24px,3vw,40px) clamp(20px,2.4vw,36px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:28px}
 .rev blockquote p{font-size:clamp(19px,1.7vw,24px);line-height:1.25;letter-spacing:-.02em}
+.rev .rev__slider,.rev blockquote{border-color:rgba(245,239,232,.18)}
 @media (prefers-reduced-motion:reduce){.rev__slider{overflow-x:auto}.rev__group[aria-hidden]{display:none}}
-.rev footer{margin-top:auto;font-size:13px;color:var(--ink-2)}
-.rev footer b{display:block;font-weight:600;color:var(--ink)}
-.rev__note{margin-top:40px;font-size:12px;color:var(--ink-2)}
+.rev footer{margin-top:auto;font-size:13px;color:rgba(245,239,232,.6)}
+.rev footer b{display:block;font-weight:600;color:var(--plaster)}
+.rev__note{margin-top:40px;font-size:12px;color:rgba(245,239,232,.55)}
 
 /* hair that feels */
 .feel{position:relative;isolation:isolate;overflow:hidden;color:var(--plaster);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding:clamp(80px,11vw,160px) var(--pad)}

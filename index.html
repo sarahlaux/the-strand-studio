@@ -116,10 +116,11 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .srv{background:var(--ink);color:var(--plaster);border:clamp(12px,2vw,28px) solid var(--plaster);padding:clamp(64px,8vw,110px) max(var(--pad),calc((100% - 1360px) / 2))}
 .srv :focus-visible{outline-color:var(--oak)}
 .srv h2{font-size:clamp(40px,4.4vw,64px);text-align:center}
-.acc{list-style:none;padding:0;margin:clamp(36px,5vw,64px) auto 0;width:min(100%,860px);border-top:1px solid rgba(245,239,232,.18)}
+.acc__cols{display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,5vw,72px);align-items:start;max-width:1240px;margin:clamp(36px,5vw,64px) auto 0}
+.acc{list-style:none;padding:0;margin:0;border-top:1px solid rgba(245,239,232,.18)}
 .acc__item{border-bottom:1px solid rgba(245,239,232,.18)}
 .acc h3{font:inherit}
-.acc__btn{display:grid;grid-template-columns:clamp(40px,8vw,120px) 1fr 24px;align-items:start;width:100%;padding:22px 0;border:0;background:none;color:var(--plaster);text-align:left;cursor:pointer}
+.acc__btn{display:grid;grid-template-columns:clamp(36px,4vw,56px) 1fr 24px;align-items:start;width:100%;padding:22px 0;border:0;background:none;color:var(--plaster);text-align:left;cursor:pointer}
 .acc__num{font-size:11px;color:rgba(245,239,232,.55);padding-top:6px}
 .acc__title{font:500 clamp(20px,2vw,26px)/1.1 var(--font);letter-spacing:-.01em;text-transform:uppercase}
 .acc__icon{position:relative;width:14px;height:14px;margin-top:8px;justify-self:end}
@@ -129,7 +130,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .acc__btn:hover .acc__title{color:#ecc79c}
 .acc__panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
 .is-open .acc__panel{grid-template-rows:1fr}
-.acc__inner{overflow:hidden;display:grid;grid-template-columns:clamp(40px,8vw,120px) 1fr auto;column-gap:0}
+.acc__inner{overflow:hidden;display:grid;grid-template-columns:clamp(36px,4vw,56px) 1fr auto;column-gap:0}
 .acc__body{padding-right:clamp(16px,2.4vw,32px)}
 .acc__body{grid-column:2;padding-bottom:28px;display:flex;flex-direction:column;gap:16px}
 .acc__body p{font-size:14px;color:rgba(245,239,232,.72);max-width:40ch}
@@ -137,8 +138,9 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .acc__prices li{display:flex;justify-content:space-between;gap:16px;padding:6px 0;font-size:14px;border-bottom:1px dashed rgba(245,239,232,.2)}
 .acc__book{align-self:flex-start;display:inline-flex;align-items:center;min-height:44px;padding:0 30px;border:1px solid rgba(245,239,232,.7);border-radius:999px;font:500 14px/1 var(--font);color:var(--plaster);text-decoration:none;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
 .acc__book:hover{background:var(--plaster);border-color:var(--plaster);color:var(--ink)}
-.acc__inner img{grid-column:3;width:clamp(120px,13vw,170px);aspect-ratio:3/4;height:auto;object-fit:cover;margin-bottom:28px;align-self:start}
+.acc__inner img{grid-column:3;width:clamp(100px,11vw,150px);aspect-ratio:3/4;height:auto;object-fit:cover;margin-bottom:28px;align-self:start}
 @media (prefers-reduced-motion:reduce){.acc__panel,.acc__icon::before,.acc__icon::after{transition:none}}
+@media (max-width:1000px){.acc__cols{grid-template-columns:1fr}.acc + .acc{border-top:0}}
 @media (max-width:700px){
   .acc__btn{grid-template-columns:36px 1fr 20px}
   .acc__inner{grid-template-columns:36px 1fr}
@@ -204,9 +206,9 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .studio__copy .pill{margin-top:30px}
 .studio__handle{margin-top:28px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
 .studio__handle:hover{text-decoration:underline;text-underline-offset:4px}
-.studio__diag{position:relative;align-self:stretch;min-height:clamp(560px,60vw,800px);margin:calc(-1 * var(--sp)) 0;overflow:hidden}
-.studio__tilt{--gap:clamp(12px,1.6vw,20px);position:absolute;inset:-25% -12%;display:flex;justify-content:center;gap:var(--gap);transform:rotate(-14deg)}
-.studio__col{width:42%;overflow:hidden}
+.studio__diag{position:relative;align-self:stretch;min-height:clamp(560px,60vw,800px);margin:calc(-1 * var(--sp)) 0;clip-path:inset(0 -100vw)}
+.studio__tilt{--gap:clamp(12px,1.6vw,20px);position:absolute;inset:-25% 18%;display:flex;justify-content:center;gap:var(--gap);transform:rotate(-9deg)}
+.studio__col{width:50%;overflow:hidden}
 .studio__col + .studio__col{margin-top:18%}
 .studio__track,.studio__group{display:flex;flex-direction:column;gap:var(--gap)}
 .studio__track{will-change:transform}
@@ -291,6 +293,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   .studio__wrap{grid-template-columns:1fr}
   .studio__diag{min-height:clamp(420px,90vw,620px);margin:0 calc(-1 * var(--pad)) calc(-1 * var(--sp))}
   .studio__copy{padding:0}
+  .studio__tilt{inset:-25% 22%}
   .nav{grid-template-columns:1fr auto}
   .nav__links{display:none}
   .cells{grid-auto-columns:42%}
@@ -401,86 +404,90 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 
   <section class="srv" id="services" aria-labelledby="srv-h">
     <h2 id="srv-h" class="rv">SERVICES</h2>
-    <ol class="acc">
-      <li class="acc__item is-open">
-        <h3><button type="button" class="acc__btn" aria-expanded="true" aria-controls="acc-cut" id="acc-b-cut"><span class="acc__num">01</span><span class="acc__title">Cut and styling</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-cut" role="region" aria-labelledby="acc-b-cut">
-          <div class="acc__inner">
-            <div class="acc__body">
-              <p>Every cut starts with a conversation about how you actually wear your hair, then a wash, cut and blow-dry with tips for styling it yourself.</p>
-              <ul class="acc__prices"><li><span>Signature cut</span><span>from $95</span></li><li><span>Fringe and shape-up</span><span>$35</span></li><li><span>Blow-dry</span><span>from $60</span></li></ul>
-              <a class="acc__book" href="#book">book cut and styling</a>
+    <div class="acc__cols">
+      <ol class="acc">
+        <li class="acc__item is-open">
+          <h3><button type="button" class="acc__btn" aria-expanded="true" aria-controls="acc-cut" id="acc-b-cut"><span class="acc__num">01</span><span class="acc__title">Cut and styling</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
+          <div class="acc__panel" id="acc-cut" role="region" aria-labelledby="acc-b-cut">
+            <div class="acc__inner">
+              <div class="acc__body">
+                <p>Every cut starts with a conversation about how you actually wear your hair, then a wash, cut and blow-dry with tips for styling it yourself.</p>
+                <ul class="acc__prices"><li><span>Signature cut</span><span>from $95</span></li><li><span>Fringe and shape-up</span><span>$35</span></li><li><span>Blow-dry</span><span>from $60</span></li></ul>
+                <a class="acc__book" href="#book">book cut and styling</a>
+              </div>
+              <img src="img/tools.jpg" alt="Shears, combs and a brush laid out at a styling station" loading="lazy" width="1350" height="1800" style="object-position:40% 55%">
             </div>
-            <img src="img/tools.jpg" alt="Shears, combs and a brush laid out at a styling station" loading="lazy" width="1350" height="1800" style="object-position:40% 55%">
           </div>
-        </div>
-      </li>
-      <li class="acc__item">
-        <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-color" id="acc-b-color"><span class="acc__num">02</span><span class="acc__title">Color and highlights</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-color" role="region" aria-labelledby="acc-b-color">
-          <div class="acc__inner">
-            <div class="acc__body">
-              <p>Hand-painted balayage, bright foils or all-over color, toned to suit your skin and planned so the grow-out looks intentional.</p>
-              <ul class="acc__prices"><li><span>Balayage</span><span>from $240</span></li><li><span>Full highlights</span><span>from $210</span></li><li><span>Gloss</span><span>$65</span></li></ul>
-              <a class="acc__book" href="#book">book color and highlights</a>
+        </li>
+        <li class="acc__item">
+          <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-color" id="acc-b-color"><span class="acc__num">02</span><span class="acc__title">Color and highlights</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
+          <div class="acc__panel" id="acc-color" role="region" aria-labelledby="acc-b-color">
+            <div class="acc__inner">
+              <div class="acc__body">
+                <p>Hand-painted balayage, bright foils or all-over color, toned to suit your skin and planned so the grow-out looks intentional.</p>
+                <ul class="acc__prices"><li><span>Balayage</span><span>from $240</span></li><li><span>Full highlights</span><span>from $210</span></li><li><span>Gloss</span><span>$65</span></li></ul>
+                <a class="acc__book" href="#book">book color and highlights</a>
+              </div>
+              <img src="img/color-bowls.jpg" alt="A color trolley with lightener bowls, tint brushes and foils" loading="lazy" width="1218" height="1800" style="object-position:50% 55%">
             </div>
-            <img src="img/color-bowls.jpg" alt="A color trolley with lightener bowls, tint brushes and foils" loading="lazy" width="1218" height="1800" style="object-position:50% 55%">
           </div>
-        </div>
-      </li>
-      <li class="acc__item">
-        <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-texture" id="acc-b-texture"><span class="acc__num">03</span><span class="acc__title">Curls and texture</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-texture" role="region" aria-labelledby="acc-b-texture">
-          <div class="acc__inner">
-            <div class="acc__body">
-              <p>Curly and coily hair cut dry, curl by curl, plus silk presses and definition sets from stylists trained in every texture.</p>
-              <ul class="acc__prices"><li><span>Curly and coily cut</span><span>from $120</span></li><li><span>Silk press</span><span>from $130</span></li><li><span>Curl definition</span><span>from $75</span></li></ul>
-              <a class="acc__book" href="#book">book curls and texture</a>
+        </li>
+        <li class="acc__item">
+          <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-texture" id="acc-b-texture"><span class="acc__num">03</span><span class="acc__title">Curls and texture</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
+          <div class="acc__panel" id="acc-texture" role="region" aria-labelledby="acc-b-texture">
+            <div class="acc__inner">
+              <div class="acc__body">
+                <p>Curly and coily hair cut dry, curl by curl, plus silk presses and definition sets from stylists trained in every texture.</p>
+                <ul class="acc__prices"><li><span>Curly and coily cut</span><span>from $120</span></li><li><span>Silk press</span><span>from $130</span></li><li><span>Curl definition</span><span>from $75</span></li></ul>
+                <a class="acc__book" href="#book">book curls and texture</a>
+              </div>
+              <img src="img/wet-waves.jpg" alt="Long, wet, wavy dark hair seen from behind, hands at the crown" loading="lazy" width="1200" height="1800" style="object-position:50% 30%">
             </div>
-            <img src="img/wet-waves.jpg" alt="Long, wet, wavy dark hair seen from behind, hands at the crown" loading="lazy" width="1200" height="1800" style="object-position:50% 30%">
           </div>
-        </div>
-      </li>
-      <li class="acc__item">
-        <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-care" id="acc-b-care"><span class="acc__num">04</span><span class="acc__title">Treatments and care</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-care" role="region" aria-labelledby="acc-b-care">
-          <div class="acc__inner">
-            <div class="acc__body">
-              <p>Repair, smoothing and scalp care that you can add to any visit or book on their own.</p>
-              <ul class="acc__prices"><li><span>Bond repair treatment</span><span>$55</span></li><li><span>Scalp ritual</span><span>$70</span></li><li><span>Keratin smoothing</span><span>from $280</span></li></ul>
-              <a class="acc__book" href="#book">book treatments and care</a>
+        </li>
+      </ol>
+      <ol class="acc">
+        <li class="acc__item">
+          <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-care" id="acc-b-care"><span class="acc__num">04</span><span class="acc__title">Treatments and care</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
+          <div class="acc__panel" id="acc-care" role="region" aria-labelledby="acc-b-care">
+            <div class="acc__inner">
+              <div class="acc__body">
+                <p>Repair, smoothing and scalp care that you can add to any visit or book on their own.</p>
+                <ul class="acc__prices"><li><span>Bond repair treatment</span><span>$55</span></li><li><span>Scalp ritual</span><span>$70</span></li><li><span>Keratin smoothing</span><span>from $280</span></li></ul>
+                <a class="acc__book" href="#book">book treatments and care</a>
+              </div>
+              <img src="img/scalp.jpg" alt="A woman massaging conditioner into her wet curls with a scalp brush" loading="lazy" width="1600" height="2400" style="object-position:50% 40%">
             </div>
-            <img src="img/scalp.jpg" alt="A woman massaging conditioner into her wet curls with a scalp brush" loading="lazy" width="1600" height="2400" style="object-position:50% 40%">
           </div>
-        </div>
-      </li>
-      <li class="acc__item">
-        <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-event" id="acc-b-event"><span class="acc__num">05</span><span class="acc__title">Blowouts and events</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-event" role="region" aria-labelledby="acc-b-event">
-          <div class="acc__inner">
-            <div class="acc__body">
-              <p>Smooth or bouncy blowouts, updos and event styling, with early-morning appointments on request.</p>
-              <ul class="acc__prices"><li><span>Blowout</span><span>from $60</span></li><li><span>Event styling</span><span>from $110</span></li><li><span>Bridal trial</span><span>from $150</span></li></ul>
-              <a class="acc__book" href="#book">book blowouts and events</a>
+        </li>
+        <li class="acc__item">
+          <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-event" id="acc-b-event"><span class="acc__num">05</span><span class="acc__title">Blowouts and events</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
+          <div class="acc__panel" id="acc-event" role="region" aria-labelledby="acc-b-event">
+            <div class="acc__inner">
+              <div class="acc__body">
+                <p>Smooth or bouncy blowouts, updos and event styling, with early-morning appointments on request.</p>
+                <ul class="acc__prices"><li><span>Blowout</span><span>from $60</span></li><li><span>Event styling</span><span>from $110</span></li><li><span>Bridal trial</span><span>from $150</span></li></ul>
+                <a class="acc__book" href="#book">book blowouts and events</a>
+              </div>
+              <img src="img/blowout.jpg" alt="A stylist blow-drying long blonde hair smooth over a round brush" loading="lazy" width="1200" height="1800" style="object-position:60% 55%">
             </div>
-            <img src="img/blowout.jpg" alt="A stylist blow-drying long blonde hair smooth over a round brush" loading="lazy" width="1200" height="1800" style="object-position:60% 55%">
           </div>
-        </div>
-      </li>
-      <li class="acc__item">
-        <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-consult" id="acc-b-consult"><span class="acc__num">06</span><span class="acc__title">Free consultation</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
-        <div class="acc__panel" id="acc-consult" role="region" aria-labelledby="acc-b-consult">
-          <div class="acc__inner">
-            <div class="acc__body">
-              <p>Not sure what to book? Sit down with a stylist for 15 minutes, in person or by video, and leave with a plan and a quote.</p>
-              <ul class="acc__prices"><li><span>In-studio consult</span><span>free</span></li><li><span>Video consult</span><span>free</span></li></ul>
-              <a class="acc__book" href="#book">book free consultation</a>
+        </li>
+        <li class="acc__item">
+          <h3><button type="button" class="acc__btn" aria-expanded="false" aria-controls="acc-consult" id="acc-b-consult"><span class="acc__num">06</span><span class="acc__title">Free consultation</span><span class="acc__icon" aria-hidden="true"></span></button></h3>
+          <div class="acc__panel" id="acc-consult" role="region" aria-labelledby="acc-b-consult">
+            <div class="acc__inner">
+              <div class="acc__body">
+                <p>Not sure what to book? Sit down with a stylist for 15 minutes, in person or by video, and leave with a plan and a quote.</p>
+                <ul class="acc__prices"><li><span>In-studio consult</span><span>free</span></li><li><span>Video consult</span><span>free</span></li></ul>
+                <a class="acc__book" href="#book">book free consultation</a>
+              </div>
+              <img src="img/shop-room.jpg" alt="The bright retail room with curved white shelves of hair and skin care" loading="lazy" width="1350" height="1800" style="object-position:45% 55%">
             </div>
-            <img src="img/shop-room.jpg" alt="The bright retail room with curved white shelves of hair and skin care" loading="lazy" width="1350" height="1800" style="object-position:45% 55%">
           </div>
-        </div>
-      </li>
-    </ol>
+        </li>
+      </ol>
+    </div>
   </section>
 
   <section class="svc" id="shop" aria-labelledby="shop-h">

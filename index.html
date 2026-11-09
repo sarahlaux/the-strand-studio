@@ -198,6 +198,18 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .rev footer b{display:block;font-weight:600;color:var(--ink)}
 .rev__note{margin-top:40px;font-size:12px;color:var(--ink-2)}
 
+/* hair that feels */
+.feel{border-bottom:1px solid var(--line);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding:clamp(80px,11vw,160px) var(--pad)}
+.feel h2{font-size:clamp(48px,6.6vw,96px);line-height:1;max-width:14ch}
+.feel__words{position:relative;display:block;overflow:hidden;padding:.08em 0 .14em}
+.feel__words span{position:absolute;left:0;right:0;font-weight:600;color:var(--oak-deep);opacity:0;transform:translateY(110%);transition:transform .9s cubic-bezier(.22,1.4,.36,1),opacity .5s ease}
+.feel__words span.is-on{opacity:1;transform:none}
+.feel__words span.is-out{transform:translateY(-110%)}
+.feel p{max-width:46ch;font-size:clamp(17px,1.5vw,20px);line-height:1.6;color:var(--ink-2)}
+.feel__btn{gap:12px;min-height:52px;padding:0 32px;font-size:15px;margin-top:8px}
+.feel__btn svg{width:16px;height:16px}
+@media (prefers-reduced-motion:reduce){.feel__words span{transition:opacity .3s ease;transform:none}.feel__words span.is-out{transform:none}}
+
 /* visit and book */
 .visit{padding:clamp(64px,8vw,110px) var(--pad)}
 .visit__in{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
@@ -554,6 +566,15 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
     </div>
   </section>
 
+  <section class="feel" aria-labelledby="feel-h">
+    <h2 id="feel-h" aria-label="Hair that feels effortless, fresh, confident, luxurious, like you.">
+      <span aria-hidden="true">hair that feels</span>
+      <span class="feel__words" aria-hidden="true">&nbsp;<span class="is-on">effortless</span><span>fresh</span><span>confident</span><span>luxurious</span><span>like you</span></span>
+    </h2>
+    <p class="rv">Between work, family, and everything else, you deserve an hour that's just yours. Unwind with a wash, a cut, and a little pampering in a space designed to help you relax.</p>
+    <a class="pill pill--dark feel__btn rv" href="#book">book your chair <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </section>
+
   <section class="visit" id="visit" aria-labelledby="visit-h">
     <div class="visit__in">
       <div>
@@ -680,6 +701,18 @@ stabs.forEach((t, i) => {
     n.focus(); pickService(n);
   });
 });
+
+// rotating words in "hair that feels"
+const feelWords = [...document.querySelectorAll('.feel__words span')];
+let fw = 0;
+setInterval(() => {
+  const prev = feelWords[fw];
+  fw = (fw + 1) % feelWords.length;
+  const next = feelWords[fw];
+  prev.classList.remove('is-on'); prev.classList.add('is-out');
+  next.classList.remove('is-out'); next.classList.add('is-on');
+  setTimeout(() => prev.classList.remove('is-out'), 900);
+}, 2200);
 
 // booking form (mockup: nothing is sent)
 const form = document.getElementById('bookForm');

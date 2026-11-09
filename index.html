@@ -9,367 +9,351 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 28'%3E%3Cpath d='M1 27V11a10 10 0 0 1 20 0v16M6 27V12a5 5 0 0 1 10 0v15' fill='none' stroke='%23b98b5f' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --plaster:#f4eee6;
-  --lime:#e9e0d3;
-  --oak:#b98b5f;
+  --plaster:#f5efe8;
+  --lime:#ebe2d6;
+  --oak:#c08d5c;
   --oak-deep:#8a6440;
-  --sage:#9ba8a2;
   --sage-deep:#5f6f69;
-  --brass:#a77d46;
-  --ink:#2b231d;
-  --ink-2:#5c5047;
-  --line:rgba(43,35,29,.14);
-  --serif:"Gloock",Georgia,serif;
-  --sans:"Figtree",system-ui,sans-serif;
-  --pad:clamp(20px,5vw,72px);
-  --max:1280px;
+  --ink:#2e2520;
+  --ink-2:#62564d;
+  --line:rgba(46,37,32,.13);
+  --font:"Schibsted Grotesk",system-ui,sans-serif;
+  --pad:clamp(20px,3vw,40px);
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:84px}
+html{scroll-behavior:smooth;scroll-padding-top:20px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{background:var(--plaster);color:var(--ink);font:400 17px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body{background:var(--plaster);color:var(--ink);font:400 16px/1.55 var(--font);-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}
 a{color:inherit}
-h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.05;letter-spacing:-.01em}
-:focus-visible{outline:2px solid var(--oak-deep);outline-offset:3px;border-radius:4px}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
-.arch{border-radius:999px 999px 0 0;overflow:hidden}
-.arch img{width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
+:focus-visible{outline:2px solid var(--oak-deep);outline-offset:3px;border-radius:6px}
 
-.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 26px;border-radius:999px;font:600 15px/1 var(--sans);text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:var(--plaster);cursor:pointer;transition:background .2s,color .2s}
-.btn:hover{background:var(--oak-deep);border-color:var(--oak-deep)}
-.btn--ghost{background:transparent;color:var(--ink)}
-.btn--ghost:hover{background:var(--ink);color:var(--plaster);border-color:var(--ink)}
+.pill{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 30px;border-radius:999px;background:var(--plaster);color:var(--ink);font:500 14px/1 var(--font);text-decoration:none;border:1px solid transparent;white-space:nowrap;cursor:pointer;transition:background .2s,color .2s}
+.pill:hover{background:var(--ink);color:var(--plaster)}
+.pill--line{background:transparent;border-color:var(--ink)}
+.pill--dark{background:var(--ink);color:var(--plaster)}
+.pill--dark:hover{background:var(--oak-deep)}
 
-/* nav */
-.nav{position:sticky;top:0;z-index:20;background:rgba(244,238,230,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s}
-.nav.is-stuck{border-color:var(--line)}
-.nav__in{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
-.logo{display:flex;align-items:center;gap:10px;white-space:nowrap;text-decoration:none;font-family:var(--serif);font-size:24px;letter-spacing:-.01em}
-.logo svg{width:22px;height:28px;color:var(--oak)}
-.nav__links{display:flex;gap:32px}
-.nav__links a{text-decoration:none;font-size:15px;font-weight:500;color:var(--ink-2)}
-.nav__links a:hover{color:var(--ink)}
-.nav .btn{min-height:42px;padding:0 20px}
+/* hand-drawn underline */
+.mark{position:relative;white-space:nowrap}
+.mark svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.26em;overflow:visible;pointer-events:none}
+.mark path{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;vector-effect:non-scaling-stroke;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.1s ease .4s}
+.is-in .mark path,.mark.is-in path{stroke-dashoffset:0}
+@media (prefers-reduced-motion:reduce){.mark path{transition:none;stroke-dashoffset:0}}
+
+/* announcement */
+.ann{display:flex;align-items:center;justify-content:center;gap:clamp(24px,18vw,280px);height:36px;background:#fff;font-size:13px}
+.ann button{border:0;background:none;width:32px;height:32px;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
+.ann svg{width:14px;height:14px}
+.ann p{min-width:0;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 /* hero */
-.hero{padding:clamp(32px,6vw,72px) 0 clamp(64px,9vw,120px)}
-.hero__grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,6vw,96px);align-items:end}
-.hero h1{font-size:clamp(48px,7.4vw,108px);max-width:9.5ch}
-.hero__lede{margin-top:28px;max-width:44ch;font-size:clamp(17px,1.5vw,19px);color:var(--ink-2)}
-.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
-.hero__meta{display:flex;gap:clamp(24px,4vw,48px);margin-top:clamp(48px,7vw,88px);padding-top:24px;border-top:1px solid var(--line)}
-.hero__meta div{font-size:14px;color:var(--ink-2)}
-.hero__meta b{display:block;font:400 30px/1.1 var(--serif);color:var(--ink);margin-bottom:4px}
-.hero__art{position:relative;justify-self:end;width:100%;max-width:520px}
-.hero__arch{aspect-ratio:3/4.1;background:var(--lime)}
-.hero__arch img{object-position:50% 30%}
-.hero__mirror{position:absolute;left:-14%;bottom:8%;width:42%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:6px solid var(--plaster);box-shadow:0 0 0 1.5px var(--ink)}
-.hero__mirror img{width:100%;height:100%;object-fit:cover;object-position:40% 30%}
-.hero__tag{position:absolute;right:-8px;top:18%;background:var(--plaster);border-radius:999px;padding:10px 16px;font-size:13px;font-weight:500;box-shadow:0 8px 24px rgba(43,35,29,.12)}
-.hero__tag i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sage-deep);margin-right:8px;vertical-align:1px}
-
-/* studio intro */
-.intro{background:var(--lime);padding:clamp(72px,10vw,140px) 0}
-.intro__grid{display:grid;grid-template-columns:.8fr 1fr;gap:clamp(40px,7vw,120px);align-items:center}
-.intro__img{aspect-ratio:3/4;max-width:440px}
-.intro__img img{object-position:50% 60%}
-.intro h2{font-size:clamp(36px,4.6vw,64px);max-width:13ch}
-.intro p{margin-top:24px;max-width:52ch;color:var(--ink-2)}
-.intro__list{list-style:none;padding:0;margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:24px 40px}
-.intro__list li{padding-top:16px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2)}
-.intro__list b{display:block;font-weight:600;color:var(--ink);margin-bottom:2px}
+.hero{position:relative;display:grid;grid-template-columns:1fr 1fr;height:min(calc(100svh - 36px),820px);min-height:560px;color:#fff}
+.hero__a,.hero__b{position:relative;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero__a img{object-position:50% 30%}
+.hero__a::after{content:"";position:absolute;inset:0;background:radial-gradient(90% 55% at 20% 68%,rgba(30,22,17,.55),transparent 75%),linear-gradient(90deg,rgba(30,22,17,.35),rgba(30,22,17,.05) 70%),linear-gradient(rgba(30,22,17,.35),transparent 25%)}
+.hero__b img{filter:grayscale(1) contrast(1.05) brightness(.95);object-position:50% 60%}
+.hero__b::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(30,22,17,.35),transparent 25%)}
+.nav{position:absolute;inset:0 0 auto;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px;padding:0 var(--pad)}
+.logo{font:600 17px/1 var(--font);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.nav__links{display:flex;gap:28px}
+.nav__links a,.nav__right a{font-size:14px;font-weight:500;text-decoration:none}
+.nav__links a:hover,.nav__right a:hover{text-decoration:underline;text-underline-offset:4px}
+.nav__right{display:flex;justify-content:flex-end;align-items:center;gap:20px}
+.nav__right svg{width:20px;height:20px;display:block}
+.hero__copy{position:absolute;z-index:2;left:var(--pad);right:var(--pad);top:50%;transform:translateY(-38%);max-width:640px}
+.hero h1{font-size:clamp(46px,5.4vw,84px);line-height:.98;text-wrap:balance}
+.hero__copy p{margin:28px 0 30px;font-size:15px;max-width:42ch;opacity:.92}
+.hero__tag{position:absolute;z-index:2;right:var(--pad);bottom:28px;font-size:13px;display:flex;align-items:center;gap:10px}
+.hero__tag i{width:8px;height:8px;border-radius:50%;background:#9fd0b0;box-shadow:0 0 0 4px rgba(159,208,176,.25)}
 
 /* services */
-.svc{padding:clamp(72px,10vw,140px) 0}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap;margin-bottom:clamp(40px,5vw,64px)}
-.sec-head h2{font-size:clamp(40px,5.2vw,72px)}
-.sec-head p{max-width:40ch;color:var(--ink-2)}
-.tabs{display:inline-flex;gap:4px;padding:4px;border-radius:999px;background:var(--lime);margin-bottom:40px;max-width:100%;overflow-x:auto}
-.tabs button{border:0;background:none;font:500 15px/1 var(--sans);color:var(--ink-2);padding:12px 20px;border-radius:999px;cursor:pointer;white-space:nowrap}
-.tabs button[aria-selected="true"]{background:var(--ink);color:var(--plaster)}
-.svc__body{display:grid;grid-template-columns:1fr 360px;gap:clamp(40px,6vw,96px);align-items:start}
-.menu{list-style:none;padding:0}
-.menu li{display:grid;grid-template-columns:1fr auto;gap:4px 24px;padding:22px 0;border-bottom:1px solid var(--line)}
-.menu li:first-child{border-top:1px solid var(--line)}
-.menu h3{font-size:clamp(22px,2vw,28px)}
-.menu p{grid-column:1;font-size:15px;color:var(--ink-2);max-width:52ch}
-.menu .price{grid-row:1/3;grid-column:2;align-self:center;text-align:right;font:400 24px/1.1 var(--serif)}
-.menu .price small{display:block;font:500 13px/1.4 var(--sans);color:var(--ink-2)}
-.svc__img{aspect-ratio:3/4.2;position:sticky;top:104px}
-.svc__img img{transition:opacity .35s}
-.svc__note{margin-top:24px;font-size:14px;color:var(--ink-2)}
+.svc{padding:clamp(56px,8vw,96px) 0 clamp(48px,6vw,72px)}
+.tabs{display:flex;align-items:center;gap:clamp(20px,3vw,40px);padding:0 var(--pad);margin-bottom:clamp(28px,4vw,48px);overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--ink);margin-right:calc(-1 * clamp(4px,1vw,16px))}
+.tabs button{border:0;background:none;padding:0;font:400 clamp(28px,3vw,40px)/1.1 var(--font);letter-spacing:-.035em;color:rgba(46,37,32,.32);cursor:pointer;white-space:nowrap;transition:color .2s}
+.tabs button:hover{color:rgba(46,37,32,.6)}
+.tabs button[aria-selected="true"]{color:var(--ink)}
+.cells{display:grid;grid-auto-flow:column;grid-auto-columns:25%;overflow-x:auto;scroll-snap-type:x mandatory;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-width:none}
+.cells::-webkit-scrollbar{display:none}
+.cells[hidden]{display:none}
+.cell{scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;padding:16px 16px 22px;border-right:1px solid var(--line);min-height:clamp(440px,38vw,540px);text-align:center}
+.cell:last-child{border-right:0}
+.tags{align-self:flex-start;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.tags span{background:#fff;padding:3px 6px;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.cell__img{width:min(62%,220px);aspect-ratio:3/4;margin:auto 0;border-radius:999px 999px 6px 6px;overflow:hidden;box-shadow:0 24px 30px -22px rgba(46,37,32,.5)}
+.cell__img img{width:100%;height:100%;object-fit:cover}
+.cell h3{font:400 15px/1.3 var(--font);letter-spacing:0;margin-top:28px}
+.cell p{font-size:14px;color:var(--ink-2)}
+.cell p s{opacity:.6;margin-left:8px}
+.bar{width:140px;height:2px;background:var(--line);margin:40px auto 0;border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink);width:66%;transform-origin:left;transition:transform .15s}
 
-/* lookbook */
-.look{background:var(--sage-deep);color:var(--plaster);padding:clamp(72px,10vw,140px) 0}
-.look .sec-head p{color:rgba(244,238,230,.78)}
-.look__rail{display:grid;grid-auto-flow:column;grid-auto-columns:clamp(240px,24vw,320px);gap:clamp(16px,2vw,28px);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--pad);padding:0 var(--pad) 8px;scrollbar-width:none;max-width:calc(var(--max) + 2*var(--pad));margin:0 auto}
-.look__rail::-webkit-scrollbar{display:none}
-.look figure{scroll-snap-align:start}
-.look .arch{aspect-ratio:3/4.3;background:rgba(0,0,0,.1)}
-.look figcaption{margin-top:16px}
-.look figcaption b{display:block;font:400 24px/1.2 var(--serif)}
-.look figcaption span{font-size:14px;color:rgba(244,238,230,.75)}
-.look__ctrl{display:flex;gap:8px}
-.look__ctrl button{width:48px;height:48px;border-radius:50%;border:1px solid rgba(244,238,230,.5);background:none;color:var(--plaster);cursor:pointer;display:grid;place-items:center}
-.look__ctrl button:hover{background:var(--plaster);color:var(--sage-deep)}
-.look__ctrl button:disabled{opacity:.35;cursor:default;background:none;color:var(--plaster)}
-.look__ctrl svg{width:20px;height:20px}
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr)}
+.tile{position:relative;aspect-ratio:4/5;overflow:hidden;color:#fff}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+.tile:hover img{transform:scale(1.04)}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,22,17,.4),transparent 45%),linear-gradient(transparent 70%,rgba(30,22,17,.3))}
+.tile h2{position:absolute;z-index:2;left:var(--pad);top:clamp(28px,3vw,40px);writing-mode:vertical-rl;transform:rotate(180deg);font-size:clamp(48px,4.6vw,72px);line-height:.9}
+.tile .pill{position:absolute;z-index:2;left:var(--pad);bottom:clamp(24px,3vw,40px)}
+@media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
 
-/* space */
-.space{padding:clamp(72px,10vw,140px) 0}
-.space__grid{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(16px,2vw,24px);align-items:end}
-.space__a{grid-column:1/6;aspect-ratio:3/4}
-.space__b{grid-column:6/9;aspect-ratio:3/4.4;border-radius:20px;overflow:hidden}
-.space__b img,.space__c img{width:100%;height:100%;object-fit:cover}
-.space__c{grid-column:9/13;aspect-ratio:1;border-radius:50%;overflow:hidden;align-self:start}
-.space__copy{grid-column:6/13;display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:clamp(24px,3vw,40px)}
-.space h2{font-size:clamp(34px,4vw,56px)}
-.space p{color:var(--ink-2)}
+/* studio collage */
+.studio{position:relative;overflow:hidden;background:var(--plaster);padding:clamp(64px,8vw,110px) var(--pad) clamp(64px,8vw,120px)}
+.studio::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 15% 30%,rgba(255,255,255,.7),transparent 70%),repeating-linear-gradient(115deg,transparent 0 140px,rgba(46,37,32,.025) 140px 200px);pointer-events:none}
+.studio__grid{position:relative;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto auto;gap:24px clamp(16px,2vw,28px);max-width:1440px;margin:0 auto}
+.studio__copy{grid-column:1/5;grid-row:1/3;align-self:center;padding-top:clamp(60px,10vw,180px)}
+.studio h2{font-size:clamp(42px,4.4vw,68px);line-height:.98}
+.studio h2 .mark{color:var(--oak)}
+.studio h2 .mark span{color:var(--ink)}
+.studio__copy p{margin:28px 0 28px;max-width:38ch;font-size:15px;color:var(--ink-2)}
+.ph{position:relative}
+.ph img{width:100%;height:100%;object-fit:cover}
+.ph figcaption{margin-top:10px;font-size:13px;color:var(--ink-2)}
+.ph--chairs{grid-column:5/9;grid-row:1/3}
+.ph--chairs img{aspect-ratio:3/4.2}
+.ph--lounge{grid-column:10/13;grid-row:2/4;margin-top:clamp(40px,6vw,100px)}
+.ph--lounge img{aspect-ratio:3/4.6}
+.ph--shelf{grid-column:2/5;grid-row:3/4;margin-top:24px}
+.ph--shelf img{aspect-ratio:4/3}
+.sketch{color:var(--ink);opacity:.85}
+.sketch--shears{grid-column:10/13;grid-row:1/2;width:min(100%,220px);justify-self:center;align-self:end}
+.sketch--bottle{grid-column:6/9;grid-row:3/4;width:min(80%,200px);justify-self:center;margin-top:24px}
+.sketch path,.sketch line,.sketch ellipse,.sketch circle,.sketch rect{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.sketch .fine{stroke-width:.8;opacity:.7}
 
 /* reviews */
-.rev{background:var(--lime);padding:clamp(72px,10vw,140px) 0}
-.rev__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2vw,28px)}
-.rev blockquote{background:var(--plaster);border-radius:24px;padding:clamp(24px,3vw,36px);display:flex;flex-direction:column;gap:28px}
-.rev blockquote p{font:400 clamp(21px,1.9vw,25px)/1.3 var(--serif)}
-.rev footer{margin-top:auto;font-size:14px;color:var(--ink-2)}
-.rev footer b{display:block;color:var(--ink);font-weight:600}
-.rev__note{margin-top:24px;font-size:13px;color:var(--ink-2)}
+.rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad)}
+.rev__in{max-width:1440px;margin:0 auto}
+.rev h2,.visit h2{font-size:clamp(40px,4.4vw,64px)}
+.rev__grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:clamp(32px,4vw,56px)}
+.rev blockquote{padding:clamp(24px,3vw,40px) clamp(20px,2.4vw,36px) 0 0;display:flex;flex-direction:column;gap:28px}
+.rev blockquote + blockquote{border-left:1px solid var(--line);padding-left:clamp(20px,2.4vw,36px)}
+.rev blockquote p{font-size:clamp(20px,1.8vw,26px);line-height:1.25;letter-spacing:-.02em}
+.rev footer{margin-top:auto;font-size:13px;color:var(--ink-2)}
+.rev footer b{display:block;font-weight:600;color:var(--ink)}
+.rev__note{margin-top:40px;font-size:12px;color:var(--ink-2)}
 
-/* book */
-.book{padding:clamp(72px,10vw,140px) 0}
-.book__grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
-.book h2{font-size:clamp(40px,5.2vw,72px)}
-.book__info{margin-top:32px;display:grid;gap:24px}
-.book__info div{padding-top:16px;border-top:1px solid var(--line)}
-.book__info b{display:block;font-weight:600;margin-bottom:4px}
-.book__info p,.book__info dd{color:var(--ink-2);font-size:16px}
-.hours{display:grid;grid-template-columns:auto 1fr;gap:2px 24px}
-.hours dt{font-size:16px}
-.form{background:var(--ink);color:var(--plaster);border-radius:32px;padding:clamp(28px,4vw,48px)}
-.form h3{font-size:clamp(28px,2.6vw,36px);margin-bottom:8px}
-.form > p{color:rgba(244,238,230,.72);font-size:15px;margin-bottom:28px}
-.field{display:grid;gap:8px;margin-bottom:18px}
+/* visit and book */
+.visit{padding:clamp(64px,8vw,110px) var(--pad)}
+.visit__in{max-width:1440px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,96px)}
+.info{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px 32px}
+.info div{padding-top:14px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.info b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:0 18px}
+.form{background:var(--ink);color:var(--plaster);border-radius:28px;padding:clamp(28px,4vw,48px)}
+.form h3{font-size:clamp(28px,2.6vw,36px);margin-bottom:10px}
+.form form > p{color:rgba(245,239,232,.72);font-size:15px;margin-bottom:28px}
+.field{display:grid;gap:8px;margin-bottom:18px;border:0;padding:0}
 .field label,.field legend{font-size:14px;font-weight:500}
-.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:14px;border:1px solid rgba(244,238,230,.24);background:rgba(244,238,230,.06);color:var(--plaster);font:400 16px var(--sans);padding:12px 16px}
+.field input,.field select,.field textarea{width:100%;min-height:50px;border-radius:14px;border:1px solid rgba(245,239,232,.24);background:rgba(245,239,232,.06);color:var(--plaster);font:400 16px var(--font);padding:12px 16px}
 .field select option{color:var(--ink)}
-.field textarea{min-height:96px;resize:vertical}
-.field input::placeholder,.field textarea::placeholder{color:rgba(244,238,230,.45)}
-.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--oak);box-shadow:0 0 0 3px rgba(185,139,95,.3)}
+.field textarea{min-height:92px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:rgba(245,239,232,.45)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--oak);box-shadow:0 0 0 3px rgba(192,141,92,.3)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-fieldset.field{border:0;padding:0}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips label{position:relative}
 .chips input{position:absolute;opacity:0;pointer-events:none}
-.chips span{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid rgba(244,238,230,.3);font-size:14px;cursor:pointer}
+.chips span{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid rgba(245,239,232,.3);font-size:14px;cursor:pointer}
 .chips input:checked + span{background:var(--plaster);color:var(--ink);border-color:var(--plaster)}
 .chips input:focus-visible + span{outline:2px solid var(--oak);outline-offset:2px}
-.form .btn{width:100%;margin-top:8px;background:var(--oak);border-color:var(--oak);color:var(--ink)}
-.form .btn:hover{background:var(--plaster);border-color:var(--plaster)}
+.form button[type=submit]{width:100%;margin-top:8px;background:var(--oak);color:var(--ink);min-height:50px}
+.form button[type=submit]:hover{background:var(--plaster)}
 .form__done{display:none;text-align:center;padding:40px 0}
 .form.is-sent form{display:none}
 .form.is-sent .form__done{display:block}
-.form__done p{color:rgba(244,238,230,.75);margin-top:12px}
+.form__done p{color:rgba(245,239,232,.75);margin-top:12px}
 
 /* footer */
-.foot{background:var(--ink);color:rgba(244,238,230,.75);padding:56px 0 40px;font-size:15px}
-.foot__in{display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:end}
-.foot .logo{color:var(--plaster);font-size:32px}
+.foot{background:var(--ink);color:rgba(245,239,232,.72);padding:56px var(--pad) 36px;font-size:14px}
+.foot__in{max-width:1440px;margin:0 auto;display:flex;justify-content:space-between;align-items:end;gap:32px;flex-wrap:wrap}
+.foot .logo{color:var(--plaster);font-size:clamp(28px,5vw,64px);letter-spacing:.08em}
 .foot nav{display:flex;gap:24px;flex-wrap:wrap}
 .foot a{text-decoration:none}
 .foot a:hover{color:var(--plaster)}
-.foot small{display:block;margin-top:40px;font-size:13px;color:rgba(244,238,230,.5)}
+.foot small{display:block;max-width:1440px;margin:40px auto 0;font-size:12px;color:rgba(245,239,232,.45)}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s ease}
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s ease,transform .8s ease}
 .rv.is-in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
 @media (max-width:1000px){
+  .nav{grid-template-columns:1fr auto}
   .nav__links{display:none}
-  .hero__grid,.intro__grid,.svc__body,.book__grid{grid-template-columns:1fr}
-  .hero__art{justify-self:end;width:86%;max-width:440px}
-  .intro__img{max-width:none;aspect-ratio:4/3;border-radius:240px 240px 0 0}
-  .svc__img{display:none}
-  .space__a{grid-column:1/8}
-  .space__b{grid-column:8/13}
-  .space__c{display:none}
-  .space__copy{grid-column:1/13}
+  .cells{grid-auto-columns:42%}
+  .tiles{grid-template-columns:1fr 1fr}
+  .tile:last-child{grid-column:1/3;aspect-ratio:16/10}
+  .studio__copy{grid-column:1/13;grid-row:auto;padding-top:0}
+  .ph--chairs{grid-column:1/8;grid-row:auto}
+  .sketch--shears{grid-column:8/13;grid-row:auto;align-self:center}
+  .ph--lounge{grid-column:6/13;grid-row:auto;margin-top:0}
+  .ph--shelf{grid-column:1/6;grid-row:auto;align-self:center;margin-top:0}
+  .sketch--bottle{display:none}
   .rev__grid{grid-template-columns:1fr}
+  .rev blockquote{padding:28px 0}
+  .rev blockquote + blockquote{border-left:0;border-top:1px solid var(--line);padding-left:0}
+  .visit__in{grid-template-columns:1fr}
 }
-@media (max-width:620px){
-  body{font-size:16px}
-  .hero__meta{flex-wrap:wrap;gap:20px 32px}
-  .hero__mirror{left:-8%}
-  .hero__tag{right:0}
-  .intro__list,.space__copy,.row2{grid-template-columns:1fr}
-  .space__a{grid-column:1/13}
-  .space__b{grid-column:1/13;aspect-ratio:4/3}
-  .menu li{grid-template-columns:1fr}
-  .menu .price{grid-row:auto;grid-column:1;text-align:left;margin-top:6px}
-  .menu .price small{display:inline;margin-left:6px}
-  .nav .btn{padding:0 16px;font-size:14px}
-  .logo{font-size:20px}
+@media (max-width:700px){
+  .ann{gap:8px;padding:0 8px}
+  .hero{grid-template-columns:1fr;height:auto;min-height:0}
+  .hero__a{min-height:max(620px,88svh)}
+  .hero__b{display:none}
+  .hero__copy{top:auto;bottom:40px;transform:none}
+  .hero__tag{display:none}
+  .nav__right .txt{display:none}
+  .cells{grid-auto-columns:78%}
+  .tiles{grid-template-columns:1fr}
+  .tile,.tile:last-child{grid-column:auto;aspect-ratio:4/4.4}
+  .studio__grid{gap:20px 12px}
+  .info,.row2{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<header class="nav" id="nav">
-  <div class="wrap nav__in">
-    <a class="logo" href="#top" aria-label="The Strand Studio, home">
-      <svg viewBox="0 0 22 28" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 27V11a10 10 0 0 1 20 0v16"/><path d="M6 27V12a5 5 0 0 1 10 0v15"/></svg>
-      The Strand Studio
-    </a>
-    <nav class="nav__links" aria-label="Main">
-      <a href="#services">Services</a>
-      <a href="#lookbook">Lookbook</a>
-      <a href="#space">The studio</a>
-      <a href="#visit">Visit</a>
-    </nav>
-    <a class="btn" href="#book">Book a chair</a>
+<div class="ann" role="region" aria-label="Studio news">
+  <button type="button" data-ann="-1" aria-label="Previous message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
+  <p id="annText" aria-live="polite">New clients get a free 15 minute consult</p>
+  <button type="button" data-ann="1" aria-label="Next message"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+
+<header class="hero" id="top">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top">The Strand</a>
+    <div class="nav__links">
+      <a href="#services">services</a>
+      <a href="#looks">looks</a>
+      <a href="#studio">the studio</a>
+      <a href="#visit">visit</a>
+    </div>
+    <div class="nav__right">
+      <a class="txt" href="tel:+15625550142">(562) 555-0142</a>
+      <a href="#visit" aria-label="Find the studio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></a>
+      <a href="#book" aria-label="Book an appointment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="hero__a">
+    <img src="img/blonde-waves.jpg" alt="Long blonde hair with soft waves and bright, blended highlights" width="1350" height="1800" fetchpriority="high">
+    <div class="hero__copy rv">
+      <h1>hair that feels like you, even on <span class="mark">day five.<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span></h1>
+      <p>A small Long Beach studio for lived-in color, careful cuts and curly and textured hair.</p>
+      <a class="pill" href="#book">book a chair</a>
+    </div>
+  </div>
+  <div class="hero__b">
+    <img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" width="1350" height="1800">
+    <span class="hero__tag"><i></i>openings this week</span>
   </div>
 </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="wrap hero__grid">
-      <div>
-        <h1 class="rv">Hair that still feels like you on day five.</h1>
-        <p class="hero__lede rv" style="transition-delay:.1s">A small Long Beach studio for lived-in color, careful cuts and curly and textured hair. Six chairs, good light and no rush.</p>
-        <div class="hero__cta rv" style="transition-delay:.2s">
-          <a class="btn" href="#book">Book a chair</a>
-          <a class="btn btn--ghost" href="#services">See services and prices</a>
-        </div>
-        <div class="hero__meta rv" style="transition-delay:.3s">
-          <div><b>6</b>stylists, each with a specialty</div>
-          <div><b>4.9</b>average from 380 reviews</div>
-          <div><b>Free</b>15 minute consults</div>
-        </div>
-      </div>
-      <div class="hero__art rv" style="transition-delay:.15s">
-        <div class="arch hero__arch"><img src="img/blonde-waves.jpg" alt="Long blonde hair with soft waves and bright, blended highlights" width="1350" height="1800" fetchpriority="high"></div>
-        <div class="hero__mirror"><img src="img/copper.jpg" alt="A layered copper cut with face-framing pieces" width="1350" height="1800"></div>
-        <span class="hero__tag"><i></i>Openings this week</span>
-      </div>
-    </div>
-  </section>
-
-  <section class="intro">
-    <div class="wrap intro__grid">
-      <div class="arch intro__img rv"><img src="img/lounge.jpg" alt="The studio lounge with a cream sofa, a cane cabinet and a rubber plant by the window" loading="lazy" width="1012" height="1800"></div>
-      <div>
-        <h2 class="rv">A quiet room on a busy street.</h2>
-        <p class="rv">We started The Strand Studio because getting your hair done shouldn't feel like waiting at the DMV. Every appointment starts with a conversation, runs on time, and ends with a plan for how to look after your hair at home.</p>
-        <ul class="intro__list">
-          <li class="rv"><b>One client per stylist</b>No double booking, so your stylist is with you the whole time.</li>
-          <li class="rv"><b>Honest timing</b>We tell you how long it will take and what it will cost before we start.</li>
-          <li class="rv"><b>All hair types</b>Every stylist is trained in curly and coily cutting, not just one.</li>
-          <li class="rv"><b>Gentle products</b>Low-ammonia color and sulfate-free care, chosen for your hair.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
+<main>
   <section class="svc" id="services" aria-labelledby="svc-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="svc-h" class="rv">Services and prices</h2>
-        <p class="rv">Prices start at the amounts shown and depend on length and density. Your stylist confirms the final price at your consult.</p>
-      </div>
-      <div class="tabs" role="tablist" aria-label="Service type">
-        <button role="tab" id="t-cut" aria-controls="p-cut" aria-selected="true">Cut and style</button>
-        <button role="tab" id="t-color" aria-controls="p-color" aria-selected="false" tabindex="-1">Color</button>
-        <button role="tab" id="t-texture" aria-controls="p-texture" aria-selected="false" tabindex="-1">Texture and care</button>
-      </div>
-      <div class="svc__body">
-        <div>
-          <ul class="menu" role="tabpanel" id="p-cut" aria-labelledby="t-cut" data-img="img/brunette-waves.jpg" data-alt="Brunette hair with soft caramel pieces, styled in loose waves">
-            <li><h3>Signature cut</h3><p>Consult, wash, cut and a blow-dry, with tips for styling it yourself.</p><span class="price">$95<small>75 min</small></span></li>
-            <li><h3>Curly and coily cut</h3><p>Cut dry, curl by curl, so you see the shape as it takes form.</p><span class="price">$120<small>90 min</small></span></li>
-            <li><h3>Fringe and shape-up</h3><p>A quick tidy between full cuts. Free for current clients.</p><span class="price">$35<small>20 min</small></span></li>
-            <li><h3>Blow-dry</h3><p>Wash and a smooth or bouncy finish. Good before an event.</p><span class="price">$60<small>45 min</small></span></li>
-          </ul>
-          <ul class="menu" role="tabpanel" id="p-color" aria-labelledby="t-color" data-img="img/natural-curls.jpg" data-alt="Full, defined natural curls seen from behind" hidden>
-            <li><h3>Lived-in balayage</h3><p>Hand-painted lightness that grows out softly. Includes toner and blow-dry.</p><span class="price">$240<small>3 hr</small></span></li>
-            <li><h3>Full highlights</h3><p>Foiled brightness from root to end for a bolder blonde.</p><span class="price">$210<small>2.5 hr</small></span></li>
-            <li><h3>Single process</h3><p>All-over color or a root touch-up to cover gray.</p><span class="price">$110<small>90 min</small></span></li>
-            <li><h3>Gloss</h3><p>Adds shine and refreshes tone between color visits.</p><span class="price">$65<small>45 min</small></span></li>
-          </ul>
-          <ul class="menu" role="tabpanel" id="p-texture" aria-labelledby="t-texture" data-img="img/wet-hair.jpg" data-alt="Dark, wet hair falling over a bare shoulder" hidden>
-            <li><h3>Silk press</h3><p>Deep clean, treatment and a smooth press with heat protection.</p><span class="price">$130<small>2 hr</small></span></li>
-            <li><h3>Bond repair treatment</h3><p>Rebuilds hair that's been lightened or heat styled often.</p><span class="price">$55<small>30 min</small></span></li>
-            <li><h3>Scalp ritual</h3><p>Exfoliation, a steam treatment and a 10 minute massage.</p><span class="price">$70<small>45 min</small></span></li>
-            <li><h3>Keratin smoothing</h3><p>Cuts frizz and drying time for up to three months.</p><span class="price">$280<small>3 hr</small></span></li>
-          </ul>
-          <p class="svc__note">New to us? Book a free 15 minute consult first, in person or by video.</p>
-        </div>
-        <div class="arch svc__img"><img id="svcImg" src="img/brunette-waves.jpg" alt="Brunette hair with soft caramel pieces, styled in loose waves" loading="lazy" width="1200" height="1800"></div>
-      </div>
+    <h2 id="svc-h" hidden>Services and prices</h2>
+    <div class="tabs" role="tablist" aria-label="Service type">
+      <button role="tab" id="t-cut" aria-controls="p-cut" aria-selected="true">cut &amp; style</button>
+      <button role="tab" id="t-color" aria-controls="p-color" aria-selected="false" tabindex="-1">color</button>
+      <button role="tab" id="t-texture" aria-controls="p-texture" aria-selected="false" tabindex="-1">texture &amp; care</button>
     </div>
+
+    <div class="cells" role="tabpanel" id="p-cut" aria-labelledby="t-cut">
+      <article class="cell"><div class="tags"><span>Most booked</span><span>Includes blow-dry</span></div><div class="cell__img"><img src="img/brunette-waves.jpg" alt="" loading="lazy" width="1200" height="1800"></div><h3>Signature cut</h3><p>from $95 · 75 min</p></article>
+      <article class="cell"><div class="tags"><span>Curls</span><span>Cut dry</span></div><div class="cell__img"><img src="img/natural-curls.jpg" alt="" loading="lazy" width="1012" height="1800"></div><h3>Curly and coily cut</h3><p>from $120 · 90 min</p></article>
+      <article class="cell"><div class="tags"><span>Quick visit</span></div><div class="cell__img"><img src="img/copper.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div><h3>Fringe and shape-up</h3><p>$35 · free for clients</p></article>
+      <article class="cell"><div class="tags"><span>Event ready</span></div><div class="cell__img"><img src="img/blonde-waves.jpg" alt="" loading="lazy" width="1350" height="1800"></div><h3>Blow-dry</h3><p>from $60 · 45 min</p></article>
+    </div>
+    <div class="cells" role="tabpanel" id="p-color" aria-labelledby="t-color" hidden>
+      <article class="cell"><div class="tags"><span>Lived-in</span><span>Low upkeep</span></div><div class="cell__img"><img src="img/blonde-curls.jpg" alt="" loading="lazy" width="811" height="1800"></div><h3>Balayage</h3><p>from $240 · 3 hr</p></article>
+      <article class="cell"><div class="tags"><span>Bright blonde</span></div><div class="cell__img"><img src="img/blonde-waves.jpg" alt="" loading="lazy" width="1350" height="1800"></div><h3>Full highlights</h3><p>from $210 · 2.5 hr</p></article>
+      <article class="cell"><div class="tags"><span>Gray coverage</span></div><div class="cell__img"><img src="img/copper.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div><h3>Single process</h3><p>from $110 · 90 min</p></article>
+      <article class="cell"><div class="tags"><span>Shine</span><span>Tone refresh</span></div><div class="cell__img"><img src="img/wet-hair.jpg" alt="" loading="lazy" width="1440" height="1800"></div><h3>Gloss</h3><p>$65 <s>$80</s> · with any cut</p></article>
+    </div>
+    <div class="cells" role="tabpanel" id="p-texture" aria-labelledby="t-texture" hidden>
+      <article class="cell"><div class="tags"><span>Smooth</span><span>Heat protected</span></div><div class="cell__img"><img src="img/wet-hair.jpg" alt="" loading="lazy" width="1440" height="1800"></div><h3>Silk press</h3><p>from $130 · 2 hr</p></article>
+      <article class="cell"><div class="tags"><span>Repair</span></div><div class="cell__img"><img src="img/shelf.jpg" alt="" loading="lazy" width="1350" height="1800"></div><h3>Bond repair treatment</h3><p>$55 · 30 min</p></article>
+      <article class="cell"><div class="tags"><span>Relax</span></div><div class="cell__img"><img src="img/lounge.jpg" alt="" loading="lazy" width="1012" height="1800"></div><h3>Scalp ritual</h3><p>$70 · 45 min</p></article>
+      <article class="cell"><div class="tags"><span>Anti-frizz</span><span>Lasts 3 months</span></div><div class="cell__img"><img src="img/brunette-waves.jpg" alt="" loading="lazy" width="1200" height="1800"></div><h3>Keratin smoothing</h3><p>from $280 · 3 hr</p></article>
+    </div>
+    <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
   </section>
 
-  <section class="look" id="lookbook" aria-labelledby="look-h">
-    <div class="wrap sec-head">
-      <div>
-        <h2 id="look-h" class="rv">Lookbook</h2>
-        <p class="rv" style="margin-top:16px">Recent work from our chairs. Bring a photo of one you like to your consult.</p>
-      </div>
-      <div class="look__ctrl">
-        <button type="button" data-dir="-1" aria-label="Previous looks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-        <button type="button" data-dir="1" aria-label="Next looks"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-      </div>
-    </div>
-    <div class="look__rail" id="lookRail" tabindex="0" aria-label="Lookbook photos">
-      <figure><div class="arch"><img src="img/blonde-waves.jpg" alt="Bright blonde with soft waves" loading="lazy" width="1350" height="1800"></div><figcaption><b>Bright blonde</b><span>Full highlights and gloss</span></figcaption></figure>
-      <figure><div class="arch"><img src="img/copper.jpg" alt="A layered copper cut" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div><figcaption><b>Copper layers</b><span>Single process and signature cut</span></figcaption></figure>
-      <figure><div class="arch"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:40% 40%"></div><figcaption><b>Defined coils</b><span>Curly and coily cut</span></figcaption></figure>
-      <figure><div class="arch"><img src="img/brunette-waves.jpg" alt="Brunette with caramel balayage" loading="lazy" width="1200" height="1800"></div><figcaption><b>Caramel brunette</b><span>Lived-in balayage</span></figcaption></figure>
-      <figure><div class="arch"><img src="img/blonde-curls.jpg" alt="Golden blonde curls in afternoon light" loading="lazy" width="811" height="1800" style="object-position:50% 45%"></div><figcaption><b>Golden curls</b><span>Balayage on curly hair</span></figcaption></figure>
-      <figure><div class="arch"><img src="img/wet-hair.jpg" alt="Dark hair after a bond repair treatment" loading="lazy" width="1440" height="1800"></div><figcaption><b>Glossy brunette</b><span>Gloss and bond repair</span></figcaption></figure>
-    </div>
+  <section class="tiles" id="looks" aria-label="Looks we love">
+    <a class="tile" href="#services" data-tab="t-cut"><img src="img/tools.jpg" alt="Shears and combs laid out at a styling station" loading="lazy" width="1350" height="1800"><h2>cut</h2><span class="pill">see cuts</span></a>
+    <a class="tile" href="#services" data-tab="t-color"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><h2>color</h2><span class="pill">see color</span></a>
+    <a class="tile" href="#services" data-tab="t-texture"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:50% 45%"><h2>curls</h2><span class="pill">see texture &amp; care</span></a>
   </section>
 
-  <section class="space" id="space" aria-labelledby="space-h">
-    <div class="wrap">
-      <div class="space__grid">
-        <div class="arch space__a rv"><img src="img/chairs.jpg" alt="Two cognac leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800"></div>
-        <div class="space__b rv"><img src="img/tools.jpg" alt="Shears, combs and a brush laid out at a styling station" loading="lazy" width="1350" height="1800"></div>
-        <div class="space__c rv"><img src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 40%"></div>
-        <div class="space__copy">
-          <h2 id="space-h" class="rv">Made for a long appointment.</h2>
-          <div class="rv">
-            <p>Big west-facing windows, so you see your color in daylight before you leave. Every station has its own mirror, outlet and a little shelf for your coffee.</p>
-            <p style="margin-top:16px">Wi-Fi, chargers and a good playlist are on us. So is tea, oat milk lattes and sparkling water.</p>
-          </div>
-        </div>
+  <section class="studio" id="studio" aria-labelledby="studio-h">
+    <div class="studio__grid">
+      <div class="studio__copy rv">
+        <h2 id="studio-h">a <span class="mark"><span>quiet room</span><svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span> on a busy street.</h2>
+        <p>Six chairs, big west-facing windows and one client per stylist. Every visit starts with a conversation, runs on time and ends with a plan for your hair at home.</p>
+        <a class="pill pill--line" href="#visit">plan your visit</a>
       </div>
+
+      <figure class="ph ph--chairs rv"><img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800"><figcaption>Afternoon light at stations three and four</figcaption></figure>
+
+      <svg class="sketch sketch--shears rv" viewBox="0 0 220 220" aria-hidden="true">
+        <path d="M104 118C130 84 160 50 200 16C176 56 146 92 114 128Z"/>
+        <path d="M100 114C116 78 136 44 160 8C150 50 132 90 110 124Z"/>
+        <path class="fine" d="M120 104L178 38M116 98L150 30M128 110L190 32"/>
+        <circle cx="106" cy="120" r="4"/>
+        <path d="M100 126L72 156"/><path d="M110 128L118 160"/>
+        <ellipse cx="56" cy="172" rx="24" ry="17" transform="rotate(-38 56 172)"/>
+        <ellipse cx="56" cy="172" rx="16" ry="10" transform="rotate(-38 56 172)" class="fine"/>
+        <ellipse cx="124" cy="182" rx="22" ry="16" transform="rotate(12 124 182)"/>
+        <ellipse cx="124" cy="182" rx="14" ry="9" transform="rotate(12 124 182)" class="fine"/>
+        <path class="fine" d="M30 204C70 210 140 212 196 204"/>
+      </svg>
+
+      <figure class="ph ph--shelf rv"><img src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 45%"><figcaption>The take-home shelf</figcaption></figure>
+
+      <svg class="sketch sketch--bottle rv" viewBox="0 0 200 220" aria-hidden="true">
+        <path d="M70 92h52v104a8 8 0 0 1-8 8H78a8 8 0 0 1-8-8z"/>
+        <path d="M80 92V78h32v14"/>
+        <path d="M84 78V56h30l16 10v8h-18v4"/>
+        <path d="M100 66c-4 14-12 20-22 22"/>
+        <rect x="80" y="122" width="32" height="46" rx="2"/>
+        <path class="fine" d="M86 132h20M86 140h14M86 156h20M74 100v92M118 104v84"/>
+        <path d="M150 204C150 168 158 134 176 104"/>
+        <path d="M156 170c-14-4-20-14-20-26 12 2 20 12 20 26z"/>
+        <path d="M162 142c12-6 22-4 28 4-10 8-20 6-28-4z"/>
+        <path d="M168 120c-10-8-12-18-6-28 8 6 10 18 6 28z"/>
+        <path class="fine" d="M150 160l-10-12M164 140l18 2M168 116l-4-18"/>
+        <path class="fine" d="M40 210C90 214 150 214 196 210"/>
+      </svg>
+
+      <figure class="ph ph--lounge rv"><img src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 60%"><figcaption>The lounge, with tea and oat milk lattes</figcaption></figure>
     </div>
   </section>
 
   <section class="rev" aria-labelledby="rev-h">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2 id="rev-h" class="rv">What clients say</h2>
-      </div>
+    <div class="rev__in">
+      <h2 id="rev-h" class="rv">what clients say</h2>
       <div class="rev__grid">
-        <blockquote class="rv"><p>"First stylist who actually knew how to cut my curls dry. I've gone three months and it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
-        <blockquote class="rv"><p>"I asked for low maintenance blonde and got exactly that. Six months later the grow-out still looks on purpose."</p><footer><b>Kate L.</b>Lived-in balayage</footer></blockquote>
+        <blockquote class="rv"><p>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
+        <blockquote class="rv"><p>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</p><footer><b>Kate L.</b>Balayage</footer></blockquote>
         <blockquote class="rv"><p>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</p><footer><b>Marisol T.</b>Signature cut and gloss</footer></blockquote>
       </div>
       <p class="rev__note">Sample reviews written for this concept.</p>
     </div>
   </section>
 
-  <section class="book" id="visit" aria-labelledby="visit-h">
-    <div class="wrap book__grid">
+  <section class="visit" id="visit" aria-labelledby="visit-h">
+    <div class="visit__in">
       <div>
-        <h2 id="visit-h" class="rv">Come sit with us.</h2>
-        <div class="book__info">
-          <div class="rv"><b>Address</b><p>2140 E 4th Street<br>Long Beach, CA 90814</p><p>Street parking, plus two spots out back.</p></div>
+        <h2 id="visit-h" class="rv">come sit with us.</h2>
+        <div class="info">
+          <div class="rv"><b>Address</b>2140 E 4th Street<br>Long Beach, CA 90814<br>Street parking, plus two spots out back.</div>
           <div class="rv"><b>Hours</b>
             <dl class="hours">
               <dt>Tue to Fri</dt><dd>10 am to 8 pm</dd>
@@ -378,13 +362,14 @@ fieldset.field{border:0;padding:0}
               <dt>Monday</dt><dd>Closed</dd>
             </dl>
           </div>
-          <div class="rv"><b>Contact</b><p><a href="tel:+15625550142">(562) 555-0142</a><br><a href="mailto:hello@thestrandstudio.example">hello@thestrandstudio.example</a></p></div>
+          <div class="rv"><b>Call or text</b><a href="tel:+15625550142">(562) 555-0142</a></div>
+          <div class="rv"><b>Email</b><a href="mailto:hello@thestrandstudio.example">hello@thestrandstudio.example</a></div>
         </div>
       </div>
 
       <div class="form" id="book">
         <form id="bookForm" novalidate>
-          <h3>Request an appointment</h3>
+          <h3>request an appointment</h3>
           <p>Tell us what you're after and we'll text you times within a day.</p>
           <div class="row2">
             <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
@@ -396,7 +381,7 @@ fieldset.field{border:0;padding:0}
               <option>Free consult</option>
               <option>Signature cut</option>
               <option>Curly and coily cut</option>
-              <option>Lived-in balayage</option>
+              <option>Balayage</option>
               <option>Full highlights</option>
               <option>Single process</option>
               <option>Silk press</option>
@@ -412,11 +397,11 @@ fieldset.field{border:0;padding:0}
               <label><input type="radio" name="when" value="Weekends"><span>Weekends</span></label>
             </div>
           </fieldset>
-          <div class="field"><label for="f-note">Anything we should know? <span style="opacity:.6">(optional)</span></label><textarea id="f-note" name="note" placeholder="Last color, photos you like, how much time you spend styling"></textarea></div>
-          <button class="btn" type="submit">Request appointment</button>
+          <div class="field"><label for="f-note">Anything we should know? <span style="opacity:.6">(optional)</span></label><textarea id="f-note" name="note" placeholder="Last color, photos you like, how long you spend styling"></textarea></div>
+          <button class="pill" type="submit">request appointment</button>
         </form>
         <div class="form__done" role="status" aria-live="polite">
-          <h3>Request sent</h3>
+          <h3>request sent</h3>
           <p>Thanks, we'll text you a few times within a day.</p>
         </div>
       </div>
@@ -425,27 +410,28 @@ fieldset.field{border:0;padding:0}
 </main>
 
 <footer class="foot">
-  <div class="wrap">
-    <div class="foot__in">
-      <a class="logo" href="#top">
-        <svg viewBox="0 0 22 28" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1 27V11a10 10 0 0 1 20 0v16"/><path d="M6 27V12a5 5 0 0 1 10 0v15"/></svg>
-        The Strand Studio
-      </a>
-      <nav aria-label="Footer">
-        <a href="#services">Services</a>
-        <a href="#lookbook">Lookbook</a>
-        <a href="#visit">Visit</a>
-        <a href="#">Instagram</a>
-      </nav>
-    </div>
-    <small>A design concept. The Strand Studio is not a real business.</small>
+  <div class="foot__in">
+    <a class="logo" href="#top">The Strand</a>
+    <nav aria-label="Footer">
+      <a href="#services">services</a>
+      <a href="#looks">looks</a>
+      <a href="#studio">the studio</a>
+      <a href="#visit">visit</a>
+      <a href="#">instagram</a>
+    </nav>
   </div>
+  <small>A design concept. The Strand Studio is not a real business.</small>
 </footer>
 
 <script>
-// sticky nav border
-const nav = document.getElementById('nav');
-addEventListener('scroll', () => nav.classList.toggle('is-stuck', scrollY > 8), {passive:true});
+// announcement bar
+const ann = ['New clients get a free 15 minute consult', 'Open late Tuesday to Friday, until 8 pm', 'Add a gloss to any cut for $65'];
+let ai = 0;
+const annText = document.getElementById('annText');
+document.querySelectorAll('[data-ann]').forEach(b => b.onclick = () => {
+  ai = (ai + +b.dataset.ann + ann.length) % ann.length;
+  annText.textContent = ann[ai];
+});
 
 // reveal on scroll
 const io = new IntersectionObserver(es => es.forEach(e => {
@@ -453,9 +439,17 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 }), {threshold:.15});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-// service tabs
+// service tabs + progress bar
 const tabs = [...document.querySelectorAll('[role=tab]')];
-const svcImg = document.getElementById('svcImg');
+const fill = document.getElementById('barFill');
+let panel = document.getElementById('p-cut');
+function syncBar() {
+  const max = panel.scrollWidth - panel.clientWidth;
+  const view = panel.clientWidth / panel.scrollWidth;
+  fill.style.width = (view * 100) + '%';
+  fill.style.transform = max > 0 ? `translateX(${(panel.scrollLeft / max) * (1 / view - 1) * 100}%)` : 'none';
+  fill.parentElement.style.visibility = max > 0 ? 'visible' : 'hidden';
+}
 function selectTab(t) {
   tabs.forEach(x => {
     const on = x === t;
@@ -463,9 +457,9 @@ function selectTab(t) {
     x.tabIndex = on ? 0 : -1;
     document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
   });
-  const p = document.getElementById(t.getAttribute('aria-controls'));
-  svcImg.style.opacity = 0;
-  setTimeout(() => { svcImg.src = p.dataset.img; svcImg.alt = p.dataset.alt; svcImg.style.opacity = 1; }, 200);
+  panel = document.getElementById(t.getAttribute('aria-controls'));
+  panel.scrollLeft = 0;
+  syncBar();
 }
 tabs.forEach((t, i) => {
   t.addEventListener('click', () => selectTab(t));
@@ -476,25 +470,19 @@ tabs.forEach((t, i) => {
     n.focus(); selectTab(n);
   });
 });
+document.querySelectorAll('.cells').forEach(c => c.addEventListener('scroll', syncBar, {passive:true}));
+addEventListener('resize', syncBar);
+syncBar();
 
-// lookbook arrows
-const rail = document.getElementById('lookRail');
-const [prev, next] = document.querySelectorAll('.look__ctrl button');
-function step(dir) { rail.scrollBy({left: dir * rail.querySelector('figure').offsetWidth * 1.1, behavior: matchMedia('(prefers-reduced-motion:reduce)').matches ? 'auto' : 'smooth'}); }
-function syncArrows() {
-  prev.disabled = rail.scrollLeft < 4;
-  next.disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
-}
-prev.onclick = () => step(-1); next.onclick = () => step(1);
-rail.addEventListener('scroll', syncArrows, {passive:true});
-addEventListener('resize', syncArrows); syncArrows();
+// category tiles open the matching service tab
+document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => selectTab(document.getElementById(a.dataset.tab))));
 
 // booking form (mockup: nothing is sent)
 const form = document.getElementById('bookForm');
 form.addEventListener('submit', e => {
   e.preventDefault();
   const missing = [...form.querySelectorAll('[required]')].find(f => !f.value.trim());
-  if (missing) { missing.focus(); missing.setCustomValidity('Add your ' + missing.name + ' so we can text you times.'); missing.reportValidity(); missing.setCustomValidity(''); return; }
+  if (missing) { missing.setCustomValidity('Add your ' + missing.name + ' so we can text you times.'); missing.reportValidity(); missing.setCustomValidity(''); return; }
   form.parentElement.classList.add('is-sent');
 });
 </script>

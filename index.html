@@ -212,10 +212,13 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad)}
 .rev__in{max-width:1440px;margin:0 auto}
 .rev h2,.visit h2{font-size:clamp(40px,4.4vw,64px)}
-.rev__grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);margin-top:clamp(32px,4vw,56px)}
-.rev blockquote{padding:clamp(24px,3vw,40px) clamp(20px,2.4vw,36px) 0 0;display:flex;flex-direction:column;gap:28px}
-.rev blockquote + blockquote{border-left:1px solid var(--line);padding-left:clamp(20px,2.4vw,36px)}
-.rev blockquote p{font-size:clamp(20px,1.8vw,26px);line-height:1.25;letter-spacing:-.02em}
+.rev{overflow:hidden}
+.rev__slider{--gap:0px;width:100vw;margin:clamp(32px,4vw,56px) 0 0 calc(50% - 50vw);overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.rev__track{display:flex;width:max-content;will-change:transform}
+.rev__group{display:flex}
+.rev blockquote{flex:none;width:clamp(290px,30vw,440px);padding:clamp(24px,3vw,40px) clamp(20px,2.4vw,36px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:28px}
+.rev blockquote p{font-size:clamp(19px,1.7vw,24px);line-height:1.25;letter-spacing:-.02em}
+@media (prefers-reduced-motion:reduce){.rev__slider{overflow-x:auto}.rev__group[aria-hidden]{display:none}}
 .rev footer{margin-top:auto;font-size:13px;color:var(--ink-2)}
 .rev footer b{display:block;font-weight:600;color:var(--ink)}
 .rev__note{margin-top:40px;font-size:12px;color:var(--ink-2)}
@@ -285,9 +288,6 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   .cells{grid-auto-columns:42%}
   .tiles{grid-template-columns:1fr 1fr}
   .tile:last-child{grid-column:1/3;aspect-ratio:16/10}
-  .rev__grid{grid-template-columns:1fr}
-  .rev blockquote{padding:28px 0}
-  .rev blockquote + blockquote{border-left:0;border-top:1px solid var(--line);padding-left:0}
   .visit__in{grid-template-columns:1fr}
 }
 @media (max-width:700px){
@@ -679,10 +679,31 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   <section class="rev" aria-labelledby="rev-h">
     <div class="rev__in">
       <h2 id="rev-h" class="rv">what clients say</h2>
-      <div class="rev__grid">
-        <blockquote class="rv"><p>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
-        <blockquote class="rv"><p>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</p><footer><b>Kate L.</b>Balayage</footer></blockquote>
-        <blockquote class="rv"><p>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</p><footer><b>Marisol T.</b>Signature cut and gloss</footer></blockquote>
+      <div class="rev__slider" id="revSlider">
+        <div class="rev__track">
+          <div class="rev__group">
+            <blockquote><p>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
+            <blockquote><p>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</p><footer><b>Kate L.</b>Balayage</footer></blockquote>
+            <blockquote><p>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</p><footer><b>Marisol T.</b>Signature cut and gloss</footer></blockquote>
+            <blockquote><p>"My silk press lasted two full weeks, through a beach weekend. I'm not going anywhere else."</p><footer><b>Danielle W.</b>Silk press</footer></blockquote>
+            <blockquote><p>"They talked me out of bangs I'd regret and into a shape I love. Honest people."</p><footer><b>Priya S.</b>Signature cut</footer></blockquote>
+            <blockquote><p>"The scalp ritual is the most relaxed I've been all year. I booked my next one before I left."</p><footer><b>Lauren M.</b>Scalp ritual</footer></blockquote>
+            <blockquote><p>"Finally a copper that doesn't fade to orange in a week. The gloss refresh keeps it bright."</p><footer><b>Hannah C.</b>Single process and gloss</footer></blockquote>
+            <blockquote><p>"Brought my daughter for her first real haircut. They were patient and made her feel grown up."</p><footer><b>Rosa G.</b>Signature cut</footer></blockquote>
+            <blockquote><p>"Bridal trial and wedding day were both perfect, and my hair held through hours of dancing."</p><footer><b>Alexis P.</b>Bridal trial and event styling</footer></blockquote>
+          </div>
+          <div class="rev__group" aria-hidden="true">
+            <blockquote><p>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
+            <blockquote><p>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</p><footer><b>Kate L.</b>Balayage</footer></blockquote>
+            <blockquote><p>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</p><footer><b>Marisol T.</b>Signature cut and gloss</footer></blockquote>
+            <blockquote><p>"My silk press lasted two full weeks, through a beach weekend. I'm not going anywhere else."</p><footer><b>Danielle W.</b>Silk press</footer></blockquote>
+            <blockquote><p>"They talked me out of bangs I'd regret and into a shape I love. Honest people."</p><footer><b>Priya S.</b>Signature cut</footer></blockquote>
+            <blockquote><p>"The scalp ritual is the most relaxed I've been all year. I booked my next one before I left."</p><footer><b>Lauren M.</b>Scalp ritual</footer></blockquote>
+            <blockquote><p>"Finally a copper that doesn't fade to orange in a week. The gloss refresh keeps it bright."</p><footer><b>Hannah C.</b>Single process and gloss</footer></blockquote>
+            <blockquote><p>"Brought my daughter for her first real haircut. They were patient and made her feel grown up."</p><footer><b>Rosa G.</b>Signature cut</footer></blockquote>
+            <blockquote><p>"Bridal trial and wedding day were both perfect, and my hair held through hours of dancing."</p><footer><b>Alexis P.</b>Bridal trial and event styling</footer></blockquote>
+          </div>
+        </div>
       </div>
       <p class="rev__note">Sample reviews written for this concept.</p>
     </div>
@@ -841,25 +862,25 @@ setInterval(() => {
   setTimeout(() => prev.classList.remove('is-out'), 900);
 }, 2200);
 
-// studio photos: endless slide to the left, eases to a slower speed on hover
-(() => {
-  const slider = document.getElementById('studioSlider');
-  if (matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const track = slider.querySelector('.studio__track');
-  const group = slider.querySelector('.studio__group');
-  let x = 0, speed = 40, target = 40, last = performance.now();
-  slider.addEventListener('mouseenter', () => target = 12);
-  slider.addEventListener('mouseleave', () => target = 40);
+// endless left-sliding strips (studio photos, reviews); they ease to a slower speed on hover
+function marquee(slider, base, slow) {
+  if (!slider || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+  const track = slider.firstElementChild, group = track.firstElementChild;
+  let x = 0, speed = base, target = base, last = performance.now();
+  slider.addEventListener('mouseenter', () => target = slow);
+  slider.addEventListener('mouseleave', () => target = base);
   function tick(now) {
     const dt = Math.min(now - last, 50) / 1000; last = now;
     speed += (target - speed) * Math.min(1, dt * 4);
-    const loop = group.getBoundingClientRect().width + parseFloat(getComputedStyle(track).columnGap);
+    const loop = group.getBoundingClientRect().width + (parseFloat(getComputedStyle(track).columnGap) || 0);
     x = (x + speed * dt) % loop;
     track.style.transform = `translateX(${-x}px)`;
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
-})();
+}
+marquee(document.getElementById('studioSlider'), 40, 12);
+marquee(document.getElementById('revSlider'), 32, 4);
 
 // parallax: the "hair that feels" photo moves slower than the page
 (() => {

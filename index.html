@@ -158,6 +158,24 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 @media (prefers-reduced-motion:reduce){.gal__item,.gal__item figcaption{transition:none}}
 @media (max-width:700px){.gal__row{gap:6px;height:420px}.gal__item{border-radius:10px}.gal__item:hover,.gal__item:focus{flex-grow:8}.gal__item figcaption{font-size:12px;left:8px;bottom:8px;max-width:calc(100% - 16px)}}
 
+/* photo viewer */
+.lb{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:clamp(56px,7vw,88px) clamp(16px,7vw,110px);border:0;background:rgba(30,22,17,.96);color:var(--plaster);overflow:hidden}
+.lb::backdrop{background:transparent}
+.lb[open]{display:grid;place-items:center;animation:lbIn .25s ease}
+@keyframes lbIn{from{opacity:0}to{opacity:1}}
+.lb__fig{display:flex;flex-direction:column;align-items:center;gap:14px;max-width:100%;max-height:100%}
+.lb__fig img{max-width:100%;max-height:calc(100svh - 2 * clamp(56px,7vw,88px) - 40px);width:auto;height:auto;object-fit:contain;border-radius:6px}
+.lb figcaption{display:flex;gap:16px;font-size:14px}
+.lb figcaption span:last-child{color:rgba(245,239,232,.6)}
+.lb__btn{position:absolute;width:48px;height:48px;border-radius:50%;border:1px solid rgba(245,239,232,.4);background:rgba(30,22,17,.4);color:var(--plaster);display:grid;place-items:center;cursor:pointer;transition:background .2s,color .2s}
+.lb__btn:hover{background:var(--plaster);color:var(--ink)}
+.lb__btn svg{width:20px;height:20px}
+.lb__close{top:16px;right:16px}
+.lb__prev{left:clamp(8px,2vw,32px);top:50%;transform:translateY(-50%)}
+.lb__next{right:clamp(8px,2vw,32px);top:50%;transform:translateY(-50%)}
+.gal__item{cursor:zoom-in}
+@media (prefers-reduced-motion:reduce){.lb[open]{animation:none}}
+
 /* tiles */
 .tiles{display:grid;grid-template-columns:repeat(3,1fr)}
 .tile{position:relative;aspect-ratio:4/5;overflow:hidden;color:#fff}
@@ -631,6 +649,15 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
       <figure class="gal__item" tabindex="0"><img src="img/black-bob.jpg" alt="A layered, shaggy black bob seen in profile" loading="lazy" width="1200" height="1800" style="object-position:50% 40%"><figcaption>Shaggy bob · signature cut</figcaption></figure>
     </div>
   </section>
+  <dialog class="lb" id="lightbox" aria-label="Photo viewer">
+    <figure class="lb__fig">
+      <img id="lbImg" src="" alt="">
+      <figcaption><span id="lbCap"></span><span id="lbCount"></span></figcaption>
+    </figure>
+    <button class="lb__btn lb__close" type="button" aria-label="Close photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lb__btn lb__prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="lb__btn lb__next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  </dialog>
 
   <section class="rev" aria-labelledby="rev-h">
     <div class="rev__in">
@@ -842,6 +869,38 @@ setInterval(() => {
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, {passive:true});
   addEventListener('resize', update);
   update();
+})();
+
+// gallery photo viewer: click (or a second tap on phones) opens the full photo
+(() => {
+  const items = [...document.querySelectorAll('.gal__item')];
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lbImg'), cap = document.getElementById('lbCap'), count = document.getElementById('lbCount');
+  let at = 0, opener = null;
+  function show(i) {
+    at = (i + items.length) % items.length;
+    const src = items[at].querySelector('img');
+    img.src = src.getAttribute('src'); img.alt = src.alt;
+    cap.textContent = items[at].querySelector('figcaption').textContent;
+    count.textContent = `${at + 1} / ${items.length}`;
+  }
+  function open(i) { opener = items[i]; show(i); lb.showModal(); document.documentElement.style.overflow = 'hidden'; }
+  items.forEach((item, i) => {
+    let wasOpen = false, touch = false;
+    item.addEventListener('pointerdown', e => { touch = e.pointerType === 'touch'; wasOpen = document.activeElement === item; });
+    item.addEventListener('click', () => { if (touch && !wasOpen) return; open(i); });
+    item.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(i); } });
+  });
+  lb.querySelector('.lb__close').onclick = () => lb.close();
+  lb.querySelector('.lb__prev').onclick = () => show(at - 1);
+  lb.querySelector('.lb__next').onclick = () => show(at + 1);
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+  lb.addEventListener('keydown', e => { if (e.key === 'ArrowLeft') show(at - 1); if (e.key === 'ArrowRight') show(at + 1); });
+  lb.addEventListener('close', () => { document.documentElement.style.overflow = ''; if (opener) opener.focus({preventScroll:true}); });
+  // swipe between photos on touch screens
+  let sx = null;
+  lb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 50) show(at + (dx < 0 ? 1 : -1)); sx = null; });
 })();
 
 // booking form (mockup: nothing is sent)

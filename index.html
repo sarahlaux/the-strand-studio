@@ -168,29 +168,19 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .tile .pill{position:absolute;z-index:2;left:var(--pad);bottom:clamp(24px,3vw,40px)}
 @media (prefers-reduced-motion:reduce){.tile img{transition:none}.tile:hover img{transform:none}}
 
-/* studio collage */
-.studio{position:relative;overflow:hidden;background:var(--plaster);padding:clamp(64px,8vw,110px) var(--pad) clamp(64px,8vw,120px)}
-.studio::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 15% 30%,rgba(255,255,255,.7),transparent 70%),repeating-linear-gradient(115deg,transparent 0 140px,rgba(46,37,32,.025) 140px 200px);pointer-events:none}
-.studio__grid{position:relative;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:auto auto auto;gap:24px clamp(16px,2vw,28px);max-width:1440px;margin:0 auto}
-.studio__copy{grid-column:1/5;grid-row:1/3;align-self:center;padding-top:clamp(60px,10vw,180px)}
-.studio h2{font-size:clamp(42px,4.4vw,68px);line-height:.98}
+/* studio intro + photo row */
+.studio{padding:clamp(72px,9vw,128px) var(--pad) clamp(64px,8vw,110px)}
+.studio__copy{max-width:720px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
+.studio h2{font-size:clamp(40px,4.4vw,64px);line-height:1;text-wrap:balance}
 .studio h2 .mark{color:var(--oak)}
 .studio h2 .mark span{color:var(--ink)}
-.studio__copy p{margin:28px 0 28px;max-width:38ch;font-size:15px;color:var(--ink-2)}
-.ph{position:relative}
-.ph img{width:100%;height:100%;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
-.ph figcaption{margin-top:10px;font-size:13px;color:var(--ink-2)}
-.ph--chairs{grid-column:5/9;grid-row:1/3}
-.ph--chairs img{aspect-ratio:3/4.2}
-.ph--lounge{grid-column:10/13;grid-row:2/4;margin-top:clamp(40px,6vw,100px)}
-.ph--lounge img{aspect-ratio:3/4.6}
-.ph--shelf{grid-column:2/5;grid-row:3/4;margin-top:24px}
-.ph--shelf img{aspect-ratio:4/3}
-.sketch{color:var(--ink);opacity:.85}
-.sketch--shears{grid-column:10/13;grid-row:1/2;width:min(100%,220px);justify-self:center;align-self:end}
-.sketch--bottle{grid-column:6/9;grid-row:3/4;width:min(80%,200px);justify-self:center;margin-top:24px}
-.sketch path,.sketch line,.sketch ellipse,.sketch circle,.sketch rect{fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
-.sketch .fine{stroke-width:.8;opacity:.7}
+.studio__sub{margin-top:18px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink)}
+.studio__copy p:not(.studio__sub){margin:22px 0 30px;max-width:56ch;font-size:16px;color:var(--ink-2)}
+.studio__feed{max-width:1360px;margin:clamp(56px,7vw,96px) auto 0}
+.studio__handle{display:inline-block;margin-bottom:16px;font-size:13px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink)}
+.studio__handle:hover{text-decoration:underline;text-underline-offset:4px}
+.studio__row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.8vw,24px)}
+.studio__row img{width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
 
 /* reviews */
 .rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad)}
@@ -268,12 +258,6 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   .cells{grid-auto-columns:42%}
   .tiles{grid-template-columns:1fr 1fr}
   .tile:last-child{grid-column:1/3;aspect-ratio:16/10}
-  .studio__copy{grid-column:1/13;grid-row:auto;padding-top:0}
-  .ph--chairs{grid-column:1/8;grid-row:auto}
-  .sketch--shears{grid-column:8/13;grid-row:auto;align-self:center}
-  .ph--lounge{grid-column:6/13;grid-row:auto;margin-top:0}
-  .ph--shelf{grid-column:1/6;grid-row:auto;align-self:center;margin-top:0}
-  .sketch--bottle{display:none}
   .rev__grid{grid-template-columns:1fr}
   .rev blockquote{padding:28px 0}
   .rev blockquote + blockquote{border-left:0;border-top:1px solid var(--line);padding-left:0}
@@ -290,7 +274,7 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   .cells{grid-auto-columns:78%}
   .tiles{grid-template-columns:1fr}
   .tile,.tile:last-child{grid-column:auto;aspect-ratio:4/4.4}
-  .studio__grid{gap:20px 12px}
+  .studio__row{grid-template-columns:1fr 1fr}
   .info,.row2{grid-template-columns:1fr}
 }
 </style>
@@ -335,46 +319,20 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 
 <main>
   <section class="studio" id="studio" aria-labelledby="studio-h">
-    <div class="studio__grid">
-      <div class="studio__copy rv">
-        <h2 id="studio-h">a <span class="mark"><span>quiet room</span><svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span> on a busy street.</h2>
-        <p>Six chairs, big west-facing windows and one client per stylist. Every visit starts with a conversation, runs on time and ends with a plan for your hair at home.</p>
-        <a class="pill pill--line" href="#visit">plan your visit</a>
+    <div class="studio__copy rv">
+      <h2 id="studio-h">a <span class="mark"><span>quiet room</span><svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span> on a busy street.</h2>
+      <p class="studio__sub">2140 E 4th Street, Long Beach</p>
+      <p>Six chairs, big west-facing windows and one client per stylist. Every visit starts with a conversation, runs on time and ends with a plan for your hair at home.</p>
+      <a class="pill pill--line" href="#visit">plan your visit</a>
+    </div>
+    <div class="studio__feed">
+      <a class="studio__handle" href="#">@thestrandstudio</a>
+      <div class="studio__row">
+        <img class="rv" src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800">
+        <img class="rv" src="img/comb.jpg" alt="Hands combing long brunette hair with a wooden comb" loading="lazy" width="1200" height="1800" style="object-position:50% 40%">
+        <img class="rv" src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 70%">
+        <img class="rv" src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 50%">
       </div>
-
-      <figure class="ph ph--chairs rv"><img src="img/chairs.jpg" alt="Two leather salon chairs facing round mirrors in afternoon sun" loading="lazy" width="1350" height="1800"><figcaption>Afternoon light at stations three and four</figcaption></figure>
-
-      <svg class="sketch sketch--shears rv" viewBox="0 0 220 220" aria-hidden="true">
-        <path d="M104 118C130 84 160 50 200 16C176 56 146 92 114 128Z"/>
-        <path d="M100 114C116 78 136 44 160 8C150 50 132 90 110 124Z"/>
-        <path class="fine" d="M120 104L178 38M116 98L150 30M128 110L190 32"/>
-        <circle cx="106" cy="120" r="4"/>
-        <path d="M100 126L72 156"/><path d="M110 128L118 160"/>
-        <ellipse cx="56" cy="172" rx="24" ry="17" transform="rotate(-38 56 172)"/>
-        <ellipse cx="56" cy="172" rx="16" ry="10" transform="rotate(-38 56 172)" class="fine"/>
-        <ellipse cx="124" cy="182" rx="22" ry="16" transform="rotate(12 124 182)"/>
-        <ellipse cx="124" cy="182" rx="14" ry="9" transform="rotate(12 124 182)" class="fine"/>
-        <path class="fine" d="M30 204C70 210 140 212 196 204"/>
-      </svg>
-
-      <figure class="ph ph--shelf rv"><img src="img/shelf.jpg" alt="Shelves of shampoo, conditioner and body cream in front of cream tile" loading="lazy" width="1350" height="1800" style="object-position:50% 45%"><figcaption>The take-home shelf</figcaption></figure>
-
-      <svg class="sketch sketch--bottle rv" viewBox="0 0 200 220" aria-hidden="true">
-        <path d="M70 92h52v104a8 8 0 0 1-8 8H78a8 8 0 0 1-8-8z"/>
-        <path d="M80 92V78h32v14"/>
-        <path d="M84 78V56h30l16 10v8h-18v4"/>
-        <path d="M100 66c-4 14-12 20-22 22"/>
-        <rect x="80" y="122" width="32" height="46" rx="2"/>
-        <path class="fine" d="M86 132h20M86 140h14M86 156h20M74 100v92M118 104v84"/>
-        <path d="M150 204C150 168 158 134 176 104"/>
-        <path d="M156 170c-14-4-20-14-20-26 12 2 20 12 20 26z"/>
-        <path d="M162 142c12-6 22-4 28 4-10 8-20 6-28-4z"/>
-        <path d="M168 120c-10-8-12-18-6-28 8 6 10 18 6 28z"/>
-        <path class="fine" d="M150 160l-10-12M164 140l18 2M168 116l-4-18"/>
-        <path class="fine" d="M40 210C90 214 150 214 196 210"/>
-      </svg>
-
-      <figure class="ph ph--lounge rv"><img src="img/lounge.jpg" alt="The lounge with a cream sofa, a cane cabinet and a rubber plant" loading="lazy" width="1012" height="1800" style="object-position:50% 60%"><figcaption>The lounge, with tea and oat milk lattes</figcaption></figure>
     </div>
   </section>
 

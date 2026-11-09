@@ -81,12 +81,23 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .tabs button{border:0;background:none;padding:0;font:400 clamp(28px,3vw,40px)/1.1 var(--font);letter-spacing:-.035em;color:rgba(46,37,32,.32);cursor:pointer;white-space:nowrap;transition:color .2s}
 .tabs button:hover{color:rgba(46,37,32,.6)}
 .tabs button[aria-selected="true"]{color:var(--ink)}
+.svc__title{display:flex;align-items:center;gap:clamp(14px,1.6vw,22px);padding:0 var(--pad);margin-bottom:clamp(28px,4vw,48px);font-size:clamp(28px,3vw,40px);line-height:1.1}
+.svc__title::before{content:"";flex:none;width:18px;height:18px;border-radius:50%;background:var(--ink)}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+.cell__img--prod{background:radial-gradient(70% 55% at 50% 42%,rgba(255,255,255,.55),transparent 70%),var(--bg);display:grid;place-items:end center}
+.cell__img--prod svg{width:100%;height:auto;display:block;transition:transform .6s ease}
+.cell:hover .cell__img--prod svg{transform:translateY(-6px)}
+@media (prefers-reduced-motion:reduce){.cell__img--prod svg{transition:none}}
+.lbl{text-anchor:middle;fill:#2e2520;font-family:var(--font)}
+.lbl--brand{font-size:5.4px;font-weight:600;letter-spacing:.14em}
+.lbl--name{font-size:10px;font-weight:500;letter-spacing:-.01em}
+.lbl--size{font-size:5.5px;letter-spacing:.06em;fill:#62564d}
 .cells{display:grid;grid-auto-flow:column;grid-auto-columns:25%;overflow-x:auto;scroll-snap-type:x mandatory;border-top:1px solid var(--line);border-bottom:1px solid var(--line);scrollbar-width:none}
 .cells::-webkit-scrollbar{display:none}
 .cells[hidden]{display:none}
-.cell{scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;padding:16px 16px 22px;border-right:1px solid var(--line);min-height:clamp(440px,38vw,540px);text-align:center}
+.cell{position:relative;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;padding:16px 16px 22px;border-right:1px solid var(--line);min-height:clamp(440px,38vw,540px);text-align:center}
 .cell:last-child{border-right:0}
-.tags{align-self:flex-start;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.tags{position:absolute;top:16px;left:16px;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .tags span{background:#fff;padding:3px 6px;font-size:10.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
 .cell__img{width:min(62%,220px);aspect-ratio:3/4;margin:auto 0;border-radius:999px 999px 6px 6px;overflow:hidden;box-shadow:0 24px 30px -22px rgba(46,37,32,.5)}
 .cell__img img{width:100%;height:100%;object-fit:cover}
@@ -231,8 +242,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   <nav class="nav" aria-label="Main">
     <a class="logo" href="#top">The Strand</a>
     <div class="nav__links">
-      <a href="#services">services</a>
-      <a href="#looks">looks</a>
+      <a href="#shop">shop</a>
+      <a href="#looks">services</a>
       <a href="#studio">the studio</a>
       <a href="#visit">visit</a>
     </div>
@@ -258,39 +269,107 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 </header>
 
 <main>
-  <section class="svc" id="services" aria-labelledby="svc-h">
-    <h2 id="svc-h" hidden>Services and prices</h2>
-    <div class="tabs" role="tablist" aria-label="Service type">
-      <button role="tab" id="t-cut" aria-controls="p-cut" aria-selected="true">cut &amp; style</button>
-      <button role="tab" id="t-color" aria-controls="p-color" aria-selected="false" tabindex="-1">color</button>
-      <button role="tab" id="t-texture" aria-controls="p-texture" aria-selected="false" tabindex="-1">texture &amp; care</button>
-    </div>
+  <section class="svc" id="shop" aria-labelledby="shop-h">
+    <h2 class="svc__title" id="shop-h">our best selling products</h2>
+    <svg class="defs" aria-hidden="true" focusable="false">
+      <defs>
+        <linearGradient id="g-cream" x1="0" x2="1"><stop offset="0" stop-color="#d9cdbd"/><stop offset=".22" stop-color="#fbf7f1"/><stop offset=".42" stop-color="#f3ebe0"/><stop offset=".85" stop-color="#e2d6c6"/><stop offset="1" stop-color="#cbbca8"/></linearGradient>
+        <linearGradient id="g-amber" x1="0" x2="1"><stop offset="0" stop-color="#5a2f12"/><stop offset=".2" stop-color="#b56a2c"/><stop offset=".32" stop-color="#d99a5a"/><stop offset=".55" stop-color="#9a5521"/><stop offset="1" stop-color="#4a250c"/></linearGradient>
+        <linearGradient id="g-sage" x1="0" x2="1"><stop offset="0" stop-color="#7c8a83"/><stop offset=".22" stop-color="#c4cec8"/><stop offset=".45" stop-color="#a8b5ae"/><stop offset=".85" stop-color="#8b9a92"/><stop offset="1" stop-color="#6d7b74"/></linearGradient>
+        <linearGradient id="g-oak" x1="0" x2="1"><stop offset="0" stop-color="#7a5434"/><stop offset=".25" stop-color="#c9996a"/><stop offset=".5" stop-color="#b0814f"/><stop offset="1" stop-color="#6e4a2c"/></linearGradient>
+        <linearGradient id="g-ink" x1="0" x2="1"><stop offset="0" stop-color="#1c1612"/><stop offset=".3" stop-color="#4a3e36"/><stop offset=".55" stop-color="#2e2520"/><stop offset="1" stop-color="#16110e"/></linearGradient>
+        <linearGradient id="g-label" x1="0" x2="1"><stop offset="0" stop-color="#e8dfd2"/><stop offset=".3" stop-color="#fbf8f3"/><stop offset="1" stop-color="#e6dccd"/></linearGradient>
+        <filter id="soft" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+      </defs>
+    </svg>
 
-    <div class="cells" role="tabpanel" id="p-cut" aria-labelledby="t-cut">
-      <article class="cell"><div class="tags"><span>Most booked</span><span>Includes blow-dry</span></div><div class="cell__img"><img src="img/brunette-waves.jpg" alt="" loading="lazy" width="1200" height="1800"></div><h3>Signature cut</h3><p>from $95 · 75 min</p></article>
-      <article class="cell"><div class="tags"><span>Curls</span><span>Cut dry</span></div><div class="cell__img"><img src="img/natural-curls.jpg" alt="" loading="lazy" width="1012" height="1800"></div><h3>Curly and coily cut</h3><p>from $120 · 90 min</p></article>
-      <article class="cell"><div class="tags"><span>Quick visit</span></div><div class="cell__img"><img src="img/copper.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div><h3>Fringe and shape-up</h3><p>$35 · free for clients</p></article>
-      <article class="cell"><div class="tags"><span>Event ready</span></div><div class="cell__img"><img src="img/blonde-waves.jpg" alt="" loading="lazy" width="1350" height="1800"></div><h3>Blow-dry</h3><p>from $60 · 45 min</p></article>
-    </div>
-    <div class="cells" role="tabpanel" id="p-color" aria-labelledby="t-color" hidden>
-      <article class="cell"><div class="tags"><span>Lived-in</span><span>Low upkeep</span></div><div class="cell__img"><img src="img/blonde-curls.jpg" alt="" loading="lazy" width="811" height="1800"></div><h3>Balayage</h3><p>from $240 · 3 hr</p></article>
-      <article class="cell"><div class="tags"><span>Bright blonde</span></div><div class="cell__img"><img src="img/blonde-waves.jpg" alt="" loading="lazy" width="1350" height="1800"></div><h3>Full highlights</h3><p>from $210 · 2.5 hr</p></article>
-      <article class="cell"><div class="tags"><span>Gray coverage</span></div><div class="cell__img"><img src="img/copper.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div><h3>Single process</h3><p>from $110 · 90 min</p></article>
-      <article class="cell"><div class="tags"><span>Shine</span><span>Tone refresh</span></div><div class="cell__img"><img src="img/wet-hair.jpg" alt="" loading="lazy" width="1440" height="1800"></div><h3>Gloss</h3><p>$65 <s>$80</s> · with any cut</p></article>
-    </div>
-    <div class="cells" role="tabpanel" id="p-texture" aria-labelledby="t-texture" hidden>
-      <article class="cell"><div class="tags"><span>Smooth</span><span>Heat protected</span></div><div class="cell__img"><img src="img/wet-hair.jpg" alt="" loading="lazy" width="1440" height="1800"></div><h3>Silk press</h3><p>from $130 · 2 hr</p></article>
-      <article class="cell"><div class="tags"><span>Repair</span></div><div class="cell__img"><img src="img/shelf.jpg" alt="" loading="lazy" width="1350" height="1800"></div><h3>Bond repair treatment</h3><p>$55 · 30 min</p></article>
-      <article class="cell"><div class="tags"><span>Relax</span></div><div class="cell__img"><img src="img/lounge.jpg" alt="" loading="lazy" width="1012" height="1800"></div><h3>Scalp ritual</h3><p>$70 · 45 min</p></article>
-      <article class="cell"><div class="tags"><span>Anti-frizz</span><span>Lasts 3 months</span></div><div class="cell__img"><img src="img/brunette-waves.jpg" alt="" loading="lazy" width="1200" height="1800"></div><h3>Keratin smoothing</h3><p>from $280 · 3 hr</p></article>
+    <div class="cells" id="shopCells">
+      <article class="cell">
+        <div class="tags"><span>Best seller</span><span>Color safe</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#e4d8c8">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A cream bottle of Daily Conditioner with a dark flip cap">
+            <ellipse cx="100" cy="238" rx="54" ry="7" fill="#2e2520" opacity=".35" filter="url(#soft)"/>
+            <rect x="74" y="44" width="52" height="34" rx="7" fill="url(#g-ink)"/>
+            <rect x="74" y="44" width="52" height="6" rx="3" fill="#4d4038"/>
+            <rect x="60" y="74" width="80" height="164" rx="16" fill="url(#g-cream)"/>
+            <rect x="68" y="122" width="64" height="80" rx="2" fill="url(#g-label)" stroke="#d6c9b7" stroke-width=".6"/>
+            <text x="100" y="140" class="lbl lbl--brand">THE STRAND</text>
+            <line x1="84" y1="148" x2="116" y2="148" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="164" class="lbl lbl--name">Daily</text>
+            <text x="100" y="176" class="lbl lbl--name">Conditioner</text>
+            <text x="100" y="194" class="lbl lbl--size">250 mL · 8.4 fl oz</text>
+            <rect x="66" y="80" width="6" height="150" rx="3" fill="#fff" opacity=".5"/>
+          </svg>
+        </div>
+        <h3>Daily conditioner</h3><p>$32 · 250 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>Tones brass</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#d8cfc3">
+          <svg viewBox="0 0 200 260" role="img" aria-label="An amber glass bottle of Gloss Toner with a black cap">
+            <ellipse cx="100" cy="238" rx="44" ry="6" fill="#2e2520" opacity=".4" filter="url(#soft)"/>
+            <rect x="84" y="50" width="32" height="34" rx="4" fill="url(#g-ink)"/>
+            <path d="M84 62h32M84 68h32M84 74h32" stroke="#4d4038" stroke-width=".8"/>
+            <path d="M88 84h24v10c0 6 18 10 18 22v114a8 8 0 0 1-8 8H78a8 8 0 0 1-8-8V116c0-12 18-16 18-22z" fill="url(#g-amber)"/>
+            <rect x="74" y="140" width="52" height="66" rx="2" fill="url(#g-label)"/>
+            <text x="100" y="156" class="lbl lbl--brand">THE STRAND</text>
+            <line x1="86" y1="163" x2="114" y2="163" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="177" class="lbl lbl--name">Gloss</text>
+            <text x="100" y="188" class="lbl lbl--name">Toner</text>
+            <text x="100" y="200" class="lbl lbl--size">100 mL</text>
+            <rect x="76" y="118" width="5" height="108" rx="2.5" fill="#fff" opacity=".35"/>
+          </svg>
+        </div>
+        <h3>Gloss toner</h3><p>$36 · 100 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>Up to 450°F</span><span>Lightweight</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#e6ddd1">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A sage green spray bottle of Heat Protection Spray">
+            <ellipse cx="100" cy="238" rx="42" ry="6" fill="#2e2520" opacity=".35" filter="url(#soft)"/>
+            <path d="M84 42h30l14 8v8h-16v6H84z" fill="url(#g-ink)"/>
+            <rect x="80" y="64" width="40" height="22" rx="3" fill="url(#g-ink)"/>
+            <rect x="72" y="84" width="56" height="154" rx="12" fill="url(#g-sage)"/>
+            <rect x="78" y="128" width="44" height="74" rx="2" fill="url(#g-label)"/>
+            <text x="100" y="144" class="lbl lbl--brand">THE STRAND</text>
+            <line x1="88" y1="151" x2="112" y2="151" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="166" class="lbl lbl--name">Heat</text>
+            <text x="100" y="177" class="lbl lbl--name">Protect</text>
+            <text x="100" y="194" class="lbl lbl--size">150 mL</text>
+            <rect x="77" y="92" width="5" height="138" rx="2.5" fill="#fff" opacity=".4"/>
+          </svg>
+        </div>
+        <h3>Heat protection spray</h3><p>$28 · 150 mL</p>
+      </article>
+
+      <article class="cell">
+        <div class="tags"><span>Weekly repair</span></div>
+        <div class="cell__img cell__img--prod" style="--bg:#ddd0bf">
+          <svg viewBox="0 0 200 260" role="img" aria-label="A wide cream jar of Repair Hair Mask with an oak lid">
+            <ellipse cx="100" cy="238" rx="66" ry="8" fill="#2e2520" opacity=".35" filter="url(#soft)"/>
+            <rect x="44" y="142" width="112" height="96" rx="14" fill="url(#g-cream)"/>
+            <rect x="40" y="116" width="120" height="36" rx="8" fill="url(#g-oak)"/>
+            <path d="M44 122h112" stroke="#d9ab7c" stroke-width="1" opacity=".7"/>
+            <rect x="62" y="164" width="76" height="56" rx="2" fill="url(#g-label)"/>
+            <text x="100" y="180" class="lbl lbl--brand">THE STRAND</text>
+            <line x1="86" y1="187" x2="114" y2="187" stroke="#b98b5f" stroke-width=".8"/>
+            <text x="100" y="202" class="lbl lbl--name">Repair Mask</text>
+            <text x="100" y="214" class="lbl lbl--size">200 mL</text>
+            <rect x="50" y="150" width="6" height="80" rx="3" fill="#fff" opacity=".5"/>
+          </svg>
+        </div>
+        <h3>Repair hair mask</h3><p>$38 <s>$44</s> · 200 mL</p>
+      </article>
     </div>
     <div class="bar" aria-hidden="true"><i id="barFill"></i></div>
   </section>
 
-  <section class="tiles" id="looks" aria-label="Looks we love">
-    <a class="tile" href="#services" data-tab="t-cut"><img src="img/tools.jpg" alt="Shears and combs laid out at a styling station" loading="lazy" width="1350" height="1800"><h2>cut</h2><span class="pill">see cuts</span></a>
-    <a class="tile" href="#services" data-tab="t-color"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><h2>color</h2><span class="pill">see color</span></a>
-    <a class="tile" href="#services" data-tab="t-texture"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:50% 45%"><h2>curls</h2><span class="pill">see texture &amp; care</span></a>
+  <section class="tiles" id="looks" aria-label="Services">
+    <a class="tile" href="#book" data-svc="Signature cut"><img src="img/tools.jpg" alt="Shears and combs laid out at a styling station" loading="lazy" width="1350" height="1800"><h2>cut</h2><span class="pill">book a cut</span></a>
+    <a class="tile" href="#book" data-svc="Balayage"><img src="img/copper.jpg" alt="A layered copper color" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"><h2>color</h2><span class="pill">book color</span></a>
+    <a class="tile" href="#book" data-svc="Silk press"><img src="img/natural-curls.jpg" alt="Full, defined natural curls" loading="lazy" width="1012" height="1800" style="object-position:50% 45%"><h2>curls</h2><span class="pill">book curls &amp; texture</span></a>
   </section>
 
   <section class="studio" id="studio" aria-labelledby="studio-h">
@@ -414,8 +493,8 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   <div class="foot__in">
     <a class="logo" href="#top">The Strand</a>
     <nav aria-label="Footer">
-      <a href="#services">services</a>
-      <a href="#looks">looks</a>
+      <a href="#shop">shop</a>
+      <a href="#looks">services</a>
       <a href="#studio">the studio</a>
       <a href="#visit">visit</a>
       <a href="#">instagram</a>
@@ -440,10 +519,9 @@ const io = new IntersectionObserver(es => es.forEach(e => {
 }), {threshold:.15});
 document.querySelectorAll('.rv').forEach(el => io.observe(el));
 
-// service tabs + progress bar
-const tabs = [...document.querySelectorAll('[role=tab]')];
+// best sellers progress bar (shows when the row scrolls sideways)
+const panel = document.getElementById('shopCells');
 const fill = document.getElementById('barFill');
-let panel = document.getElementById('p-cut');
 function syncBar() {
   const max = panel.scrollWidth - panel.clientWidth;
   const view = panel.clientWidth / panel.scrollWidth;
@@ -451,32 +529,14 @@ function syncBar() {
   fill.style.transform = max > 0 ? `translateX(${(panel.scrollLeft / max) * (1 / view - 1) * 100}%)` : 'none';
   fill.parentElement.style.visibility = max > 0 ? 'visible' : 'hidden';
 }
-function selectTab(t) {
-  tabs.forEach(x => {
-    const on = x === t;
-    x.setAttribute('aria-selected', on);
-    x.tabIndex = on ? 0 : -1;
-    document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
-  });
-  panel = document.getElementById(t.getAttribute('aria-controls'));
-  panel.scrollLeft = 0;
-  syncBar();
-}
-tabs.forEach((t, i) => {
-  t.addEventListener('click', () => selectTab(t));
-  t.addEventListener('keydown', e => {
-    const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
-    if (!d) return;
-    const n = tabs[(i + d + tabs.length) % tabs.length];
-    n.focus(); selectTab(n);
-  });
-});
-document.querySelectorAll('.cells').forEach(c => c.addEventListener('scroll', syncBar, {passive:true}));
+panel.addEventListener('scroll', syncBar, {passive:true});
 addEventListener('resize', syncBar);
 syncBar();
 
-// category tiles open the matching service tab
-document.querySelectorAll('[data-tab]').forEach(a => a.addEventListener('click', () => selectTab(document.getElementById(a.dataset.tab))));
+// service tiles preselect the service in the booking form
+document.querySelectorAll('[data-svc]').forEach(a => a.addEventListener('click', () => {
+  document.getElementById('f-svc').value = a.dataset.svc;
+}));
 
 // booking form (mockup: nothing is sent)
 const form = document.getElementById('bookForm');

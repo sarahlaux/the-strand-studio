@@ -271,6 +271,11 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .info{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:28px 32px}
 .info div{padding-top:14px;border-top:1px solid var(--line);font-size:15px;color:var(--ink-2)}
 .info b{display:block;color:var(--ink);font-weight:600;margin-bottom:4px}
+.map{margin-top:32px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--lime)}
+.map iframe{display:block;width:100%;height:clamp(240px,26vw,320px);border:0;filter:grayscale(1) sepia(.35) contrast(.95) brightness(1.02)}
+.map figcaption{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:14px 18px;font-size:14px;color:var(--ink-2);background:var(--plaster)}
+.map a{font-weight:500;color:var(--ink);text-underline-offset:4px}
+.map a:hover{color:var(--oak-deep)}
 .hours{display:grid;grid-template-columns:auto 1fr;gap:0 18px}
 .form{background:var(--ink);color:var(--plaster);border-radius:28px;padding:clamp(28px,4vw,48px)}
 .form h3{font-size:clamp(28px,2.6vw,36px);margin-bottom:10px}
@@ -795,6 +800,10 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
           <div class="rv"><b>Call or text</b><a href="tel:+15625550142">(562) 555-0142</a></div>
           <div class="rv"><b>Email</b><a href="mailto:hello@thestrandstudio.example">hello@thestrandstudio.example</a></div>
         </div>
+        <figure class="map rv">
+          <iframe title="Map showing The Strand Studio on East 4th Street in Long Beach" src="https://www.google.com/maps?q=2140+E+4th+St,+Long+Beach,+CA+90814&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <figcaption><span>2140 E 4th Street, Long Beach</span><a href="https://www.google.com/maps/dir/?api=1&destination=2140+E+4th+St,+Long+Beach,+CA+90814" target="_blank" rel="noopener">Get directions</a></figcaption>
+        </figure>
       </div>
 
       <div class="form" id="book">

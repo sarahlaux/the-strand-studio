@@ -251,7 +251,10 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 
 /* hair that feels */
 .feel{position:relative;isolation:isolate;overflow:hidden;color:var(--plaster);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding:clamp(80px,11vw,160px) var(--pad)}
-.feel__bg{position:absolute;left:0;top:-20%;z-index:-2;width:100%;height:140%;object-fit:cover;object-position:50% 45%;will-change:transform}
+.feel__bg{position:absolute;left:0;top:-20%;z-index:-2;width:100%;height:140%;display:grid;grid-template-columns:1fr 1fr;will-change:transform}
+.feel__bg img{width:100%;height:100%;object-fit:cover}
+.feel__bg img:first-child{object-position:60% 40%}
+.feel__bg img:last-child{object-position:40% 45%}
 @media (prefers-reduced-motion:reduce){.feel__bg{top:0;height:100%}}
 .feel::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 70% at 50% 50%,rgba(30,22,17,.62),rgba(30,22,17,.4) 70%,rgba(30,22,17,.5))}
 .feel h2{font-size:clamp(48px,6.6vw,96px);line-height:1;max-width:14ch}
@@ -768,7 +771,10 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   </section>
 
   <section class="feel" aria-labelledby="feel-h">
-    <img class="feel__bg" src="img/vanity.jpg" alt="" loading="lazy" width="2200" height="1760">
+    <div class="feel__bg">
+      <img src="img/lather.jpg" alt="" loading="lazy" width="1200" height="1800">
+      <img src="img/oil-pour.jpg" alt="" loading="lazy" width="1200" height="1800">
+    </div>
     <h2 id="feel-h" aria-label="Hair that feels effortless, fresh, confident, luxurious, like you.">
       <span aria-hidden="true">hair that feels</span>
       <span class="feel__words" aria-hidden="true">&nbsp;<span class="is-on">effortless</span><span>fresh</span><span>confident</span><span>luxurious</span><span>like you</span></span>

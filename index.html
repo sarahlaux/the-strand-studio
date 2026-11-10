@@ -57,7 +57,6 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero__a img.hero__half{width:50%;object-position:60% 40%}
 .hero__a img.hero__half + img.hero__half{left:50%;object-position:40% 45%}
-.hero__drips{position:absolute;top:0;left:50%;width:50%;height:100%;pointer-events:none}
 .hero__a::after{content:"";position:absolute;inset:0;background:radial-gradient(45% 50% at 12% 78%,rgba(30,22,17,.42),rgba(30,22,17,.12) 60%,transparent 85%),linear-gradient(rgba(30,22,17,.26),transparent 16%,transparent 80%,rgba(30,22,17,.32))}
 .hero__copy{text-shadow:0 1px 2px rgba(30,22,17,.25),0 2px 28px rgba(30,22,17,.4)}
 .nav{position:absolute;inset:0 0 auto;z-index:5;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px;padding:0 var(--pad)}
@@ -369,7 +368,6 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
   <div class="hero__a">
     <img class="hero__half" src="img/lather.jpg" alt="Long blonde hair lathered with shampoo" width="1200" height="1800" fetchpriority="high">
     <img class="hero__half" src="img/oil-pour.jpg" alt="Golden hair oil pouring into a glossy pool" width="1200" height="1800" fetchpriority="high">
-    <canvas class="hero__drips" id="drips" aria-hidden="true"></canvas>
     <div class="hero__copy rv">
       <h1>hair that feels like you, even on <span class="mark">day five.<svg viewBox="0 0 400 24" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M4 12C70 6 170 3 250 6S350 11 396 7"/><path pathLength="1" d="M26 18C120 13 230 12 372 15"/></svg></span></h1>
       <p>A small Long Beach studio for lived-in color, careful cuts and curly and textured hair.</p>
@@ -1016,96 +1014,6 @@ form.addEventListener('submit', e => {
   if (missing) { missing.setCustomValidity('Add your ' + missing.name + ' so we can text you times.'); missing.reportValidity(); missing.setCustomValidity(''); return; }
   form.parentElement.classList.add('is-sent');
 });
-
-// hero: oil bubbles that slowly drip down over the right photo
-(() => {
-  const cv = document.getElementById('drips');
-  if (!cv || matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-  const ctx = cv.getContext('2d');
-  let w = 0, h = 0, drops = [], running = false, last = 0;
-
-  function make(top) {
-    const big = Math.random() < .35;
-    const r = big ? 5 + Math.random() * 9 : 1.5 + Math.random() * 3.5;
-    return {
-      x: Math.random() * w, y: top ? -r * 3 - Math.random() * h * .5 : Math.random() * h,
-      r, big, v: 0,
-      max: (8 + r * 2.2) * (.6 + Math.random() * .8),   // bigger drops fall faster
-      wob: Math.random() * 6.28, wobAmp: Math.random() * .25,
-      a: .55 + Math.random() * .4,
-    };
-  }
-  function size() {
-    const dpr = Math.min(devicePixelRatio || 1, 2);
-    w = cv.clientWidth; h = cv.clientHeight;
-    cv.width = w * dpr; cv.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    const n = Math.round(w * h / 22000);
-    drops = Array.from({length: n}, () => make(false));
-  }
-  function draw(d) {
-    const {x, y, r, a} = d;
-    const stretch = 1 + Math.min(d.v / d.max, 1) * .18;   // drops lengthen a little as they speed up
-    ctx.save();
-    ctx.globalAlpha = a;
-    // faint trail left in the oil
-    const tg = ctx.createLinearGradient(0, y - r * 6, 0, y);
-    tg.addColorStop(0, 'rgba(120,100,55,0)');
-    tg.addColorStop(1, 'rgba(120,100,55,.08)');
-    ctx.fillStyle = tg;
-    ctx.fillRect(x - r * .4, y - r * 6, r * .8, r * 6);
-    // dark olive body, like the shadows in the photo
-    ctx.translate(x, y);
-    ctx.scale(1, stretch);
-    ctx.beginPath();
-    ctx.arc(0, 0, r, 0, 6.283);
-    const bg = ctx.createRadialGradient(-r * .2, -r * .2, 0, 0, 0, r);
-    bg.addColorStop(0, 'rgba(95,84,48,.75)');
-    bg.addColorStop(1, 'rgba(110,96,55,.45)');
-    ctx.fillStyle = bg;
-    ctx.fill();
-    if (d.big) {
-      // clear glassy ring sitting just above the shadow
-      ctx.beginPath();
-      ctx.arc(r * .45, -r * .55, r * .82, 0, 6.283);
-      ctx.fillStyle = 'rgba(245,238,220,.28)';
-      ctx.fill();
-      ctx.lineWidth = Math.max(1, r * .14);
-      ctx.strokeStyle = 'rgba(176,132,62,.6)';
-      ctx.stroke();
-      ctx.lineWidth = Math.max(.6, r * .06);
-      ctx.strokeStyle = 'rgba(255,252,240,.85)';
-      ctx.beginPath();
-      ctx.arc(r * .45, -r * .55, r * .68, 3.6, 5.4);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(r * .2, -r * .8, Math.max(.8, r * .13), 0, 6.283);
-      ctx.fillStyle = 'rgba(255,255,255,.95)';
-      ctx.fill();
-    }
-    ctx.restore();
-  }
-  function frame(t) {
-    if (!running) return;
-    const dt = Math.min((t - last) / 1000, .05); last = t;
-    ctx.clearRect(0, 0, w, h);
-    for (let i = 0; i < drops.length; i++) {
-      const d = drops[i];
-      d.v = Math.min(d.max, d.v + d.max * .35 * dt);   // thick oil: eases up to its speed
-      d.y += d.v * dt;
-      d.wob += dt * .8;
-      d.x += Math.sin(d.wob) * d.wobAmp * dt * 10;
-      if (d.y - d.r * 2 > h) drops[i] = make(true);
-      draw(drops[i]);
-    }
-    requestAnimationFrame(frame);
-  }
-  function start() { if (!running) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
-  size();
-  addEventListener('resize', size);
-  new IntersectionObserver(([e]) => { e.isIntersecting && !document.hidden ? start() : running = false; }).observe(cv);
-  document.addEventListener('visibilitychange', () => { document.hidden ? running = false : start(); });
-})();
 </script>
 </body>
 </html>

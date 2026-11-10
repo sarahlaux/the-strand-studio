@@ -234,21 +234,22 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
 .studio__group img{width:100%;height:auto;aspect-ratio:5/4;object-fit:cover;border:clamp(4px,.45vw,6px) solid var(--ink)}
 @media (prefers-reduced-motion:reduce){.studio__group[aria-hidden]{display:none}}
 
-/* reviews */
-.rev{background:var(--ink);color:var(--plaster);padding:clamp(64px,8vw,110px) var(--pad)}
+/* reviews: white cards with a photo, sliding left */
+.rev{background:var(--lime);padding:clamp(64px,8vw,110px) var(--pad);overflow:hidden}
 .rev__in{max-width:1440px;margin:0 auto}
 .rev h2,.visit h2{font-size:clamp(40px,4.4vw,64px)}
-.rev{overflow:hidden}
-.rev__slider{--gap:0px;width:100vw;margin:clamp(32px,4vw,56px) 0 0 calc(50% - 50vw);overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.rev__track{display:flex;width:max-content;will-change:transform}
-.rev__group{display:flex}
-.rev blockquote{flex:none;width:clamp(290px,30vw,440px);padding:clamp(24px,3vw,40px) clamp(20px,2.4vw,36px);border-right:1px solid var(--line);display:flex;flex-direction:column;gap:28px}
-.rev blockquote p{font-size:clamp(19px,1.7vw,24px);line-height:1.25;letter-spacing:-.02em}
-.rev .rev__slider,.rev blockquote{border-color:rgba(245,239,232,.18)}
+.rev__slider{width:100vw;margin:clamp(32px,4vw,56px) 0 0 calc(50% - 50vw);overflow:hidden}
+.rev__track,.rev__group{display:flex;gap:clamp(12px,1.4vw,18px)}
+.rev__track{width:max-content;will-change:transform}
+.rcard{flex:none;width:clamp(280px,26vw,360px);background:#fff;padding:clamp(22px,2.2vw,30px);display:flex;flex-direction:column}
+.rcard h3{font:400 18px/1.25 "Bodoni Moda",serif;letter-spacing:0}
+.rcard__stars{margin-top:12px;font-size:12px;letter-spacing:.18em;color:var(--oak)}
+.rcard blockquote{margin-top:12px;font-size:14px;line-height:1.55;color:var(--ink)}
+.rcard figcaption{margin-top:14px;font-size:13px;color:var(--ink-2)}
+.rcard__img{margin-top:auto;padding-top:28px;width:56%}
+.rcard__img img{width:100%;aspect-ratio:3/4;height:auto;object-fit:cover;background:var(--lime)}
+.rev__note{margin-top:40px;font-size:12px;color:var(--ink-2)}
 @media (prefers-reduced-motion:reduce){.rev__slider{overflow-x:auto}.rev__group[aria-hidden]{display:none}}
-.rev footer{margin-top:auto;font-size:13px;color:rgba(245,239,232,.6)}
-.rev footer b{display:block;font-weight:600;color:var(--plaster)}
-.rev__note{margin-top:40px;font-size:12px;color:rgba(245,239,232,.55)}
 
 /* hair that feels */
 .feel{position:relative;isolation:isolate;overflow:hidden;color:var(--plaster);display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;padding:clamp(80px,11vw,160px) var(--pad)}
@@ -746,26 +747,26 @@ h1,h2,h3{font-weight:400;letter-spacing:-.035em;line-height:1}
       <div class="rev__slider" id="revSlider">
         <div class="rev__track">
           <div class="rev__group">
-            <blockquote><p>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
-            <blockquote><p>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</p><footer><b>Kate L.</b>Balayage</footer></blockquote>
-            <blockquote><p>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</p><footer><b>Marisol T.</b>Signature cut and gloss</footer></blockquote>
-            <blockquote><p>"My silk press lasted two full weeks, through a beach weekend. I'm not going anywhere else."</p><footer><b>Danielle W.</b>Silk press</footer></blockquote>
-            <blockquote><p>"They talked me out of bangs I'd regret and into a shape I love. Honest people."</p><footer><b>Priya S.</b>Signature cut</footer></blockquote>
-            <blockquote><p>"The scalp ritual is the most relaxed I've been all year. I booked my next one before I left."</p><footer><b>Lauren M.</b>Scalp ritual</footer></blockquote>
-            <blockquote><p>"Finally a copper that doesn't fade to orange in a week. The gloss refresh keeps it bright."</p><footer><b>Hannah C.</b>Single process and gloss</footer></blockquote>
-            <blockquote><p>"Brought my daughter for her first real haircut. They were patient and made her feel grown up."</p><footer><b>Rosa G.</b>Signature cut</footer></blockquote>
-            <blockquote><p>"Bridal trial and wedding day were both perfect, and my hair held through hours of dancing."</p><footer><b>Alexis P.</b>Bridal trial and event styling</footer></blockquote>
+            <figure class="rcard"><h3>Curly and coily cut</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</blockquote><figcaption>Imani R.</figcaption><div class="rcard__img"><img src="img/natural-curls.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:50% 40%"></div></figure>
+            <figure class="rcard"><h3>Lived-in balayage</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</blockquote><figcaption>Kate L.</figcaption><div class="rcard__img"><img src="img/blonde-waves.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 35%"></div></figure>
+            <figure class="rcard"><h3>Signature cut and gloss</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</blockquote><figcaption>Marisol T.</figcaption><div class="rcard__img"><img src="img/brunette-waves.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 30%"></div></figure>
+            <figure class="rcard"><h3>Silk press</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"My silk press lasted two full weeks, through a beach weekend. I'm not going anywhere else."</blockquote><figcaption>Danielle W.</figcaption><div class="rcard__img"><img src="img/black-waves.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:45% 40%"></div></figure>
+            <figure class="rcard"><h3>Signature cut</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"They talked me out of bangs I'd regret and into a shape I love. Honest people."</blockquote><figcaption>Priya S.</figcaption><div class="rcard__img"><img src="img/black-bob.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 35%"></div></figure>
+            <figure class="rcard"><h3>Scalp ritual</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"The scalp ritual is the most relaxed I've been all year. I booked my next one before I left."</blockquote><figcaption>Lauren M.</figcaption><div class="rcard__img"><img src="img/scalp.jpg" alt="" loading="lazy" width="1600" height="2400" style="object-position:55% 40%"></div></figure>
+            <figure class="rcard"><h3>Single process and gloss</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Finally a copper that doesn't fade to orange in a week. The gloss refresh keeps it bright."</blockquote><figcaption>Hannah C.</figcaption><div class="rcard__img"><img src="img/copper.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div></figure>
+            <figure class="rcard"><h3>First haircut</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Brought my daughter for her first real haircut. They were patient and made her feel grown up."</blockquote><figcaption>Rosa G.</figcaption><div class="rcard__img"><img src="img/comb-2.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 40%"></div></figure>
+            <figure class="rcard"><h3>Bridal trial and event styling</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Bridal trial and wedding day were both perfect, and my hair held through hours of dancing."</blockquote><figcaption>Alexis P.</figcaption><div class="rcard__img"><img src="img/blowout.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:60% 50%"></div></figure>
           </div>
           <div class="rev__group" aria-hidden="true">
-            <blockquote><p>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</p><footer><b>Imani R.</b>Curly and coily cut</footer></blockquote>
-            <blockquote><p>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</p><footer><b>Kate L.</b>Balayage</footer></blockquote>
-            <blockquote><p>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</p><footer><b>Marisol T.</b>Signature cut and gloss</footer></blockquote>
-            <blockquote><p>"My silk press lasted two full weeks, through a beach weekend. I'm not going anywhere else."</p><footer><b>Danielle W.</b>Silk press</footer></blockquote>
-            <blockquote><p>"They talked me out of bangs I'd regret and into a shape I love. Honest people."</p><footer><b>Priya S.</b>Signature cut</footer></blockquote>
-            <blockquote><p>"The scalp ritual is the most relaxed I've been all year. I booked my next one before I left."</p><footer><b>Lauren M.</b>Scalp ritual</footer></blockquote>
-            <blockquote><p>"Finally a copper that doesn't fade to orange in a week. The gloss refresh keeps it bright."</p><footer><b>Hannah C.</b>Single process and gloss</footer></blockquote>
-            <blockquote><p>"Brought my daughter for her first real haircut. They were patient and made her feel grown up."</p><footer><b>Rosa G.</b>Signature cut</footer></blockquote>
-            <blockquote><p>"Bridal trial and wedding day were both perfect, and my hair held through hours of dancing."</p><footer><b>Alexis P.</b>Bridal trial and event styling</footer></blockquote>
+            <figure class="rcard"><h3>Curly and coily cut</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"First stylist who actually knew how to cut my curls dry. Three months later it still has shape."</blockquote><figcaption>Imani R.</figcaption><div class="rcard__img"><img src="img/natural-curls.jpg" alt="" loading="lazy" width="1012" height="1800" style="object-position:50% 40%"></div></figure>
+            <figure class="rcard"><h3>Lived-in balayage</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"I asked for low maintenance blonde and got exactly that. The grow-out still looks on purpose."</blockquote><figcaption>Kate L.</figcaption><div class="rcard__img"><img src="img/blonde-waves.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:50% 35%"></div></figure>
+            <figure class="rcard"><h3>Signature cut and gloss</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Calm, on time, and they told me the price before starting. I didn't know a salon could feel like this."</blockquote><figcaption>Marisol T.</figcaption><div class="rcard__img"><img src="img/brunette-waves.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 30%"></div></figure>
+            <figure class="rcard"><h3>Silk press</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"My silk press lasted two full weeks, through a beach weekend. I'm not going anywhere else."</blockquote><figcaption>Danielle W.</figcaption><div class="rcard__img"><img src="img/black-waves.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:45% 40%"></div></figure>
+            <figure class="rcard"><h3>Signature cut</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"They talked me out of bangs I'd regret and into a shape I love. Honest people."</blockquote><figcaption>Priya S.</figcaption><div class="rcard__img"><img src="img/black-bob.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 35%"></div></figure>
+            <figure class="rcard"><h3>Scalp ritual</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"The scalp ritual is the most relaxed I've been all year. I booked my next one before I left."</blockquote><figcaption>Lauren M.</figcaption><div class="rcard__img"><img src="img/scalp.jpg" alt="" loading="lazy" width="1600" height="2400" style="object-position:55% 40%"></div></figure>
+            <figure class="rcard"><h3>Single process and gloss</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Finally a copper that doesn't fade to orange in a week. The gloss refresh keeps it bright."</blockquote><figcaption>Hannah C.</figcaption><div class="rcard__img"><img src="img/copper.jpg" alt="" loading="lazy" width="1350" height="1800" style="object-position:30% 40%"></div></figure>
+            <figure class="rcard"><h3>First haircut</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Brought my daughter for her first real haircut. They were patient and made her feel grown up."</blockquote><figcaption>Rosa G.</figcaption><div class="rcard__img"><img src="img/comb-2.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:50% 40%"></div></figure>
+            <figure class="rcard"><h3>Bridal trial and event styling</h3><span class="rcard__stars" role="img" aria-label="5 out of 5 stars">★★★★★</span><blockquote>"Bridal trial and wedding day were both perfect, and my hair held through hours of dancing."</blockquote><figcaption>Alexis P.</figcaption><div class="rcard__img"><img src="img/blowout.jpg" alt="" loading="lazy" width="1200" height="1800" style="object-position:60% 50%"></div></figure>
           </div>
         </div>
       </div>
